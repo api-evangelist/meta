@@ -3,6 +3,7 @@ url: https://raw.githubusercontent.com/api-search/social/main/_apis/meta/apis.md
 apis:
   - aid: meta:facebook-graph-api
     name: Meta Graph API
+    humanURL: https://developers.facebook.com/docs/graph-api
     tags:
       - Social
     description: >-
@@ -77,6 +78,10 @@ name: Meta
 tags:
   - Social
   - Advertising
+common:
+  - url: https://metastatus.com/
+    name: Status
+    type: Status
 created: 2024/04/14
 modified: '2025-07-29'
 description: >-
@@ -89,7 +94,3 @@ maintainers:
     url: http://apievangelist.com
     email: info@apievangelist.com
 specificationVersion: '0.18'
-common:
-  - name: Status
-    url: https://metastatus.com/
-    type: Status
