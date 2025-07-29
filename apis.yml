@@ -3,9 +3,9 @@ url: https://raw.githubusercontent.com/api-search/social/main/_apis/meta/apis.md
 apis:
   - aid: meta:facebook-graph-api
     name: Meta Graph API
-    humanURL: https://developers.facebook.com/docs/graph-api
     tags:
       - Social
+    humanURL: https://developers.facebook.com/docs/graph-api
     description: >-
       The Graph API is the primary way for apps to read and write to the
       Facebook social graph. All of our SDKs and products interact with the
@@ -13,12 +13,14 @@ apis:
       so understanding how the Graph API works is crucial.
   - aid: meta:facebook-graph-api-user
     name: Facebook Graph API - User
+    humanURL: https://developers.facebook.com/docs/graph-api/reference/user/
     tags:
       - Social
       - Users
     description: 'Managing user on Facebook.        '
   - aid: meta:facebook-graph-api-user-accounts
     name: Facebook Graph API - User Accounts
+    humanURL: https://developers.facebook.com/docs/graph-api/reference/user/accounts/
     tags:
       - Social
       - Users
@@ -26,6 +28,7 @@ apis:
     description: 'Managing user accounts on Facebook.   '
   - aid: meta:facebook-graph-api-user-feed
     name: Facebook Graph API - User Feed
+    humanURL: null
     tags:
       - Social
       - Users
@@ -33,6 +36,7 @@ apis:
     description: 'Managing user feeds on Facebook.    '
   - aid: meta:facebook-graph-api-user-likes
     name: Facebook Graph API - User Likes
+    humanURL: https://developers.facebook.com/docs/graph-api/reference/user/feed/
     tags:
       - Social
       - Users
@@ -40,6 +44,7 @@ apis:
     description: 'Managing user likes on Facebook.      '
   - aid: meta:facebook-graph-api-user-music-likes
     name: Facebook Graph API - User Music Likes
+    humanURL: https://developers.facebook.com/docs/graph-api/reference/user/likes/
     tags:
       - Social
       - Users
@@ -48,6 +53,7 @@ apis:
     description: 'Managing user music likes on Facebook.                   '
   - aid: meta:facebook-graph-api-user-notifications
     name: Facebook Graph API - User Notifications
+    humanURL: https://developers.facebook.com/docs/graph-api/reference/user/music/
     tags:
       - Social
       - Users
@@ -55,6 +61,7 @@ apis:
     description: 'Managing user notifications on Facebook.    '
   - aid: meta:facebook-graph-api-user-photos
     name: Facebook Graph API - User Photos
+    humanURL: https://developers.facebook.com/docs/graph-api/reference/user/photos/
     tags:
       - Social
       - Users
@@ -62,6 +69,7 @@ apis:
     description: 'Managing user photos on Facebook.   '
   - aid: meta:facebook-graph-api-user-picture
     name: Facebook Graph API - User Picture
+    humanURL: https://developers.facebook.com/docs/graph-api/reference/user/picture/
     tags:
       - Social
       - Users
@@ -69,11 +77,29 @@ apis:
     description: 'Managing user picture on Facebook.  '
   - aid: meta:facebook-graph-api-user-videos
     name: Facebook Graph API - Get User Videos
+    humanURL: https://developers.facebook.com/docs/video-api/guides/get-videos/
     tags:
       - Social
       - Users
       - Videos
-    description: 'Managing user videos on Facebook.                            '
+    description: Managing user videos on Facebook.
+  - aid: meta:facebook-graph-api-user-notifications
+    name: Facebook Graph API - Get User Notifications
+    humanURL: >-
+      ttps://developers.facebook.com/docs/graph-api/reference/user/notifications/
+    tags:
+      - Social
+      - Users
+      - Notifications
+    description: Managing user notifications on Facebook.
+  - aid: meta:facebook-graph-api-user-posts
+    name: Facebook Graph API - Get User Posts
+    humanURL: https://developers.facebook.com/docs/graph-api/reference/v23.0/user/posts
+    tags:
+      - Social
+      - Users
+      - Posts
+    description: Managing user posts on Facebook.
 name: Meta
 tags:
   - Social
