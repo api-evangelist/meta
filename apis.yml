@@ -179,6 +179,10 @@ common:
             metric: user
             timeFrame: month
             description: Free tier.
+  - name: Rate Limits - Graph API
+    description: 'null'
+    url: https://developers.facebook.com/docs/graph-api/overview/rate-limiting/
+    type: RateLimits
 created: 2024/04/14
 modified: '2025-07-29'
 description: >-
