@@ -7,7 +7,10 @@ apis:
       - Social
       - Users
     humanURL: https://developers.facebook.com/docs/graph-api/reference/user/
-    description: Managing user on Facebook.
+    properties:
+      - url: properties/facebook-graph-api-user-openapi.yml
+        type: OpenAPI
+    description: 'Managing user on Facebook.        '
 name: Meta
 tags:
   - Social
