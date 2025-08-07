@@ -135,7 +135,7 @@ common:
   - name: Offset-based Pagination
     description: Still need to figure out how to reference in OpenAPI.
     mediaType: application/schema+json
-    type: PaginationJsonSchema
+    type: Pagination
     data:
       $schema: https://json-schema.org/draft/2020-12/schema
       $id: https://example.com/offset-pagination.schema.json
@@ -205,7 +205,7 @@ common:
   - name: Time-based Pagination
     description: Still need to figure out how to reference in OpenAPI.
     mediaType: application/schema+json
-    type: PaginationJsonSchema
+    type: Pagination
     data:
       $schema: https://json-schema.org/draft/2020-12/schema
       $id: https://example.com/time-pagination.schema.json
@@ -270,7 +270,7 @@ common:
   - name: Cursor-based Pagination
     mediaType: application/schema+json
     description: Still need to figure out how to reference in OpenAPI.
-    type: PaginationJsonSchema
+    type: Pagination
     data:
       $schema: https://json-schema.org/draft/2020-12/schema
       $id: https://example.com/cursor-pagination.schema.json
