@@ -7,10 +7,7 @@ apis:
       - Social
       - Users
     humanURL: https://developers.facebook.com/docs/graph-api/reference/user/
-    properties:
-      - url: properties/facebook-graph-api-user-openapi.yml
-        type: OpenAPI
-    description: 'Managing user on Facebook.        '
+    description: Managing user on Facebook.
 name: Meta
 tags:
   - Social
@@ -94,8 +91,28 @@ common:
     name: Rate Limits - Graph API
     type: RateLimits
     description: 'null'
+  - name: Versioning - Graph API
+    description: 'null'
+    url: https://developers.facebook.com/docs/graph-api/guides/versioning
+    type: Versioning
+  - name: Paginated Results - Graph API
+    description: 'null'
+    url: https://developers.facebook.com/docs/graph-api/results
+    type: Pagination
+  - name: Graph API Explorer - Meta for Developers
+    description: 'null'
+    url: https://developers.facebook.com/tools/explorer/
+    type: Explorer
+  - name: All Apps - Meta for Developers
+    description: 'null'
+    url: https://developers.facebook.com/apps/
+    type: Applications
+  - name: Get Started - Graph API
+    description: 'null'
+    url: https://developers.facebook.com/docs/graph-api/get-started
+    type: GettingStarted
 created: 2024/04/14
-modified: '2025-08-06'
+modified: '2025-08-07'
 description: >-
   Meta Platforms, Inc., doing business as Meta, and formerly named Facebook,
   Inc., and TheFacebook, Inc., is an American multinational technology
