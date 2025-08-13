@@ -15,6 +15,9 @@ apis:
       - Users
     humanURL: https://developers.facebook.com/docs/instagram-platform
     description: Managing user on Facebook.
+    properties:
+      - type: OpenAPI
+        url: properties/instagram-graph-api-user-openapi.yml
 name: Meta
 tags:
   - Social
@@ -108,7 +111,7 @@ common:
           - getUser
         description: >-
           Graph API requests made with an application access token are counted
-          against that apps rate limit. An apps call count is the number of
+          against that apps rate limit. An apps call count is the number of
           calls it can make during a rolling one hour window and is calculated
           as Calls within one hour = 200 * Number of Users. The Number of Users
           is based on the number of unique daily active users an app has. In
