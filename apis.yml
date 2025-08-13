@@ -14,10 +14,10 @@ apis:
       - Social
       - Users
     humanURL: https://developers.facebook.com/docs/instagram-platform
-    description: Managing user on Facebook.
     properties:
-      - type: OpenAPI
-        url: properties/instagram-graph-api-user-openapi.yml
+      - url: properties/instagram-graph-api-user-openapi.yml
+        type: OpenAPI
+    description: Managing user on Facebook.
 name: Meta
 tags:
   - Social
