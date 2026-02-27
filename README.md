@@ -1,33 +1,21 @@
 # Meta (meta)
-Meta Platforms, Inc., doing business as Meta, and formerly named Facebook, Inc., and TheFacebook, Inc., is an American multinational technology conglomerate based in Menlo Park, California. The company owns and operates Facebook, Instagram, Threads, and WhatsApp, among other products and services.
+Collection of Meta (Facebook) platform APIs
 
 **URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-search/social/main/_apis/meta/apis.md)
 
-## Scope
-
-
 ## Tags:
 
- - Social, Advertising
+ - Advertising, Analytics, Messaging, Social, Social Media, Virtual Reality
 
 ## Timestamps
 
-- **Created:** 2024/04/14 
-- **Modified:** 2025-07-29 
+- **Created:** 2024-04-14T00:00:00.000Z 
+- **Modified:** 2025-08-13 
 
 ## APIs
 
-### Meta Graph API
-The Graph API is the primary way for apps to read and write to the Facebook social graph. All of our SDKs and products interact with the Graph API in some way, and our other APIs are extensions of the Graph API, so understanding how the Graph API works is crucial.
-
-**Human URL:** [https://developers.facebook.com/docs/graph-api](https://developers.facebook.com/docs/graph-api)
-
-
-#### Tags:
-
- - Social
 ### Facebook Graph API - User
-Managing user on Facebook.        
+Managing user on Facebook.
 
 **Human URL:** [https://developers.facebook.com/docs/graph-api/reference/user/](https://developers.facebook.com/docs/graph-api/reference/user/)
 
@@ -35,94 +23,20 @@ Managing user on Facebook.
 #### Tags:
 
  - Social, Users
-### Facebook Graph API - User Accounts
-Managing user accounts on Facebook.   
 
-**Human URL:** [https://developers.facebook.com/docs/graph-api/reference/user/accounts/](https://developers.facebook.com/docs/graph-api/reference/user/accounts/)
+### Instagram Graph API - User
+Managing user on Facebook.
 
-
-#### Tags:
-
- - Social, Users, Accounts
-### Facebook Graph API - User Feed
-Managing user feeds on Facebook.    
+**Human URL:** [https://developers.facebook.com/docs/instagram-platform](https://developers.facebook.com/docs/instagram-platform)
 
 
 #### Tags:
 
- - Social, Users, Feeds
-### Facebook Graph API - User Likes
-Managing user likes on Facebook.      
+ - Social, Users
 
-**Human URL:** [https://developers.facebook.com/docs/graph-api/reference/user/feed/](https://developers.facebook.com/docs/graph-api/reference/user/feed/)
+#### Properties
 
-
-#### Tags:
-
- - Social, Users, Likes
-### Facebook Graph API - User Music Likes
-Managing user music likes on Facebook.                   
-
-**Human URL:** [https://developers.facebook.com/docs/graph-api/reference/user/likes/](https://developers.facebook.com/docs/graph-api/reference/user/likes/)
-
-
-#### Tags:
-
- - Social, Users, Music, Likes
-### Facebook Graph API - User Notifications
-Managing user notifications on Facebook.    
-
-**Human URL:** [https://developers.facebook.com/docs/graph-api/reference/user/music/](https://developers.facebook.com/docs/graph-api/reference/user/music/)
-
-
-#### Tags:
-
- - Social, Users, Nofitications
-### Facebook Graph API - User Photos
-Managing user photos on Facebook.   
-
-**Human URL:** [https://developers.facebook.com/docs/graph-api/reference/user/photos/](https://developers.facebook.com/docs/graph-api/reference/user/photos/)
-
-
-#### Tags:
-
- - Social, Users, Photos
-### Facebook Graph API - User Picture
-Managing user picture on Facebook.  
-
-**Human URL:** [https://developers.facebook.com/docs/graph-api/reference/user/picture/](https://developers.facebook.com/docs/graph-api/reference/user/picture/)
-
-
-#### Tags:
-
- - Social, Users, Pictures
-### Facebook Graph API - Get User Videos
-Managing user videos on Facebook.
-
-**Human URL:** [https://developers.facebook.com/docs/video-api/guides/get-videos/](https://developers.facebook.com/docs/video-api/guides/get-videos/)
-
-
-#### Tags:
-
- - Social, Users, Videos
-### Facebook Graph API - Get User Notifications
-Managing user notifications on Facebook.
-
-**Human URL:** [ttps://developers.facebook.com/docs/graph-api/reference/user/notifications/](ttps://developers.facebook.com/docs/graph-api/reference/user/notifications/)
-
-
-#### Tags:
-
- - Social, Users, Notifications
-### Facebook Graph API - Get User Posts
-Managing user posts on Facebook.
-
-**Human URL:** [https://developers.facebook.com/docs/graph-api/reference/v23.0/user/posts](https://developers.facebook.com/docs/graph-api/reference/v23.0/user/posts)
-
-
-#### Tags:
-
- - Social, Users, Posts
+- [OpenAPI](properties/instagram-graph-api-user-openapi.yml)
 
 ## Common Properties
 
@@ -141,12 +55,21 @@ Managing user posts on Facebook.
 - [IncidentReport](https://developers.facebook.com/incident/report/)
 - [Newsletter](https://developers.facebook.com/m/signup/)
 - [Videos](https://developers.facebook.com/videos/)
-- [Plans](undefined)
 - [RateLimits](https://developers.facebook.com/docs/graph-api/overview/rate-limiting/)
+- [Versioning](https://developers.facebook.com/docs/graph-api/guides/versioning)
+- [Pagination](https://developers.facebook.com/docs/graph-api/results)
+- [Explorer](https://developers.facebook.com/tools/explorer/)
+- [Applications](https://developers.facebook.com/apps/)
+- [GettingStarted](https://developers.facebook.com/docs/graph-api/get-started)
+- [Authentication](https://developers.facebook.com/docs/facebook-login)
+- [Console](https://developers.facebook.com/apps)
+- [Privacy Policy](https://www.facebook.com/privacy/explanation)
 
 ## Maintainers
 
 **FN:** API Evangelist
 
 **Email:** info@apievangelist.com
+**FN:** Meta Platforms Inc.
 
+**Email:** developer-support@meta.com
