@@ -1,0 +1,268 @@
+{
+  "$id": "https://meta.com/schemas/marketing-api/ad-campaign.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Meta Marketing API Ad Campaign",
+  "description": "Represents an advertising campaign in the Meta Marketing API (Campaign level in the Campaign > Ad Set > Ad hierarchy). Includes budget, objective, status, and scheduling fields.",
+  "type": "object",
+  "required": [
+    "id",
+    "name"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the campaign."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the campaign."
+    },
+    "account_id": {
+      "type": "string",
+      "description": "The ID of the ad account that owns the campaign."
+    },
+    "objective": {
+      "type": "string",
+      "enum": [
+        "OUTCOME_AWARENESS",
+        "OUTCOME_ENGAGEMENT",
+        "OUTCOME_LEADS",
+        "OUTCOME_SALES",
+        "OUTCOME_TRAFFIC",
+        "OUTCOME_APP_PROMOTION"
+      ],
+      "description": "The campaign objective defining the optimization goal. Uses the Outcome-Based Ads objectives introduced in Meta Marketing API v18+."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "PAUSED",
+        "DELETED",
+        "ARCHIVED"
+      ],
+      "description": "The campaign status set by the advertiser."
+    },
+    "effective_status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "PAUSED",
+        "DELETED",
+        "ARCHIVED",
+        "IN_PROCESS",
+        "WITH_ISSUES",
+        "CAMPAIGN_PAUSED"
+      ],
+      "description": "The effective status of the campaign, accounting for parent ad account status and any issues."
+    },
+    "configured_status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "PAUSED",
+        "DELETED",
+        "ARCHIVED"
+      ],
+      "description": "The configured status of the campaign as set in the API."
+    },
+    "buying_type": {
+      "type": "string",
+      "enum": [
+        "AUCTION",
+        "RESERVED"
+      ],
+      "description": "The buying type for the campaign. AUCTION is the default for most campaigns."
+    },
+    "bid_strategy": {
+      "type": "string",
+      "enum": [
+        "LOWEST_COST_WITHOUT_CAP",
+        "LOWEST_COST_WITH_BID_CAP",
+        "COST_CAP",
+        "LOWEST_COST_WITH_MIN_ROAS"
+      ],
+      "description": "The bid strategy for the campaign."
+    },
+    "budget_remaining": {
+      "type": "string",
+      "description": "The remaining budget of the campaign in the account currency, expressed in cents."
+    },
+    "daily_budget": {
+      "type": "string",
+      "description": "The daily budget of the campaign in the account currency, expressed in cents."
+    },
+    "lifetime_budget": {
+      "type": "string",
+      "description": "The lifetime budget of the campaign in the account currency, expressed in cents."
+    },
+    "spend_cap": {
+      "type": "string",
+      "description": "The spend cap for the campaign in the account currency, expressed in cents."
+    },
+    "special_ad_categories": {
+      "type": "array",
+      "description": "Special ad categories the campaign falls under (e.g. credit, employment, housing, social issues).",
+      "items": {
+        "type": "string",
+        "enum": [
+          "NONE",
+          "EMPLOYMENT",
+          "HOUSING",
+          "CREDIT",
+          "ISSUES_ELECTIONS_POLITICS"
+        ]
+      }
+    },
+    "start_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The start time of the campaign, in ISO 8601 format."
+    },
+    "stop_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The stop/end time of the campaign, in ISO 8601 format."
+    },
+    "created_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time the campaign was created, in ISO 8601 format."
+    },
+    "updated_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time the campaign was last updated, in ISO 8601 format."
+    },
+    "source_campaign_id": {
+      "type": "string",
+      "description": "The ID of the source campaign this was copied from, if applicable."
+    },
+    "smart_promotion_type": {
+      "type": "string",
+      "description": "The type of smart promotion applied to the campaign."
+    },
+    "pacing_type": {
+      "type": "array",
+      "description": "The pacing type for ad delivery.",
+      "items": {
+        "type": "string",
+        "enum": [
+          "standard",
+          "no_pacing",
+          "day_parting"
+        ]
+      }
+    },
+    "promoted_object": {
+      "type": "object",
+      "description": "The object being promoted (e.g. a pixel, app, or Page).",
+      "properties": {
+        "pixel_id": {
+          "type": "string",
+          "description": "The Meta Pixel ID."
+        },
+        "application_id": {
+          "type": "string",
+          "description": "The application (app) ID."
+        },
+        "page_id": {
+          "type": "string",
+          "description": "The Facebook Page ID."
+        },
+        "custom_event_type": {
+          "type": "string",
+          "description": "The custom conversion event type (e.g. PURCHASE, LEAD, ADD_TO_CART)."
+        }
+      }
+    },
+    "adsets": {
+      "type": "object",
+      "description": "The ad sets within this campaign.",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "insights": {
+      "type": "object",
+      "description": "Performance insights/metrics for the campaign.",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "impressions": {
+                "type": "string"
+              },
+              "clicks": {
+                "type": "string"
+              },
+              "spend": {
+                "type": "string"
+              },
+              "reach": {
+                "type": "string"
+              },
+              "cpc": {
+                "type": "string"
+              },
+              "cpm": {
+                "type": "string"
+              },
+              "ctr": {
+                "type": "string"
+              },
+              "date_start": {
+                "type": "string",
+                "format": "date"
+              },
+              "date_stop": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": true,
+  "examples": [
+    {
+      "id": "23851234567890123",
+      "name": "Summer Sale 2025 - Awareness",
+      "account_id": "act_123456789",
+      "objective": "OUTCOME_AWARENESS",
+      "status": "ACTIVE",
+      "effective_status": "ACTIVE",
+      "buying_type": "AUCTION",
+      "bid_strategy": "LOWEST_COST_WITHOUT_CAP",
+      "daily_budget": "5000",
+      "special_ad_categories": [
+        "NONE"
+      ],
+      "start_time": "2025-06-01T00:00:00-0700",
+      "created_time": "2025-05-28T10:15:00-0700",
+      "promoted_object": {
+        "page_id": "123456789012345"
+      }
+    }
+  ]
+}

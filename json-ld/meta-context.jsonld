@@ -1,0 +1,249 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "meta": "https://developers.facebook.com/docs/graph-api/reference/",
+    "marketing": "https://developers.facebook.com/docs/marketing-api/reference/",
+    "whatsapp": "https://developers.facebook.com/docs/whatsapp/cloud-api/reference/",
+
+    "User": {
+      "@id": "schema:Person",
+      "@context": {
+        "id": "schema:identifier",
+        "name": "schema:name",
+        "first_name": "schema:givenName",
+        "last_name": "schema:familyName",
+        "middle_name": "schema:additionalName",
+        "email": "schema:email",
+        "birthday": "schema:birthDate",
+        "gender": "schema:gender",
+        "link": "schema:url",
+        "picture": "schema:image",
+        "locale": "schema:knowsLanguage",
+        "timezone": "schema:timeZone",
+        "location": {
+          "@id": "schema:homeLocation",
+          "@type": "schema:Place"
+        },
+        "hometown": {
+          "@id": "schema:birthPlace",
+          "@type": "schema:Place"
+        },
+        "languages": "schema:knowsLanguage",
+        "friends": "schema:knows",
+        "significant_other": "schema:spouse",
+        "quotes": "schema:description"
+      }
+    },
+
+    "Page": {
+      "@id": "schema:Organization",
+      "@context": {
+        "id": "schema:identifier",
+        "name": "schema:name",
+        "about": "schema:description",
+        "bio": "schema:description",
+        "description": "schema:description",
+        "category": "schema:category",
+        "category_list": "schema:category",
+        "cover": "schema:image",
+        "picture": "schema:logo",
+        "link": "schema:url",
+        "website": "schema:sameAs",
+        "username": "schema:alternateName",
+        "emails": "schema:email",
+        "phone": "schema:telephone",
+        "location": {
+          "@id": "schema:location",
+          "@type": "schema:PostalAddress",
+          "@context": {
+            "city": "schema:addressLocality",
+            "state": "schema:addressRegion",
+            "country": "schema:addressCountry",
+            "street": "schema:streetAddress",
+            "zip": "schema:postalCode",
+            "latitude": "schema:latitude",
+            "longitude": "schema:longitude"
+          }
+        },
+        "fan_count": "schema:interactionCount",
+        "followers_count": "schema:interactionCount",
+        "founded": "schema:foundingDate",
+        "hours": "schema:openingHours",
+        "overall_star_rating": {
+          "@id": "schema:aggregateRating",
+          "@type": "schema:AggregateRating"
+        },
+        "rating_count": "schema:reviewCount",
+        "is_verified": "schema:hasCredential",
+        "whatsapp_number": "schema:telephone"
+      }
+    },
+
+    "Post": {
+      "@id": "schema:SocialMediaPosting",
+      "@context": {
+        "id": "schema:identifier",
+        "message": "schema:articleBody",
+        "story": "schema:headline",
+        "created_time": "schema:dateCreated",
+        "updated_time": "schema:dateModified",
+        "from": {
+          "@id": "schema:author",
+          "@type": "schema:Person"
+        },
+        "permalink_url": "schema:url",
+        "full_picture": "schema:image",
+        "picture": "schema:thumbnailUrl",
+        "type": "schema:additionalType",
+        "is_published": "schema:publishedStatus",
+        "privacy": "schema:accessMode",
+        "place": {
+          "@id": "schema:contentLocation",
+          "@type": "schema:Place"
+        },
+        "shares": {
+          "@id": "schema:interactionStatistic",
+          "@type": "schema:InteractionCounter",
+          "@context": {
+            "count": "schema:userInteractionCount"
+          }
+        },
+        "likes": {
+          "@id": "schema:interactionStatistic",
+          "@type": "schema:InteractionCounter"
+        },
+        "comments": {
+          "@id": "schema:comment",
+          "@type": "schema:Comment"
+        },
+        "message_tags": "schema:mentions",
+        "application": {
+          "@id": "schema:provider",
+          "@type": "schema:SoftwareApplication"
+        },
+        "scheduled_publish_time": "schema:datePublished"
+      }
+    },
+
+    "AdCampaign": {
+      "@id": "schema:AdvertiserContentArticle",
+      "@context": {
+        "id": "schema:identifier",
+        "name": "schema:name",
+        "account_id": "schema:sponsor",
+        "objective": "schema:purpose",
+        "status": "schema:creativeWorkStatus",
+        "effective_status": "schema:creativeWorkStatus",
+        "buying_type": "schema:additionalType",
+        "bid_strategy": "schema:additionalType",
+        "daily_budget": {
+          "@id": "schema:offers",
+          "@type": "schema:MonetaryAmount"
+        },
+        "lifetime_budget": {
+          "@id": "schema:offers",
+          "@type": "schema:MonetaryAmount"
+        },
+        "start_time": "schema:startDate",
+        "stop_time": "schema:endDate",
+        "created_time": "schema:dateCreated",
+        "updated_time": "schema:dateModified",
+        "special_ad_categories": "schema:category",
+        "promoted_object": "schema:about"
+      }
+    },
+
+    "Message": {
+      "@id": "schema:Message",
+      "@context": {
+        "to": {
+          "@id": "schema:recipient",
+          "@type": "schema:Person"
+        },
+        "type": "schema:additionalType",
+        "messaging_product": "schema:provider",
+        "text": {
+          "@id": "schema:text",
+          "@context": {
+            "body": "schema:text"
+          }
+        },
+        "image": {
+          "@id": "schema:image",
+          "@type": "schema:ImageObject"
+        },
+        "video": {
+          "@id": "schema:video",
+          "@type": "schema:VideoObject"
+        },
+        "audio": {
+          "@id": "schema:audio",
+          "@type": "schema:AudioObject"
+        },
+        "document": {
+          "@id": "schema:associatedMedia",
+          "@type": "schema:MediaObject"
+        },
+        "location": {
+          "@id": "schema:contentLocation",
+          "@type": "schema:Place",
+          "@context": {
+            "latitude": "schema:latitude",
+            "longitude": "schema:longitude",
+            "name": "schema:name",
+            "address": "schema:address"
+          }
+        },
+        "contacts": {
+          "@id": "schema:mentions",
+          "@type": "schema:Person"
+        },
+        "context": {
+          "@id": "schema:isPartOf",
+          "@context": {
+            "message_id": "schema:identifier"
+          }
+        }
+      }
+    },
+
+    "Media": {
+      "@id": "schema:MediaObject",
+      "@context": {
+        "id": "schema:identifier",
+        "media_type": "schema:additionalType",
+        "media_url": "schema:contentUrl",
+        "thumbnail_url": "schema:thumbnailUrl",
+        "permalink": "schema:url",
+        "caption": "schema:caption",
+        "timestamp": "schema:datePublished",
+        "created_time": "schema:dateCreated",
+        "updated_time": "schema:dateModified",
+        "username": "schema:author",
+        "owner": {
+          "@id": "schema:author",
+          "@type": "schema:Person"
+        },
+        "like_count": {
+          "@id": "schema:interactionStatistic",
+          "@type": "schema:InteractionCounter"
+        },
+        "comments_count": {
+          "@id": "schema:commentCount"
+        },
+        "width": "schema:width",
+        "height": "schema:height",
+        "place": {
+          "@id": "schema:contentLocation",
+          "@type": "schema:Place"
+        },
+        "tags": "schema:mentions",
+        "children": "schema:hasPart",
+        "album": {
+          "@id": "schema:isPartOf",
+          "@type": "schema:ImageGallery"
+        }
+      }
+    }
+  }
+}

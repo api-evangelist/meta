@@ -1,0 +1,352 @@
+{
+  "$id": "https://meta.com/schemas/graph-api/media.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Meta Graph API Media",
+  "description": "Represents media objects across Meta platforms including Facebook photos/videos and Instagram media (images, videos, carousels, reels, stories). Covers the Instagram Media node and Facebook Photo/Video nodes.",
+  "type": "object",
+  "required": [
+    "id"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the media object."
+    },
+    "media_type": {
+      "type": "string",
+      "enum": [
+        "IMAGE",
+        "VIDEO",
+        "CAROUSEL_ALBUM",
+        "REEL",
+        "STORY"
+      ],
+      "description": "The type of media. IMAGE, VIDEO, and CAROUSEL_ALBUM are standard Instagram types; REEL and STORY are additional Instagram media types."
+    },
+    "media_product_type": {
+      "type": "string",
+      "enum": [
+        "AD",
+        "FEED",
+        "STORY",
+        "REELS"
+      ],
+      "description": "The surface where the media is published (Instagram-specific)."
+    },
+    "media_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL of the media content. For videos this is the video URL; for images this is the image URL. Not returned for carousel albums."
+    },
+    "thumbnail_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL of the media thumbnail. Only available for VIDEO media types."
+    },
+    "permalink": {
+      "type": "string",
+      "format": "uri",
+      "description": "The permanent URL to the media on its platform (Instagram or Facebook)."
+    },
+    "shortcode": {
+      "type": "string",
+      "description": "The shortcode identifier for the Instagram media (the code in the Instagram URL)."
+    },
+    "caption": {
+      "type": "string",
+      "description": "The caption/description text of the media."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The publication timestamp of the media in ISO 8601 format."
+    },
+    "username": {
+      "type": "string",
+      "description": "The username of the media owner (Instagram-specific)."
+    },
+    "owner": {
+      "type": "object",
+      "description": "The owner of the media.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The user/page ID of the media owner."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the media owner (Facebook)."
+        },
+        "username": {
+          "type": "string",
+          "description": "The username of the media owner (Instagram)."
+        }
+      }
+    },
+    "is_shared_to_feed": {
+      "type": "boolean",
+      "description": "For Reels, whether the reel was also shared to the main feed."
+    },
+    "like_count": {
+      "type": "integer",
+      "description": "The number of likes on the media."
+    },
+    "comments_count": {
+      "type": "integer",
+      "description": "The number of comments on the media."
+    },
+    "insights": {
+      "type": "object",
+      "description": "Engagement insights for the media (Instagram Graph API).",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The metric name (e.g. impressions, reach, engagement, saved, video_views)."
+              },
+              "period": {
+                "type": "string",
+                "description": "The aggregation period (e.g. lifetime)."
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "children": {
+      "type": "object",
+      "description": "Child media objects for CAROUSEL_ALBUM media types.",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "media_type": {
+                "type": "string",
+                "enum": [
+                  "IMAGE",
+                  "VIDEO"
+                ]
+              },
+              "media_url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "timestamp": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      }
+    },
+    "width": {
+      "type": "integer",
+      "description": "The width of the media in pixels (Facebook photos/videos)."
+    },
+    "height": {
+      "type": "integer",
+      "description": "The height of the media in pixels (Facebook photos/videos)."
+    },
+    "source": {
+      "type": "string",
+      "format": "uri",
+      "description": "The source URL for the media file (Facebook video source URL)."
+    },
+    "images": {
+      "type": "array",
+      "description": "Different size renditions of the image (Facebook Photo node).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "height": {
+            "type": "integer"
+          },
+          "width": {
+            "type": "integer"
+          },
+          "source": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      }
+    },
+    "format": {
+      "type": "array",
+      "description": "Different format renditions of the video (Facebook Video node).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "embed_html": {
+            "type": "string"
+          },
+          "filter": {
+            "type": "string"
+          },
+          "height": {
+            "type": "integer"
+          },
+          "width": {
+            "type": "integer"
+          },
+          "picture": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      }
+    },
+    "album": {
+      "type": "object",
+      "description": "The album the photo belongs to (Facebook Photo node).",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "place": {
+      "type": "object",
+      "description": "The location tagged in the media.",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "location": {
+          "type": "object",
+          "properties": {
+            "latitude": {
+              "type": "number"
+            },
+            "longitude": {
+              "type": "number"
+            },
+            "city": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "tags": {
+      "type": "object",
+      "description": "Users tagged in the media.",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "x": {
+                "type": "number",
+                "description": "X-coordinate of the tag as a percentage of the image width (0-100)."
+              },
+              "y": {
+                "type": "number",
+                "description": "Y-coordinate of the tag as a percentage of the image height (0-100)."
+              }
+            }
+          }
+        }
+      }
+    },
+    "created_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time the media was created (Facebook Photo/Video nodes), in ISO 8601 format."
+    },
+    "updated_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time the media was last updated, in ISO 8601 format."
+    }
+  },
+  "additionalProperties": true,
+  "examples": [
+    {
+      "id": "17895695668004550",
+      "media_type": "IMAGE",
+      "media_product_type": "FEED",
+      "media_url": "https://scontent.cdninstagram.com/v/example-image.jpg",
+      "permalink": "https://www.instagram.com/p/ABC123xyz/",
+      "shortcode": "ABC123xyz",
+      "caption": "Beautiful sunset at the beach #photography #nature",
+      "timestamp": "2025-07-10T18:30:00+0000",
+      "username": "examplephotographer",
+      "like_count": 342,
+      "comments_count": 15,
+      "owner": {
+        "id": "17841400123456789",
+        "username": "examplephotographer"
+      }
+    },
+    {
+      "id": "17895695668009999",
+      "media_type": "CAROUSEL_ALBUM",
+      "media_product_type": "FEED",
+      "permalink": "https://www.instagram.com/p/DEF456abc/",
+      "shortcode": "DEF456abc",
+      "caption": "Product launch highlights",
+      "timestamp": "2025-08-01T12:00:00+0000",
+      "username": "examplebrand",
+      "like_count": 1580,
+      "comments_count": 92,
+      "children": {
+        "data": [
+          {
+            "id": "17895695668010001",
+            "media_type": "IMAGE",
+            "media_url": "https://scontent.cdninstagram.com/v/carousel-1.jpg"
+          },
+          {
+            "id": "17895695668010002",
+            "media_type": "VIDEO",
+            "media_url": "https://scontent.cdninstagram.com/v/carousel-2.mp4"
+          }
+        ]
+      }
+    }
+  ]
+}

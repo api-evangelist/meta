@@ -1,0 +1,247 @@
+{
+  "$id": "https://meta.com/schemas/graph-api/user.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Meta Graph API User",
+  "description": "Represents a Facebook or Instagram user account as returned by the Graph API User node. Covers identity, demographics, profile details, and engagement metrics.",
+  "type": "object",
+  "required": [
+    "id",
+    "name"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique numeric identifier for the user, returned as a string by the Graph API."
+    },
+    "name": {
+      "type": "string",
+      "description": "The full name of the user."
+    },
+    "first_name": {
+      "type": "string",
+      "description": "The first name of the user."
+    },
+    "last_name": {
+      "type": "string",
+      "description": "The last name of the user."
+    },
+    "middle_name": {
+      "type": "string",
+      "description": "The middle name of the user."
+    },
+    "name_format": {
+      "type": "string",
+      "description": "The user's name formatted to correctly handle Chinese, Japanese, or Korean ordering."
+    },
+    "short_name": {
+      "type": "string",
+      "description": "Shortened, informal name for the user."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "The primary email address listed in the user's profile. Requires the email permission."
+    },
+    "birthday": {
+      "type": "string",
+      "description": "The user's birthday in MM/DD/YYYY format. Requires the user_birthday permission."
+    },
+    "gender": {
+      "type": "string",
+      "description": "The gender selected by the user. This is a free-form string; common values are 'male', 'female', and 'non-binary'."
+    },
+    "link": {
+      "type": "string",
+      "format": "uri",
+      "description": "A link to the user's Facebook profile."
+    },
+    "picture": {
+      "type": "object",
+      "description": "The user's profile picture.",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "height": {
+              "type": "integer",
+              "description": "The height of the picture in pixels."
+            },
+            "is_silhouette": {
+              "type": "boolean",
+              "description": "Whether the profile picture is the default silhouette."
+            },
+            "url": {
+              "type": "string",
+              "format": "uri",
+              "description": "URL of the profile picture."
+            },
+            "width": {
+              "type": "integer",
+              "description": "The width of the picture in pixels."
+            }
+          }
+        }
+      }
+    },
+    "locale": {
+      "type": "string",
+      "description": "The user's locale as a language-country code string, e.g. en_US."
+    },
+    "timezone": {
+      "type": "number",
+      "description": "The user's timezone offset from UTC, expressed as a number (e.g. -5)."
+    },
+    "location": {
+      "type": "object",
+      "description": "The user's current location as entered on their profile.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The Graph API ID of the location Page."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the location."
+        }
+      }
+    },
+    "hometown": {
+      "type": "object",
+      "description": "The user's hometown as entered on their profile.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The Graph API ID of the hometown Page."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the hometown."
+        }
+      }
+    },
+    "age_range": {
+      "type": "object",
+      "description": "The age range of the user as a min/max bracket.",
+      "properties": {
+        "min": {
+          "type": "integer",
+          "description": "The lower bound of the age range."
+        },
+        "max": {
+          "type": "integer",
+          "description": "The upper bound of the age range."
+        }
+      }
+    },
+    "languages": {
+      "type": "array",
+      "description": "Languages the user has added to their profile.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "installed": {
+      "type": "boolean",
+      "description": "Whether the user has the application installed."
+    },
+    "is_guest_user": {
+      "type": "boolean",
+      "description": "Whether the user account is a guest/limited account."
+    },
+    "meeting_for": {
+      "type": "array",
+      "description": "What the user is interested in meeting for (e.g. networking, dating).",
+      "items": {
+        "type": "string"
+      }
+    },
+    "quotes": {
+      "type": "string",
+      "description": "The user's favorite quotes."
+    },
+    "significant_other": {
+      "type": "object",
+      "description": "The user's significant other.",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "updated_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The last time the user's profile was updated, in ISO 8601 format."
+    },
+    "friends": {
+      "type": "object",
+      "description": "The user's friends list (summary only by default).",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "summary": {
+          "type": "object",
+          "properties": {
+            "total_count": {
+              "type": "integer",
+              "description": "Total number of friends."
+            }
+          }
+        }
+      }
+    },
+    "instagram_business_account": {
+      "type": "object",
+      "description": "The linked Instagram Business or Creator account, if any.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The Instagram account ID."
+        }
+      }
+    }
+  },
+  "additionalProperties": true,
+  "examples": [
+    {
+      "id": "10158012345678901",
+      "name": "Jane Developer",
+      "first_name": "Jane",
+      "last_name": "Developer",
+      "email": "jane@example.com",
+      "picture": {
+        "data": {
+          "height": 200,
+          "is_silhouette": false,
+          "url": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=10158012345678901&height=200&width=200",
+          "width": 200
+        }
+      },
+      "locale": "en_US",
+      "timezone": -5
+    }
+  ]
+}

@@ -1,0 +1,431 @@
+{
+  "$id": "https://meta.com/schemas/graph-api/post.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Meta Graph API Post",
+  "description": "Represents a Facebook or Instagram post as returned by the Graph API Post node. Includes content, authorship, targeting, engagement metrics, and attached media.",
+  "type": "object",
+  "required": [
+    "id"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the post, formatted as {page-id}_{post-id} for Page posts."
+    },
+    "message": {
+      "type": "string",
+      "description": "The text content of the post."
+    },
+    "story": {
+      "type": "string",
+      "description": "The auto-generated story text for system-generated posts (e.g. 'Jane updated her profile picture')."
+    },
+    "created_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time the post was created, in ISO 8601 format."
+    },
+    "updated_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time the post was last updated, in ISO 8601 format."
+    },
+    "from": {
+      "type": "object",
+      "description": "The user, Page, or entity that created the post.",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "to": {
+      "type": "object",
+      "description": "Profiles mentioned or targeted in the post.",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "permalink_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The permanent URL to the post on Facebook."
+    },
+    "full_picture": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the full-size picture attached to the post."
+    },
+    "picture": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the thumbnail picture attached to the post."
+    },
+    "icon": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the icon representing the type of post."
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "link",
+        "status",
+        "photo",
+        "video",
+        "offer"
+      ],
+      "description": "The type of the post."
+    },
+    "status_type": {
+      "type": "string",
+      "enum": [
+        "mobile_status_update",
+        "created_note",
+        "added_photos",
+        "added_video",
+        "shared_story",
+        "created_group",
+        "created_event",
+        "wall_post",
+        "app_created_story",
+        "published_story",
+        "tagged_in_photo",
+        "approved_friend"
+      ],
+      "description": "A more descriptive classification of the post type."
+    },
+    "is_published": {
+      "type": "boolean",
+      "description": "Whether the post is published (visible) or in draft/scheduled state."
+    },
+    "is_hidden": {
+      "type": "boolean",
+      "description": "Whether the post has been hidden from the timeline."
+    },
+    "is_expired": {
+      "type": "boolean",
+      "description": "Whether the post has expired (for offer posts)."
+    },
+    "is_popular": {
+      "type": "boolean",
+      "description": "Whether the post is marked as popular based on engagement."
+    },
+    "is_instagram_eligible": {
+      "type": "boolean",
+      "description": "Whether the post is eligible to be promoted on Instagram."
+    },
+    "privacy": {
+      "type": "object",
+      "description": "The privacy settings of the post.",
+      "properties": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "EVERYONE",
+            "ALL_FRIENDS",
+            "FRIENDS_OF_FRIENDS",
+            "SELF",
+            "CUSTOM"
+          ],
+          "description": "The privacy value of the post."
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of the privacy setting."
+        },
+        "allow": {
+          "type": "string",
+          "description": "Comma-separated list of user IDs allowed to see the post."
+        },
+        "deny": {
+          "type": "string",
+          "description": "Comma-separated list of user IDs denied from seeing the post."
+        }
+      }
+    },
+    "place": {
+      "type": "object",
+      "description": "The location associated with the post.",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "location": {
+          "type": "object",
+          "properties": {
+            "city": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string"
+            },
+            "latitude": {
+              "type": "number"
+            },
+            "longitude": {
+              "type": "number"
+            },
+            "state": {
+              "type": "string"
+            },
+            "street": {
+              "type": "string"
+            },
+            "zip": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "shares": {
+      "type": "object",
+      "description": "Share count for the post.",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "The number of times the post has been shared."
+        }
+      }
+    },
+    "likes": {
+      "type": "object",
+      "description": "Summary of likes/reactions on the post.",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "summary": {
+          "type": "object",
+          "properties": {
+            "total_count": {
+              "type": "integer"
+            },
+            "can_like": {
+              "type": "boolean"
+            },
+            "has_liked": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "comments": {
+      "type": "object",
+      "description": "Summary of comments on the post.",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              },
+              "from": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              },
+              "created_time": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        },
+        "summary": {
+          "type": "object",
+          "properties": {
+            "total_count": {
+              "type": "integer"
+            },
+            "can_comment": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "attachments": {
+      "type": "object",
+      "description": "Media and link attachments on the post.",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "media_type": {
+                "type": "string",
+                "description": "The type of media (photo, video, link, album, etc.)."
+              },
+              "type": {
+                "type": "string",
+                "description": "The attachment type identifier."
+              },
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "description": "URL of the attachment."
+              },
+              "title": {
+                "type": "string",
+                "description": "Title of the attachment."
+              },
+              "description": {
+                "type": "string",
+                "description": "Description of the attachment."
+              },
+              "media": {
+                "type": "object",
+                "description": "The media object if the attachment contains media.",
+                "properties": {
+                  "image": {
+                    "type": "object",
+                    "properties": {
+                      "height": {
+                        "type": "integer"
+                      },
+                      "src": {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      "width": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "message_tags": {
+      "type": "array",
+      "description": "Profiles tagged in the post message text.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "offset": {
+            "type": "integer",
+            "description": "Character offset into the message where the tag starts."
+          },
+          "length": {
+            "type": "integer",
+            "description": "Length of the tagged text."
+          }
+        }
+      }
+    },
+    "application": {
+      "type": "object",
+      "description": "The application that created the post.",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        }
+      }
+    },
+    "scheduled_publish_time": {
+      "type": "number",
+      "description": "Unix timestamp for when a scheduled post will be published."
+    },
+    "backdated_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The backdated time for the post, if it was backdated."
+    }
+  },
+  "additionalProperties": true,
+  "examples": [
+    {
+      "id": "123456789012345_987654321098765",
+      "message": "Excited to announce our new product launch!",
+      "created_time": "2025-06-15T14:30:00+0000",
+      "from": {
+        "id": "123456789012345",
+        "name": "Example Business Page"
+      },
+      "type": "photo",
+      "status_type": "added_photos",
+      "is_published": true,
+      "permalink_url": "https://www.facebook.com/examplebusiness/posts/987654321098765",
+      "full_picture": "https://scontent.xx.fbcdn.net/v/example-photo.jpg",
+      "shares": {
+        "count": 42
+      },
+      "likes": {
+        "summary": {
+          "total_count": 1250,
+          "can_like": true,
+          "has_liked": false
+        }
+      },
+      "comments": {
+        "summary": {
+          "total_count": 89,
+          "can_comment": true
+        }
+      }
+    }
+  ]
+}

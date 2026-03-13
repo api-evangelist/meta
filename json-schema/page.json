@@ -1,0 +1,254 @@
+{
+  "$id": "https://meta.com/schemas/graph-api/page.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Meta Graph API Page",
+  "description": "Represents a Facebook Page as returned by the Graph API Page node. Includes identity, category, contact information, location, and engagement metrics.",
+  "type": "object",
+  "required": [
+    "id",
+    "name"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique numeric identifier for the Page."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the Page."
+    },
+    "about": {
+      "type": "string",
+      "description": "Short description of the Page (deprecated in newer API versions, see 'bio')."
+    },
+    "bio": {
+      "type": "string",
+      "description": "Biography or long description of the Page."
+    },
+    "category": {
+      "type": "string",
+      "description": "The primary category of the Page."
+    },
+    "category_list": {
+      "type": "array",
+      "description": "All categories assigned to the Page.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "cover": {
+      "type": "object",
+      "description": "The Page's cover photo.",
+      "properties": {
+        "cover_id": {
+          "type": "string",
+          "description": "ID of the cover photo."
+        },
+        "source": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the cover photo image."
+        },
+        "offset_x": {
+          "type": "number",
+          "description": "Horizontal offset percentage for cropping."
+        },
+        "offset_y": {
+          "type": "number",
+          "description": "Vertical offset percentage for cropping."
+        }
+      }
+    },
+    "description": {
+      "type": "string",
+      "description": "The description of the Page."
+    },
+    "description_html": {
+      "type": "string",
+      "description": "The description of the Page in HTML format."
+    },
+    "display_subtext": {
+      "type": "string",
+      "description": "The sub-text displayed under the Page name (e.g. category or location)."
+    },
+    "emails": {
+      "type": "array",
+      "description": "Email addresses listed on the Page.",
+      "items": {
+        "type": "string",
+        "format": "email"
+      }
+    },
+    "fan_count": {
+      "type": "integer",
+      "description": "The number of users who like/follow the Page."
+    },
+    "followers_count": {
+      "type": "integer",
+      "description": "The number of followers of the Page."
+    },
+    "founded": {
+      "type": "string",
+      "description": "When the entity represented by the Page was founded."
+    },
+    "global_brand_page_name": {
+      "type": "string",
+      "description": "The name of the global brand Page, if this Page is part of a global brand structure."
+    },
+    "hours": {
+      "type": "object",
+      "description": "Operating hours for the business. Keys are day identifiers (e.g. mon_1_open, mon_1_close).",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "is_published": {
+      "type": "boolean",
+      "description": "Whether the Page is published and publicly visible."
+    },
+    "is_verified": {
+      "type": "boolean",
+      "description": "Whether the Page has been verified by Facebook."
+    },
+    "link": {
+      "type": "string",
+      "format": "uri",
+      "description": "The Page's Facebook URL."
+    },
+    "location": {
+      "type": "object",
+      "description": "The physical location of the business.",
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "number"
+        },
+        "longitude": {
+          "type": "number"
+        },
+        "state": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        },
+        "zip": {
+          "type": "string"
+        }
+      }
+    },
+    "phone": {
+      "type": "string",
+      "description": "The phone number of the business."
+    },
+    "picture": {
+      "type": "object",
+      "description": "The Page's profile picture.",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "height": {
+              "type": "integer"
+            },
+            "is_silhouette": {
+              "type": "boolean"
+            },
+            "url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "width": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "single_line_address": {
+      "type": "string",
+      "description": "The Page's address formatted as a single line."
+    },
+    "username": {
+      "type": "string",
+      "description": "The alias/vanity URL name for the Page."
+    },
+    "verification_status": {
+      "type": "string",
+      "description": "The verification status of the Page (e.g. blue_verified, gray_verified, not_verified)."
+    },
+    "website": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL of the website associated with the Page."
+    },
+    "were_here_count": {
+      "type": "integer",
+      "description": "The number of check-ins at this place."
+    },
+    "whatsapp_number": {
+      "type": "string",
+      "description": "The WhatsApp number associated with the Page."
+    },
+    "rating_count": {
+      "type": "integer",
+      "description": "The number of ratings for the Page."
+    },
+    "overall_star_rating": {
+      "type": "number",
+      "description": "Overall star rating of the Page based on user ratings (out of 5)."
+    },
+    "talking_about_count": {
+      "type": "integer",
+      "description": "The number of people talking about the Page."
+    },
+    "access_token": {
+      "type": "string",
+      "description": "The Page access token (only returned when a Page admin queries with manage_pages permission)."
+    }
+  },
+  "additionalProperties": true,
+  "examples": [
+    {
+      "id": "123456789012345",
+      "name": "Example Business Page",
+      "category": "Software Company",
+      "category_list": [
+        {
+          "id": "2256",
+          "name": "Software Company"
+        }
+      ],
+      "fan_count": 50000,
+      "followers_count": 52000,
+      "is_published": true,
+      "is_verified": true,
+      "link": "https://www.facebook.com/examplebusiness",
+      "username": "examplebusiness",
+      "website": "https://www.example.com",
+      "location": {
+        "city": "Menlo Park",
+        "country": "United States",
+        "latitude": 37.4529,
+        "longitude": -122.1817,
+        "state": "CA",
+        "street": "1 Hacker Way",
+        "zip": "94025"
+      },
+      "phone": "+1 650-543-4800"
+    }
+  ]
+}
