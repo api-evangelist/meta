@@ -1,0 +1,40 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Meta (Facebook + Instagram + WhatsApp + Threads)
+providerId: meta
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Rate Limiting
+  - Social + Messaging + Ads
+  - Cloud
+description: Meta (Facebook + Instagram + WhatsApp + Threads) rate limits are per-service. Each service
+  publishes its own quotas and request rate limits.
+sources:
+  - https://developers.facebook.com/docs/marketing-api
+  - https://focus.finops.org/
+headers:
+  retryAfter: Retry-After
+responseCodes:
+  throttled: 429
+  throttledLegacy: 503
+limits:
+  - name: Per-service quotas
+    scope: account/region/service
+    metric: varies
+    limit: see service-specific quotas page
+    notes: Most services have account-level + per-region quotas + soft/hard limits.
+  - name: Throttling
+    scope: account/region/service
+    metric: varies
+    limit: service-specific TPS / RPM
+    notes: Backoff with exponential retry per AWS/GCP/Azure SDK best practices.
+policies:
+  - name: Soft vs hard limits
+    description: Soft limits can be raised via support tickets; hard limits cannot.
+  - name: Exponential backoff
+    description: Standard SDK retry behavior with jitter.
+  - name: Per-region scoping
+    description: Most quotas are per-region per-service per-account.

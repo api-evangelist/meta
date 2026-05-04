@@ -1,0 +1,82 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Meta (Facebook + Instagram + WhatsApp + Threads)
+providerId: meta
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Social + Messaging + Ads
+  - Cloud
+  - Multi-Service
+description: Meta (Facebook + Instagram + WhatsApp + Threads) is a multi-product platform — pricing is
+  per-service. This artifact catalogs the major service families and points to the vendor's pricing calculator.
+  For detailed per-service rates, use the vendor pricing pages directly.
+sources:
+  - https://developers.facebook.com/docs/marketing-api
+  - https://focus.finops.org/
+plans:
+  - id: meta-platform-overview
+    name: Platform Pricing Overview
+    type: enterprise
+    description: Per-service pay-as-you-go + reserved/committed-use discounts.
+    entries:
+      - label: Per-service rates
+        name: varies
+        type: metered
+        metric: varies
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: see vendor pricing calculator
+        userMultiplied: false
+    elements:
+      - name: Facebook Graph API
+      - name: Marketing API
+      - name: Instagram Graph API
+      - name: Instagram Basic Display API
+      - name: WhatsApp Business Platform / Cloud API
+      - name: Threads API
+      - name: Messenger Platform
+      - name: Workplace by Meta API (sunset)
+      - name: Meta Conversion API (server-side events)
+  - id: meta-committed-use
+    name: Committed Use / Reserved
+    type: enterprise
+    description: 1-year and 3-year commitments offer 30-72% discount over on-demand.
+    entries:
+      - label: Annual commitment (custom)
+        name: annual
+        type: subscription
+        metric: year
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: custom
+        userMultiplied: false
+    elements:
+      - name: Reserved Instances / Savings Plans / Committed Use Discounts
+      - name: Volume discounts
+      - name: Negotiated enterprise agreements
+  - id: meta-free-tier
+    name: Free Tier / Trial
+    type: freemium
+    description: Most platforms offer a free tier or starting credits.
+    entries:
+      - label: Free tier (varies)
+        name: free
+        type: quota
+        metric: service
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: 12-month free trial allowances
+      - name: Always-free quotas
+      - name: New account credits
