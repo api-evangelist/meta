@@ -1,0 +1,13 @@
+{
+  "repo": "meta",
+  "feeds": [
+    {
+      "source": "https://developers.facebook.com/blog/",
+      "feed_url": "https://developers.facebook.com/blog/feed",
+      "saved": 10,
+      "title": "Facebook Developers"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:31:14Z"
+}
