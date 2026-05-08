@@ -1,0 +1,261 @@
+openapi: 3.1.0
+info:
+  title: Meta Graph API - User
+  description: Subset of the Meta (Facebook) Graph API focusing on User node operations including reading
+    user profile fields, posting updates, and managing custom audiences. Requires user access tokens with
+    appropriate permissions such as public_profile.
+  version: v22.0
+externalDocs:
+  description: Meta Graph API User Reference
+  url: https://developers.facebook.com/docs/graph-api/reference/user/
+servers:
+- url: https://graph.facebook.com/v22.0
+  description: Meta Graph API
+tags:
+- name: Users
+  description: Operations on the User node
+- name: Custom Audiences
+  description: Manage user membership in custom audiences
+- name: Pages
+  description: Page-related user operations
+security:
+- userAccessToken: []
+paths:
+  /me:
+    get:
+      operationId: getMe
+      summary: Meta Get current user
+      description: Retrieves the User node for the user associated with the access token.
+      tags:
+      - Users
+      parameters:
+      - name: fields
+        in: query
+        description: Comma-separated list of fields to return.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: User profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Invalid access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /{user-id}:
+    parameters:
+    - name: user-id
+      in: path
+      required: true
+      description: ID of the user.
+      schema:
+        type: string
+    get:
+      operationId: getUser
+      summary: Meta Read user profile
+      description: Retrieves fields and edges for a User node.
+      tags:
+      - Users
+      parameters:
+      - name: fields
+        in: query
+        description: Comma-separated list of fields to return.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: User profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+    post:
+      operationId: updateUser
+      summary: Meta Update user profile
+      description: Updates user information such as name, emoji color preference, or local news settings.
+        Supports read-after-write.
+      tags:
+      - Users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Update successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+    delete:
+      operationId: deleteUser
+      summary: Meta Delete test user
+      description: Removes a test user account from the system.
+      tags:
+      - Users
+      responses:
+        '200':
+          description: Deletion successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+  /{user-id}/feed:
+    parameters:
+    - name: user-id
+      in: path
+      required: true
+      description: ID of the user.
+      schema:
+        type: string
+    get:
+      operationId: getUserFeed
+      summary: Meta Get user feed
+      description: Retrieves the feed of posts published by or on the user's timeline.
+      tags:
+      - Users
+      responses:
+        '200':
+          description: Feed list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedList'
+  /{custom-audience-id}/users:
+    parameters:
+    - name: custom-audience-id
+      in: path
+      required: true
+      description: ID of the custom audience.
+      schema:
+        type: string
+    post:
+      operationId: addUsersToCustomAudience
+      summary: Meta Add users to custom audience
+      description: Adds users to a custom audience using payload schemas such as EMAIL_SHA256 or PHONE_SHA256.
+      tags:
+      - Custom Audiences
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                payload:
+                  type: object
+      responses:
+        '200':
+          description: Users added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+    delete:
+      operationId: removeUsersFromCustomAudience
+      summary: Meta Remove users from custom audience
+      description: Removes users from a custom audience using payload data.
+      tags:
+      - Custom Audiences
+      responses:
+        '200':
+          description: Users removed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+  /{page-id}/blocked:
+    parameters:
+    - name: page-id
+      in: path
+      required: true
+      description: ID of the page.
+      schema:
+        type: string
+    delete:
+      operationId: unblockPageUser
+      summary: Meta Unblock user from page
+      description: Dissociates a user from a page by unblocking them.
+      tags:
+      - Pages
+      responses:
+        '200':
+          description: Unblock successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        picture:
+          type: object
+    PagedList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+        paging:
+          type: object
+          properties:
+            cursors:
+              type: object
+              properties:
+                before:
+                  type: string
+                after:
+                  type: string
+            next:
+              type: string
+            previous:
+              type: string
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            type:
+              type: string
+            code:
+              type: integer
+  securitySchemes:
+    userAccessToken:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://www.facebook.com/v22.0/dialog/oauth
+          scopes:
+            public_profile: Access basic profile info
+x-generated-from: https://developers.facebook.com/docs/graph-api/reference/user/
+x-generated-by: claude-crawl-2026-05-08
