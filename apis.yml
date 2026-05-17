@@ -85,7 +85,7 @@ apis:
       - url: https://developers.facebook.com/docs/marketing-api/reference
         type: Reference
       - url: https://developers.facebook.com/docs/marketing-api/get-started
-        type: Getting Started
+        type: GettingStarted
   - aid: meta:conversions-api
     name: Meta Conversions API
     description: Send web, app, and offline conversion events directly from your server to Meta for improved ad measurement and optimization.
@@ -114,7 +114,7 @@ apis:
       - url: https://developers.facebook.com/docs/whatsapp/cloud-api/reference
         type: Reference
       - url: https://developers.facebook.com/docs/whatsapp/cloud-api/get-started
-        type: Getting Started
+        type: GettingStarted
   - aid: meta:whatsapp-business-management-api
     name: WhatsApp Business Management API
     description: Manage WhatsApp Business accounts, phone numbers, message templates, and business profiles programmatically.
@@ -176,7 +176,7 @@ apis:
       - Machine Learning
     properties:
       - url: https://llama.developer.meta.com/docs/quickstart
-        type: Getting Started
+        type: GettingStarted
       - url: https://llama.developer.meta.com/docs/models
         type: Reference
       - url: https://llama.developer.meta.com/docs/sdks
@@ -195,7 +195,7 @@ common:
     type: Overview
   - url: https://developers.facebook.com/docs/graph-api/get-started
     name: Get Started
-    type: Getting Started
+    type: GettingStarted
   - url: https://developers.facebook.com/docs/facebook-login
     type: Authentication
   - url: https://developers.facebook.com/docs/access-tokens
@@ -203,7 +203,7 @@ common:
     type: Authentication
   - url: https://developers.facebook.com/docs/graph-api/changelog
     name: Graph API Changelog
-    type: Change Log
+    type: ChangeLog
   - url: https://developers.facebook.com/docs/graph-api/reference
     name: Graph API Reference
     type: Reference
@@ -212,18 +212,18 @@ common:
     type: Blog
   - url: https://metastatus.com/
     name: Status
-    type: Status
+    type: StatusPage
   - url: https://developers.facebook.com/apps/
     name: Applications
     type: Console
   - url: https://developers.facebook.com/
     name: Sign Up - Meta for Developers
-    type: Sign Up
+    type: SignUp
   - url: https://developers.facebook.com/terms/
     name: Platform Terms - Meta for Developers
-    type: Terms of Service
+    type: TermsOfService
   - url: https://www.facebook.com/privacy/explanation
-    type: Privacy Policy
+    type: PrivacyPolicy
   - url: https://developers.facebook.com/support/
     name: Developer Support - Meta for Developers
     type: Support
@@ -262,7 +262,7 @@ common:
     type: Security
   - url: https://developers.facebook.com/docs/graph-api/overview/rate-limiting/
     name: Rate Limits - Graph API
-    type: Rate Limits
+    type: RateLimits
   - url: https://developers.facebook.com/docs/graph-api/guides/versioning
     name: Versioning - Graph API
     type: Versioning
@@ -272,13 +272,13 @@ common:
     mediaType: text/html
   - url: https://github.com/facebook
     name: Meta Open Source on GitHub
-    type: GitHub Organization
+    type: GitHubOrganization
   - url: https://opensource.fb.com/
     name: Meta Open Source
     type: Open Source
   - url: https://stackoverflow.com/questions/tagged/facebook-graph-api
     name: Stack Overflow - Facebook Graph API
-    type: Stack Overflow
+    type: StackOverflow
   - url: https://github.com/facebook/facebook-python-business-sdk
     name: Python SDK
     type: SDKs
@@ -332,7 +332,7 @@ common:
     description: JSON Schema for Meta media objects across Facebook photos/videos and Instagram media including images, videos, carousels, reels, and stories.
   - url: json-ld/meta-context.jsonld
     name: JSON-LD Context
-    type: JSON-LD
+    type: JSONLD
     mediaType: application/ld+json
     description: JSON-LD context mapping Meta Graph API entities (User, Page, Post, AdCampaign, Message, Media) to schema.org vocabulary for linked data interoperability.
   - data:
@@ -366,7 +366,7 @@ common:
         description: Graph API requests made with an application access token are counted against that apps rate limit. An apps call count is the number of calls it can make during a rolling one hour window and is calculated as Calls within one hour = 200 * Number of Users. The Number of Users is based on the number of unique daily active users an app has. In cases where there are slow periods of daily usage, such as if your app has high activity on weekends but low activity over weekdays, the weekly and monthly active Users are used to calculate the number of Users for your app. Apps with high daily engagement will have higher rate limits than apps with low daily engagement, regardless of the actual number of app installs. Note that this is not a per User limit but a limit on calls made by your app. Any individual User can make more than 200 calls per hour using your app, as long as the total calls from your app does not exceed the app maximum. For example, if your app has 100 Users, your app can make 20,000 calls per hour. However, your top ten most engaged Users could make 19,000 of those calls.
         userMultiplied: true
     name: Rate Limits - Graph API
-    type: Rate Limits
+    type: RateLimits
     description: Working to build as machine-readable schema.
   - url: https://developers.facebook.com/docs/graph-api/guides/versioning
     data:
