@@ -1,0 +1,212 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Meta Graph API - User — Users
+  description: 'Meta Graph API - User — Users. 5 operations. Lead operation: Meta Get current user. Self-contained Naftiko
+    capability covering one Meta business surface.'
+  tags:
+  - Meta
+  - Users
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    META_API_KEY: META_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: meta-users
+    baseUri: https://graph.facebook.com/v22.0
+    description: Meta Graph API - User — Users business capability. Self-contained, no shared references.
+    resources:
+    - name: me
+      path: /me
+      operations:
+      - name: getme
+        method: GET
+        description: Meta Get current user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: string
+          description: Comma-separated list of fields to return.
+    - name: user-id
+      path: /{user-id}
+      operations:
+      - name: getuser
+        method: GET
+        description: Meta Read user profile
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: string
+          description: Comma-separated list of fields to return.
+      - name: updateuser
+        method: POST
+        description: Meta Update user profile
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deleteuser
+        method: DELETE
+        description: Meta Delete test user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: user-id-feed
+      path: /{user-id}/feed
+      operations:
+      - name: getuserfeed
+        method: GET
+        description: Meta Get user feed
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.META_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: meta-users-rest
+    port: 8080
+    description: REST adapter for Meta Graph API - User — Users. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/me
+      name: me
+      description: REST surface for me.
+      operations:
+      - method: GET
+        name: getme
+        description: Meta Get current user
+        call: meta-users.getme
+        with:
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{user-id}
+      name: user-id
+      description: REST surface for user-id.
+      operations:
+      - method: GET
+        name: getuser
+        description: Meta Read user profile
+        call: meta-users.getuser
+        with:
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: updateuser
+        description: Meta Update user profile
+        call: meta-users.updateuser
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteuser
+        description: Meta Delete test user
+        call: meta-users.deleteuser
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{user-id}/feed
+      name: user-id-feed
+      description: REST surface for user-id-feed.
+      operations:
+      - method: GET
+        name: getuserfeed
+        description: Meta Get user feed
+        call: meta-users.getuserfeed
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: meta-users-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Meta Graph API - User — Users. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: meta-get-current-user
+      description: Meta Get current user
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: meta-users.getme
+      with:
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: meta-read-user-profile
+      description: Meta Read user profile
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: meta-users.getuser
+      with:
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: meta-update-user-profile
+      description: Meta Update user profile
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: meta-users.updateuser
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: meta-delete-test-user
+      description: Meta Delete test user
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: meta-users.deleteuser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: meta-get-user-feed
+      description: Meta Get user feed
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: meta-users.getuserfeed
+      outputParameters:
+      - type: object
+        mapping: $.

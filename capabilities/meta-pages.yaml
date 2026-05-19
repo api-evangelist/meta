@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Meta Graph API - User — Pages
+  description: 'Meta Graph API - User — Pages. 1 operations. Lead operation: Meta Unblock user from page. Self-contained Naftiko
+    capability covering one Meta business surface.'
+  tags:
+  - Meta
+  - Pages
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    META_API_KEY: META_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: meta-pages
+    baseUri: https://graph.facebook.com/v22.0
+    description: Meta Graph API - User — Pages business capability. Self-contained, no shared references.
+    resources:
+    - name: page-id-blocked
+      path: /{page-id}/blocked
+      operations:
+      - name: unblockpageuser
+        method: DELETE
+        description: Meta Unblock user from page
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.META_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: meta-pages-rest
+    port: 8080
+    description: REST adapter for Meta Graph API - User — Pages. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/{page-id}/blocked
+      name: page-id-blocked
+      description: REST surface for page-id-blocked.
+      operations:
+      - method: DELETE
+        name: unblockpageuser
+        description: Meta Unblock user from page
+        call: meta-pages.unblockpageuser
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: meta-pages-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Meta Graph API - User — Pages. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: meta-unblock-user-page
+      description: Meta Unblock user from page
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: meta-pages.unblockpageuser
+      outputParameters:
+      - type: object
+        mapping: $.
