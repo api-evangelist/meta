@@ -2,12 +2,20 @@
   "repo": "meta",
   "feeds": [
     {
+      "source": "https://developers.facebook.com/blog/feed/",
+      "feed_url": "https://developers.facebook.com/blog/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
       "source": "https://developers.facebook.com/blog/",
       "feed_url": "https://developers.facebook.com/blog/feed/",
-      "title": "Facebook Developers",
-      "saved": 6
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
     }
   ],
   "post_count": 16,
-  "fetched": "2026-05-17T20:20:35Z"
+  "fetched": "2026-06-01T23:35:02Z"
 }
