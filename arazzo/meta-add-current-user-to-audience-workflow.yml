@@ -1,0 +1,73 @@
+arazzo: 1.0.1
+info:
+  title: Meta Add Current User To Audience
+  summary: Resolve the authenticated user and add them to a custom audience.
+  description: >-
+    Resolves the authenticated user from the access token so the run can be
+    logged against a concrete user id, then adds a hashed user payload to a
+    custom audience. This pairs identity resolution with an audience write in a
+    single flow. Every step inlines its request so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: metaGraphApi
+  url: ../openapi/meta-openapi.yml
+  type: openapi
+workflows:
+- workflowId: add-current-user-to-audience
+  summary: Resolve the current user, then add a hashed payload to a custom audience.
+  description: >-
+    Reads the /me node for context, then adds the supplied hashed user payload
+    to the target custom audience.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - customAudienceId
+    - addPayload
+    properties:
+      accessToken:
+        type: string
+        description: A Meta Graph API user access token with ads permissions.
+      customAudienceId:
+        type: string
+        description: The id of the custom audience to add users to.
+      addPayload:
+        type: object
+        description: Hashed user payload to add (e.g. EMAIL_SHA256 schema and data).
+  steps:
+  - stepId: getCurrentUser
+    description: >-
+      Resolve the authenticated user's id for context before the audience
+      write.
+    operationId: getMe
+    parameters:
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      userId: $response.body#/id
+  - stepId: addUsers
+    description: >-
+      Add the supplied hashed users to the custom audience.
+    operationId: addUsersToCustomAudience
+    parameters:
+    - name: custom-audience-id
+      in: path
+      value: $inputs.customAudienceId
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    requestBody:
+      contentType: application/json
+      payload:
+        payload: $inputs.addPayload
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      success: $response.body#/success
+  outputs:
+    userId: $steps.getCurrentUser.outputs.userId
+    addSucceeded: $steps.addUsers.outputs.success

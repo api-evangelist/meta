@@ -1,0 +1,78 @@
+arazzo: 1.0.1
+info:
+  title: Meta Sync Custom Audience Membership
+  summary: Add a fresh set of hashed users to a custom audience and remove a stale set.
+  description: >-
+    Keeps a custom audience in sync by performing both halves of a membership
+    update in one flow: it first adds a batch of users using a hashed payload
+    schema such as EMAIL_SHA256, then removes a separate batch of users that
+    should no longer be in the audience. Both edges operate on the same custom
+    audience id. Every step inlines its request so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: metaGraphApi
+  url: ../openapi/meta-openapi.yml
+  type: openapi
+workflows:
+- workflowId: sync-custom-audience-membership
+  summary: Add new members to a custom audience and remove stale members.
+  description: >-
+    Adds a supplied payload of users to the custom audience, then removes a
+    second supplied payload of users from the same audience.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - customAudienceId
+    - addPayload
+    properties:
+      accessToken:
+        type: string
+        description: A Meta Graph API user access token with ads permissions.
+      customAudienceId:
+        type: string
+        description: The id of the custom audience to modify.
+      addPayload:
+        type: object
+        description: Hashed user payload to add (e.g. EMAIL_SHA256 schema and data).
+  steps:
+  - stepId: addUsers
+    description: >-
+      Add the supplied hashed users to the custom audience.
+    operationId: addUsersToCustomAudience
+    parameters:
+    - name: custom-audience-id
+      in: path
+      value: $inputs.customAudienceId
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    requestBody:
+      contentType: application/json
+      payload:
+        payload: $inputs.addPayload
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      addSucceeded: $response.body#/success
+  - stepId: removeUsers
+    description: >-
+      Remove the previously added users from the same custom audience. The
+      remove edge is declared in the spec without a request body, so membership
+      is dissociated by audience id.
+    operationId: removeUsersFromCustomAudience
+    parameters:
+    - name: custom-audience-id
+      in: path
+      value: $inputs.customAudienceId
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      removeSucceeded: $response.body#/success
+  outputs:
+    addSucceeded: $steps.addUsers.outputs.addSucceeded
+    removeSucceeded: $steps.removeUsers.outputs.removeSucceeded

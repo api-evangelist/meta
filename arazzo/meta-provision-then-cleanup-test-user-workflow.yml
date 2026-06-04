@@ -1,0 +1,84 @@
+arazzo: 1.0.1
+info:
+  title: Meta Provision Then Cleanup Test User
+  summary: Configure a test user with an update, then delete the test user to clean up.
+  description: >-
+    A lifecycle flow for test users: it resolves the current user from the
+    access token, applies a configuration update to that user node, and finally
+    deletes the test user so no residue is left behind. The delete edge in the
+    spec is the test-user removal operation. Every step inlines its request so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: metaGraphApi
+  url: ../openapi/meta-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-then-cleanup-test-user
+  summary: Update a test user and then delete it.
+  description: >-
+    Resolves the user id, applies an update, then removes the test user
+    account.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - updates
+    properties:
+      accessToken:
+        type: string
+        description: A Meta Graph API user access token for the test user.
+      updates:
+        type: object
+        description: Map of writable User fields used to configure the test user.
+  steps:
+  - stepId: getCurrentUser
+    description: >-
+      Resolve the test user's id from the access token.
+    operationId: getMe
+    parameters:
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      userId: $response.body#/id
+  - stepId: configure
+    description: >-
+      Apply the supplied configuration update to the test user node.
+    operationId: updateUser
+    parameters:
+    - name: user-id
+      in: path
+      value: $steps.getCurrentUser.outputs.userId
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    requestBody:
+      contentType: application/json
+      payload: $inputs.updates
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      success: $response.body#/success
+  - stepId: deleteTestUser
+    description: >-
+      Remove the test user account to clean up after the run.
+    operationId: deleteUser
+    parameters:
+    - name: user-id
+      in: path
+      value: $steps.getCurrentUser.outputs.userId
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      deleted: $response.body#/success
+  outputs:
+    userId: $steps.getCurrentUser.outputs.userId
+    configured: $steps.configure.outputs.success
+    deleted: $steps.deleteTestUser.outputs.deleted

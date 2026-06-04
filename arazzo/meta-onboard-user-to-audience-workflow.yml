@@ -1,0 +1,87 @@
+arazzo: 1.0.1
+info:
+  title: Meta Onboard User To Audience
+  summary: Confirm a user exists, then add a hashed payload to a custom audience.
+  description: >-
+    Onboards a user into ad targeting. It reads the User node to confirm the
+    user exists and is accessible, branches to end if the user is not found, and
+    otherwise adds a hashed user payload to the custom audience. The existence
+    check prevents adding payloads tied to invalid users. Every step inlines its
+    request so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: metaGraphApi
+  url: ../openapi/meta-openapi.yml
+  type: openapi
+workflows:
+- workflowId: onboard-user-to-audience
+  summary: Verify a user exists, then add a hashed payload to a custom audience.
+  description: >-
+    Reads the user node and, on a successful read, adds the supplied hashed
+    payload to the custom audience.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - userId
+    - customAudienceId
+    - addPayload
+    properties:
+      accessToken:
+        type: string
+        description: A Meta Graph API user access token with ads permissions.
+      userId:
+        type: string
+        description: The id of the user to verify before onboarding.
+      customAudienceId:
+        type: string
+        description: The custom audience to add the user to.
+      addPayload:
+        type: object
+        description: Hashed user payload to add (e.g. EMAIL_SHA256 schema and data).
+  steps:
+  - stepId: verifyUser
+    description: >-
+      Read the User node to confirm it exists before the audience write. A 200
+      proceeds to the add; a 404 ends the flow.
+    operationId: getUser
+    parameters:
+    - name: user-id
+      in: path
+      value: $inputs.userId
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      userId: $response.body#/id
+    onSuccess:
+    - name: userExists
+      type: goto
+      stepId: addUsers
+      criteria:
+      - condition: $statusCode == 200
+  - stepId: addUsers
+    description: >-
+      Add the supplied hashed users to the custom audience.
+    operationId: addUsersToCustomAudience
+    parameters:
+    - name: custom-audience-id
+      in: path
+      value: $inputs.customAudienceId
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    requestBody:
+      contentType: application/json
+      payload:
+        payload: $inputs.addPayload
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      addSucceeded: $response.body#/success
+  outputs:
+    userId: $steps.verifyUser.outputs.userId
+    addSucceeded: $steps.addUsers.outputs.addSucceeded

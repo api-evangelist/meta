@@ -1,0 +1,80 @@
+arazzo: 1.0.1
+info:
+  title: Meta Unblock And Add To Audience
+  summary: Unblock a user from a page, then add them to a custom audience.
+  description: >-
+    A reinstatement flow that crosses the Pages and Custom Audiences edges of
+    the User API. It first unblocks a previously blocked user from a page, then
+    adds a hashed user payload to a custom audience so the reinstated user can
+    be targeted again. Every step inlines its request so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: metaGraphApi
+  url: ../openapi/meta-openapi.yml
+  type: openapi
+workflows:
+- workflowId: unblock-and-add-to-audience
+  summary: Unblock a user from a page and add them to a custom audience.
+  description: >-
+    Dissociates a blocked user from a page, then adds a hashed user payload to
+    the target custom audience.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - pageId
+    - customAudienceId
+    - addPayload
+    properties:
+      accessToken:
+        type: string
+        description: A Meta Graph API access token with page and ads permissions.
+      pageId:
+        type: string
+        description: The id of the page to unblock the user from.
+      customAudienceId:
+        type: string
+        description: The id of the custom audience to add the user to.
+      addPayload:
+        type: object
+        description: Hashed user payload to add (e.g. EMAIL_SHA256 schema and data).
+  steps:
+  - stepId: unblockUser
+    description: >-
+      Unblock the user from the page by dissociating them from the page's
+      blocked list.
+    operationId: unblockPageUser
+    parameters:
+    - name: page-id
+      in: path
+      value: $inputs.pageId
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      unblocked: $response.body#/success
+  - stepId: addUsers
+    description: >-
+      Add the supplied hashed users to the custom audience.
+    operationId: addUsersToCustomAudience
+    parameters:
+    - name: custom-audience-id
+      in: path
+      value: $inputs.customAudienceId
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    requestBody:
+      contentType: application/json
+      payload:
+        payload: $inputs.addPayload
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      addSucceeded: $response.body#/success
+  outputs:
+    unblocked: $steps.unblockUser.outputs.unblocked
+    addSucceeded: $steps.addUsers.outputs.addSucceeded

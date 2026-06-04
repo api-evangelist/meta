@@ -1,0 +1,87 @@
+arazzo: 1.0.1
+info:
+  title: Meta Read User Feed And Identity
+  summary: Read a target user's feed and resolve the caller's own identity for context.
+  description: >-
+    Pulls a target user's profile and feed, then resolves the caller's own
+    identity via /me so a consumer can compare the target against the
+    authenticated user. The profile read up front confirms access to the target
+    before the feed pull. Every step inlines its request so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: metaGraphApi
+  url: ../openapi/meta-openapi.yml
+  type: openapi
+workflows:
+- workflowId: read-user-feed-and-identity
+  summary: Read a target user and feed, then resolve the caller's own identity.
+  description: >-
+    Reads the target user node and feed, then calls /me to capture the
+    authenticated caller's id for comparison.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - userId
+    properties:
+      accessToken:
+        type: string
+        description: A Meta Graph API user access token.
+      userId:
+        type: string
+        description: The id of the target user to read.
+      fields:
+        type: string
+        description: Comma-separated list of user fields to return.
+  steps:
+  - stepId: readTarget
+    description: >-
+      Read the target User node to confirm access and capture display fields.
+    operationId: getUser
+    parameters:
+    - name: user-id
+      in: path
+      value: $inputs.userId
+    - name: fields
+      in: query
+      value: $inputs.fields
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      targetId: $response.body#/id
+      targetName: $response.body#/name
+  - stepId: targetFeed
+    description: >-
+      Retrieve the target user's feed of posts.
+    operationId: getUserFeed
+    parameters:
+    - name: user-id
+      in: path
+      value: $steps.readTarget.outputs.targetId
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      posts: $response.body#/data
+  - stepId: resolveCaller
+    description: >-
+      Resolve the authenticated caller's own identity for context.
+    operationId: getMe
+    parameters:
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      callerId: $response.body#/id
+  outputs:
+    targetId: $steps.readTarget.outputs.targetId
+    posts: $steps.targetFeed.outputs.posts
+    callerId: $steps.resolveCaller.outputs.callerId

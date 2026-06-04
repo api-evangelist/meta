@@ -1,0 +1,84 @@
+arazzo: 1.0.1
+info:
+  title: Meta Audit Current User
+  summary: Resolve the current user, read their full profile node, then pull their feed.
+  description: >-
+    A three-step audit of the authenticated user. It resolves the user id with
+    /me, reads the full User node with an explicit field list, and then
+    retrieves the user's feed. The result is a compact snapshot of who the token
+    belongs to and what they have recently published. Every step inlines its
+    request so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: metaGraphApi
+  url: ../openapi/meta-openapi.yml
+  type: openapi
+workflows:
+- workflowId: audit-current-user
+  summary: Snapshot the authenticated user's identity, profile, and feed.
+  description: >-
+    Resolves the user id, reads the profile node with the requested fields, and
+    retrieves the feed edge.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    properties:
+      accessToken:
+        type: string
+        description: A Meta Graph API user access token.
+      fields:
+        type: string
+        description: Comma-separated list of user fields to return.
+  steps:
+  - stepId: getCurrentUser
+    description: >-
+      Resolve the authenticated user's id from the access token.
+    operationId: getMe
+    parameters:
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      userId: $response.body#/id
+  - stepId: readProfile
+    description: >-
+      Read the full User node for the resolved id with the requested fields.
+    operationId: getUser
+    parameters:
+    - name: user-id
+      in: path
+      value: $steps.getCurrentUser.outputs.userId
+    - name: fields
+      in: query
+      value: $inputs.fields
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      name: $response.body#/name
+      email: $response.body#/email
+  - stepId: getFeed
+    description: >-
+      Retrieve the feed of posts for the resolved user.
+    operationId: getUserFeed
+    parameters:
+    - name: user-id
+      in: path
+      value: $steps.getCurrentUser.outputs.userId
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      posts: $response.body#/data
+  outputs:
+    userId: $steps.getCurrentUser.outputs.userId
+    name: $steps.readProfile.outputs.name
+    posts: $steps.getFeed.outputs.posts

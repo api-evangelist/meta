@@ -1,0 +1,71 @@
+arazzo: 1.0.1
+info:
+  title: Meta Get Current User Feed
+  summary: Resolve the current user from the access token and read their timeline feed.
+  description: >-
+    Identifies the user behind the supplied access token with the /me node and
+    then reads that user's feed of timeline posts. Because the Graph API feed
+    edge is keyed by user id, the workflow first resolves the id rather than
+    assuming the caller already knows it. Every step inlines its request so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: metaGraphApi
+  url: ../openapi/meta-openapi.yml
+  type: openapi
+workflows:
+- workflowId: get-current-user-feed
+  summary: Resolve the current user and return their feed of posts.
+  description: >-
+    Calls the /me node to discover the authenticated user's id, then retrieves
+    the feed edge for that user.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    properties:
+      accessToken:
+        type: string
+        description: A Meta Graph API user access token.
+      fields:
+        type: string
+        description: Comma-separated list of user fields to return (e.g. "id,name").
+  steps:
+  - stepId: getCurrentUser
+    description: >-
+      Read the User node associated with the access token to discover the
+      authenticated user's id.
+    operationId: getMe
+    parameters:
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    - name: fields
+      in: query
+      value: $inputs.fields
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      userId: $response.body#/id
+      name: $response.body#/name
+  - stepId: getFeed
+    description: >-
+      Retrieve the feed of posts published by or on the resolved user's
+      timeline.
+    operationId: getUserFeed
+    parameters:
+    - name: user-id
+      in: path
+      value: $steps.getCurrentUser.outputs.userId
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      posts: $response.body#/data
+      nextCursor: $response.body#/paging/cursors/after
+  outputs:
+    userId: $steps.getCurrentUser.outputs.userId
+    posts: $steps.getFeed.outputs.posts

@@ -1,0 +1,96 @@
+arazzo: 1.0.1
+info:
+  title: Meta Decommission User Account
+  summary: Snapshot a user, remove them from a custom audience, then delete the test user.
+  description: >-
+    An offboarding flow for a test user. It first reads the User node to capture
+    a final snapshot, then removes the user from a custom audience so they are no
+    longer targeted, and finally deletes the test user account. Ordering the
+    deletion last ensures the audience cleanup runs while the user still exists.
+    Every step inlines its request so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: metaGraphApi
+  url: ../openapi/meta-openapi.yml
+  type: openapi
+workflows:
+- workflowId: decommission-user-account
+  summary: Snapshot a user, remove from an audience, then delete the test user.
+  description: >-
+    Reads the user, removes them from the custom audience, then deletes the
+    test user account.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - userId
+    - customAudienceId
+    properties:
+      accessToken:
+        type: string
+        description: A Meta Graph API user access token.
+      userId:
+        type: string
+        description: The id of the test user to decommission.
+      customAudienceId:
+        type: string
+        description: The custom audience to remove the user from.
+      fields:
+        type: string
+        description: Comma-separated fields to capture in the final snapshot.
+  steps:
+  - stepId: snapshotUser
+    description: >-
+      Read the User node to capture a final snapshot before removal.
+    operationId: getUser
+    parameters:
+    - name: user-id
+      in: path
+      value: $inputs.userId
+    - name: fields
+      in: query
+      value: $inputs.fields
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      userId: $response.body#/id
+      name: $response.body#/name
+  - stepId: removeFromAudience
+    description: >-
+      Remove the user from the custom audience so they are no longer targeted.
+      The remove edge is declared without a request body in the spec.
+    operationId: removeUsersFromCustomAudience
+    parameters:
+    - name: custom-audience-id
+      in: path
+      value: $inputs.customAudienceId
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      removed: $response.body#/success
+  - stepId: deleteUser
+    description: >-
+      Delete the test user account to complete decommissioning.
+    operationId: deleteUser
+    parameters:
+    - name: user-id
+      in: path
+      value: $steps.snapshotUser.outputs.userId
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      deleted: $response.body#/success
+  outputs:
+    userId: $steps.snapshotUser.outputs.userId
+    removed: $steps.removeFromAudience.outputs.removed
+    deleted: $steps.deleteUser.outputs.deleted

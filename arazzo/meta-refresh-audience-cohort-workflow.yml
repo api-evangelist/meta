@@ -1,0 +1,90 @@
+arazzo: 1.0.1
+info:
+  title: Meta Refresh Audience Cohort
+  summary: Resolve the caller, add a new cohort to an audience, then remove stale members.
+  description: >-
+    Refreshes a custom audience cohort in one pass. It resolves the caller via
+    /me for an audit trail, adds the new cohort's hashed payload to the custom
+    audience, and then removes stale members from the same audience. The remove
+    edge is declared without a request body in the spec, so stale members are
+    dissociated by audience id. Every step inlines its request so the flow can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: metaGraphApi
+  url: ../openapi/meta-openapi.yml
+  type: openapi
+workflows:
+- workflowId: refresh-audience-cohort
+  summary: Resolve the caller, add a new cohort, then remove stale audience members.
+  description: >-
+    Reads /me for context, adds the supplied hashed cohort payload to the custom
+    audience, then removes stale members from the same audience.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - customAudienceId
+    - addPayload
+    properties:
+      accessToken:
+        type: string
+        description: A Meta Graph API user access token with ads permissions.
+      customAudienceId:
+        type: string
+        description: The custom audience to refresh.
+      addPayload:
+        type: object
+        description: Hashed payload for the new cohort to add (e.g. EMAIL_SHA256 data).
+  steps:
+  - stepId: resolveCaller
+    description: >-
+      Resolve the authenticated caller's id for an audit trail.
+    operationId: getMe
+    parameters:
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      callerId: $response.body#/id
+  - stepId: addCohort
+    description: >-
+      Add the new cohort's hashed payload to the custom audience.
+    operationId: addUsersToCustomAudience
+    parameters:
+    - name: custom-audience-id
+      in: path
+      value: $inputs.customAudienceId
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    requestBody:
+      contentType: application/json
+      payload:
+        payload: $inputs.addPayload
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      addSucceeded: $response.body#/success
+  - stepId: removeStale
+    description: >-
+      Remove stale members from the same custom audience. The remove edge is
+      declared without a request body in the spec.
+    operationId: removeUsersFromCustomAudience
+    parameters:
+    - name: custom-audience-id
+      in: path
+      value: $inputs.customAudienceId
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      removed: $response.body#/success
+  outputs:
+    callerId: $steps.resolveCaller.outputs.callerId
+    addSucceeded: $steps.addCohort.outputs.addSucceeded
+    removed: $steps.removeStale.outputs.removed

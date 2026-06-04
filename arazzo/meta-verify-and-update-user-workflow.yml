@@ -1,0 +1,104 @@
+arazzo: 1.0.1
+info:
+  title: Meta Verify And Update User
+  summary: Read a user, branch on whether it exists, and apply an update when found.
+  description: >-
+    Reads the User node for a supplied id and branches on the outcome: when the
+    read succeeds the workflow applies the supplied update and re-reads the node
+    to confirm, and when the user is not found it ends without writing. This
+    guards the write behind an existence check so updates are never attempted
+    against a missing user. Every step inlines its request so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: metaGraphApi
+  url: ../openapi/meta-openapi.yml
+  type: openapi
+workflows:
+- workflowId: verify-and-update-user
+  summary: Confirm a user exists before updating, then verify the update.
+  description: >-
+    Reads the user node, and on a successful read applies the update and
+    re-reads to confirm; a not-found read ends the flow.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - userId
+    - updates
+    properties:
+      accessToken:
+        type: string
+        description: A Meta Graph API user access token.
+      userId:
+        type: string
+        description: The id of the user to verify and update.
+      updates:
+        type: object
+        description: Map of writable User fields to apply when the user exists.
+      fields:
+        type: string
+        description: Comma-separated fields to read back after the update.
+  steps:
+  - stepId: verifyUser
+    description: >-
+      Read the User node to confirm it exists before attempting a write. A 200
+      proceeds to the update; a 404 ends the flow.
+    operationId: getUser
+    parameters:
+    - name: user-id
+      in: path
+      value: $inputs.userId
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      userId: $response.body#/id
+    onSuccess:
+    - name: userFound
+      type: goto
+      stepId: applyUpdate
+      criteria:
+      - condition: $statusCode == 200
+  - stepId: applyUpdate
+    description: >-
+      Apply the supplied update to the confirmed User node.
+    operationId: updateUser
+    parameters:
+    - name: user-id
+      in: path
+      value: $steps.verifyUser.outputs.userId
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    requestBody:
+      contentType: application/json
+      payload: $inputs.updates
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      success: $response.body#/success
+  - stepId: confirmUpdate
+    description: >-
+      Re-read the User node to confirm the updated values persisted.
+    operationId: getUser
+    parameters:
+    - name: user-id
+      in: path
+      value: $steps.verifyUser.outputs.userId
+    - name: fields
+      in: query
+      value: $inputs.fields
+    - name: access_token
+      in: query
+      value: $inputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      name: $response.body#/name
+  outputs:
+    userId: $steps.verifyUser.outputs.userId
+    updateSucceeded: $steps.applyUpdate.outputs.success
+    name: $steps.confirmUpdate.outputs.name
