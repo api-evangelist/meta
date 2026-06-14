@@ -1,0 +1,2362 @@
+# Meta Graph API — Conceptual GraphQL Schema
+#
+# Source: https://developers.facebook.com/docs/graph-api/reference
+# This SDL is a conceptual mapping of the Meta Graph API node/edge/field model
+# onto standard GraphQL types. Meta's Graph API is not a native GraphQL endpoint
+# but its graph-traversal design maps directly to GraphQL semantics.
+#
+# Version: v20+ (current as of 2026)
+
+# ---------------------------------------------------------------------------
+# Scalars
+# ---------------------------------------------------------------------------
+
+scalar DateTime
+scalar URL
+scalar JSON
+
+# ---------------------------------------------------------------------------
+# Shared Enums
+# ---------------------------------------------------------------------------
+
+enum PrivacyValue {
+  EVERYONE
+  ALL_FRIENDS
+  FRIENDS_OF_FRIENDS
+  SELF
+  CUSTOM
+}
+
+enum PublishStatus {
+  PUBLISHED
+  DRAFT
+  SCHEDULED
+  EXPIRED
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+  CAROUSEL_ALBUM
+  REELS
+  STORY
+}
+
+enum AdStatus {
+  ACTIVE
+  PAUSED
+  DELETED
+  ARCHIVED
+  IN_PROCESS
+  WITH_ISSUES
+}
+
+enum CampaignObjective {
+  BRAND_AWARENESS
+  REACH
+  TRAFFIC
+  ENGAGEMENT
+  APP_INSTALLS
+  VIDEO_VIEWS
+  LEAD_GENERATION
+  CONVERSIONS
+  CATALOG_SALES
+  STORE_TRAFFIC
+  OUTCOME_AWARENESS
+  OUTCOME_ENGAGEMENT
+  OUTCOME_LEADS
+  OUTCOME_SALES
+  OUTCOME_TRAFFIC
+  OUTCOME_APP_PROMOTION
+}
+
+enum MessagingType {
+  RESPONSE
+  UPDATE
+  MESSAGE_TAG
+}
+
+enum WhatsAppMessageType {
+  TEXT
+  IMAGE
+  AUDIO
+  VIDEO
+  DOCUMENT
+  STICKER
+  LOCATION
+  CONTACTS
+  INTERACTIVE
+  TEMPLATE
+  REACTION
+}
+
+enum EventRsvpStatus {
+  ATTENDING
+  MAYBE
+  DECLINED
+  NOT_REPLIED
+}
+
+# ---------------------------------------------------------------------------
+# Pagination
+# ---------------------------------------------------------------------------
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type PagingCursors {
+  before: String!
+  after: String!
+}
+
+type Paging {
+  cursors: PagingCursors
+  next: URL
+  previous: URL
+}
+
+# ---------------------------------------------------------------------------
+# Privacy
+# ---------------------------------------------------------------------------
+
+type Privacy {
+  value: PrivacyValue!
+  description: String
+  friends: String
+  networks: String
+  deny: String
+  allow: String
+}
+
+# ---------------------------------------------------------------------------
+# Root Query
+# ---------------------------------------------------------------------------
+
+type Query {
+  # Authenticated user node
+  me: User
+
+  # Any node by globally unique ID
+  node(id: ID!): Node
+
+  # Page node
+  page(id: ID!): Page
+
+  # Group node
+  group(id: ID!): Group
+
+  # Event node
+  event(id: ID!): Event
+
+  # Ad account
+  adAccount(id: ID!): AdAccount
+
+  # Campaign
+  campaign(id: ID!): Campaign
+
+  # Instagram account
+  instagramAccount(id: ID!): InstagramAccount
+
+  # WhatsApp business account
+  whatsAppAccount(id: ID!): WhatsAppAccount
+
+  # Threads user
+  threadsUser(id: ID!): ThreadsUser
+
+  # Application
+  application(id: ID!): Application
+
+  # Catalog
+  catalog(id: ID!): Catalog
+
+  # Commerce order
+  commerceOrder(id: ID!): CommerceOrder
+
+  # Search
+  search(q: String!, type: String, fields: String, limit: Int, after: String): SearchResultConnection
+}
+
+# ---------------------------------------------------------------------------
+# Node Interface
+# ---------------------------------------------------------------------------
+
+interface Node {
+  id: ID!
+}
+
+# ---------------------------------------------------------------------------
+# User
+# ---------------------------------------------------------------------------
+
+type User implements Node {
+  id: ID!
+  name: String
+  first_name: String
+  middle_name: String
+  last_name: String
+  email: String
+  birthday: String
+  gender: String
+  locale: String
+  timezone: Float
+  updated_time: DateTime
+  verified: Boolean
+  link: URL
+  picture: ProfilePicture
+  cover: CoverPhoto
+  location: Place
+  hometown: Place
+  about: String
+  bio: String
+  website: URL
+  quotes: String
+  relationship_status: String
+  political: String
+  religion: String
+  languages: [String]
+  favorite_athletes: [Experience]
+  favorite_teams: [Experience]
+  inspirational_people: [Experience]
+  education: [EducationExperience]
+  work: [WorkExperience]
+  age_range: AgeRange
+  short_name: String
+  name_format: String
+  currency: Currency
+  install_type: String
+  installed: Boolean
+  is_shared_login: Boolean
+  significant_other: User
+  sports: [Experience]
+  friends: UserConnection
+  feed: PostConnection
+  posts: PostConnection
+  photos: PhotoConnection
+  videos: VideoConnection
+  albums: AlbumConnection
+  events: EventConnection
+  groups: GroupConnection
+  likes: PageConnection
+  tagged: PostConnection
+  app_requests: JSON
+  permissions: JSON
+}
+
+type UserConnection {
+  data: [User!]!
+  paging: Paging
+  summary: ConnectionSummary
+}
+
+type ConnectionSummary {
+  total_count: Int
+  can_see_custom_token: Boolean
+}
+
+type AgeRange {
+  min: Int
+  max: Int
+}
+
+type Currency {
+  currency_offset: Int
+  usd_exchange: Float
+  user_currency: String
+  usd_exchange_inverse: Float
+}
+
+type Experience {
+  id: ID
+  name: String
+  description: String
+  with: [User]
+}
+
+type EducationExperience {
+  id: ID
+  school: Page
+  type: String
+  year: Page
+  concentration: [Page]
+  degree: Page
+  with: [User]
+  classes: [Experience]
+}
+
+type WorkExperience {
+  id: ID
+  employer: Page
+  position: Page
+  start_date: String
+  end_date: String
+  location: Page
+  projects: [Experience]
+  description: String
+  with: [User]
+}
+
+# ---------------------------------------------------------------------------
+# Profile
+# ---------------------------------------------------------------------------
+
+type Profile implements Node {
+  id: ID!
+  name: String
+  link: URL
+  username: String
+  pic: URL
+  pic_large: URL
+  pic_small: URL
+  pic_square: URL
+  pic_crop: ProfilePictureCrop
+  type: String
+}
+
+type ProfilePictureCrop {
+  top: Float
+  right: Float
+  bottom: Float
+  left: Float
+}
+
+# ---------------------------------------------------------------------------
+# ProfilePicture
+# ---------------------------------------------------------------------------
+
+type ProfilePicture {
+  data: ProfilePictureData
+}
+
+type ProfilePictureData {
+  height: Int
+  width: Int
+  url: URL
+  is_silhouette: Boolean
+}
+
+# ---------------------------------------------------------------------------
+# CoverPhoto
+# ---------------------------------------------------------------------------
+
+type CoverPhoto implements Node {
+  id: ID!
+  source: URL
+  offset_x: Int
+  offset_y: Int
+}
+
+# ---------------------------------------------------------------------------
+# AppUser
+# ---------------------------------------------------------------------------
+
+type AppUser implements Node {
+  id: ID!
+  name: String
+  email: String
+  installed: Boolean
+  install_type: String
+  is_shared_login: Boolean
+  payment_pricepoints: JSON
+  picture: ProfilePicture
+  roles: JSON
+  test_groups: [Int]
+  token_for_business: String
+}
+
+# ---------------------------------------------------------------------------
+# Application
+# ---------------------------------------------------------------------------
+
+type Application implements Node {
+  id: ID!
+  name: String
+  description: String
+  category: String
+  company: String
+  contact_email: String
+  created_time: DateTime
+  daily_active_users: String
+  daily_active_users_rank: Int
+  icon_url: URL
+  is_viewer_admin: Boolean
+  link: URL
+  logo_url: URL
+  namespace: String
+  page: Page
+  privacy_policy_url: URL
+  profile_update_default_privacy_value: String
+  restrictions: JSON
+  subcategory: String
+  supported_platforms: [String]
+  terms_of_service_url: URL
+  weekly_active_users: String
+  roles: ApplicationRoleConnection
+  test_users: [AppUser]
+}
+
+type ApplicationRoleConnection {
+  data: [ApplicationRole!]!
+  paging: Paging
+}
+
+type ApplicationRole {
+  app_id: String
+  user: User
+  role: String
+}
+
+# ---------------------------------------------------------------------------
+# Page
+# ---------------------------------------------------------------------------
+
+type Page implements Node {
+  id: ID!
+  name: String
+  about: String
+  bio: String
+  category: String
+  category_list: [PageCategory]
+  checkins: Int
+  company_overview: String
+  contact_address: MailingAddress
+  cover: CoverPhoto
+  current_location: String
+  description: String
+  description_html: String
+  display_subtext: String
+  emails: [String]
+  engagement: Engagement
+  fan_count: Int
+  featured_video: Video
+  founded: String
+  general_info: String
+  general_manager: String
+  genre: String
+  global_brand_page_name: String
+  hometown: String
+  hours: JSON
+  impressum: String
+  is_always_open: Boolean
+  is_chain: Boolean
+  is_community_page: Boolean
+  is_permanently_closed: Boolean
+  is_published: Boolean
+  is_verified: Boolean
+  is_webhooks_subscribed: Boolean
+  link: URL
+  location: Location
+  members: String
+  mission: String
+  mpg: String
+  name_with_location_descriptor: String
+  network: String
+  new_like_count: Int
+  overall_star_rating: Float
+  parking: JSON
+  payment_options: JSON
+  personal_info: String
+  personal_interests: String
+  phone: String
+  place_type: String
+  plot_outline: String
+  press_contact: String
+  price_range: String
+  produced_by: String
+  products: String
+  promotion_eligible: Boolean
+  promotion_ineligible_reason: String
+  public_transit: String
+  rating_count: Int
+  record_label: String
+  release_date: String
+  restaurant_services: JSON
+  restaurant_specialties: JSON
+  schedule: JSON
+  screenplay_by: String
+  season: String
+  single_line_address: String
+  starring: String
+  start_info: JSON
+  store_number: Int
+  studio: String
+  talking_about_count: Int
+  unread_message_count: Int
+  unread_notif_count: Int
+  unseen_message_count: Int
+  username: String
+  verification_status: String
+  voip_info: JSON
+  website: URL
+  were_here_count: Int
+  whatsapp_number: String
+  written_by: String
+  picture: ProfilePicture
+  posts: PostConnection
+  feed: PostConnection
+  photos: PhotoConnection
+  videos: VideoConnection
+  albums: AlbumConnection
+  events: EventConnection
+  likes: PageLikesConnection
+  ratings: RatingConnection
+  milestones: MilestoneConnection
+  offers: OfferConnection
+  roles: JSON
+  instagram_accounts: InstagramAccountConnection
+  ads_posts: PostConnection
+  global_brand_children: PageConnection
+}
+
+type PageConnection {
+  data: [Page!]!
+  paging: Paging
+}
+
+type PageCategory {
+  id: ID
+  name: String
+  api_enum: String
+  fb_page_categories: [PageCategory]
+}
+
+type MailingAddress {
+  id: ID
+  city: String
+  city_page: Page
+  country: String
+  postal_code: String
+  region: String
+  state: String
+  street1: String
+  street2: String
+}
+
+type Engagement {
+  count: Int
+  social_sentence: String
+}
+
+type PageLikesConnection {
+  data: [User!]!
+  paging: Paging
+  summary: ConnectionSummary
+}
+
+# ---------------------------------------------------------------------------
+# Location
+# ---------------------------------------------------------------------------
+
+type Location {
+  city: String
+  city_id: Int
+  country: String
+  country_code: String
+  latitude: Float
+  longitude: Float
+  name: String
+  region: String
+  region_id: Int
+  state: String
+  street: String
+  zip: String
+}
+
+# ---------------------------------------------------------------------------
+# PageLocation
+# ---------------------------------------------------------------------------
+
+type PageLocation {
+  city: String
+  country: String
+  latitude: Float
+  longitude: Float
+  state: String
+  street: String
+  zip: String
+}
+
+# ---------------------------------------------------------------------------
+# Place
+# ---------------------------------------------------------------------------
+
+type Place implements Node {
+  id: ID!
+  name: String
+  location: Location
+  overall_rating: Float
+}
+
+# ---------------------------------------------------------------------------
+# Group
+# ---------------------------------------------------------------------------
+
+type Group implements Node {
+  id: ID!
+  cover: CoverPhoto
+  description: String
+  email: String
+  icon: URL
+  link: URL
+  member_count: Int
+  member_request_count: Int
+  name: String
+  owner: Profile
+  parent: Group
+  permissions: String
+  picture: ProfilePicture
+  privacy: String
+  updated_time: DateTime
+  venue: Location
+  feed: PostConnection
+  members: UserConnection
+  admins: UserConnection
+  docs: JSON
+  events: EventConnection
+  files: JSON
+  videos: VideoConnection
+  albums: AlbumConnection
+}
+
+# ---------------------------------------------------------------------------
+# Post
+# ---------------------------------------------------------------------------
+
+type Post implements Node {
+  id: ID!
+  actions: JSON
+  admin_creator: Profile
+  allowed_advertising_objects: JSON
+  application: Application
+  backdated_time: DateTime
+  backdated_time_granularity: String
+  call_to_action: JSON
+  can_hide: Boolean
+  can_like: Boolean
+  can_remove: Boolean
+  caption: String
+  child_attachments: JSON
+  comments_mirroring_domain: String
+  coordinates: JSON
+  created_time: DateTime
+  description: String
+  event: Event
+  expanded_height: Int
+  expanded_width: Int
+  feed_targeting: JSON
+  from: Profile
+  full_picture: URL
+  height: Int
+  icon: URL
+  instagram_eligibility: String
+  is_app_share: Boolean
+  is_eligible_for_promotion: Boolean
+  is_expired: Boolean
+  is_hidden: Boolean
+  is_inline_created: Boolean
+  is_popular: Boolean
+  is_published: Boolean
+  is_spherical: Boolean
+  link: URL
+  message: String
+  message_tags: JSON
+  multi_share_end_card: Boolean
+  multi_share_optimized: Boolean
+  name: String
+  object_id: String
+  parent_id: String
+  permalink_url: URL
+  picture: URL
+  place: Place
+  privacy: Privacy
+  promotable_id: String
+  promotion_status: String
+  properties: JSON
+  scheduled_publish_time: DateTime
+  shares: SharesCount
+  source: URL
+  status_type: String
+  story: String
+  story_tags: JSON
+  subscribed: Boolean
+  targeting: JSON
+  timeline_visibility: String
+  type: String
+  updated_time: DateTime
+  via: Profile
+  width: Int
+  comments: CommentConnection
+  likes: LikesConnection
+  reactions: ReactionConnection
+  attachments: JSON
+}
+
+type PostConnection {
+  data: [Post!]!
+  paging: Paging
+}
+
+type SharesCount {
+  count: Int
+}
+
+type Comment implements Node {
+  id: ID!
+  can_like: Boolean
+  can_remove: Boolean
+  can_hide: Boolean
+  can_reply_privately: Boolean
+  comment_count: Int
+  created_time: DateTime
+  from: Profile
+  like_count: Int
+  message: String
+  message_tags: JSON
+  object: JSON
+  parent: Comment
+  private_reply_conversation: MessengerThread
+  user_likes: Boolean
+  comments: CommentConnection
+  likes: LikesConnection
+}
+
+type CommentConnection {
+  data: [Comment!]!
+  paging: Paging
+  summary: ConnectionSummary
+}
+
+type LikesConnection {
+  data: [Profile!]!
+  paging: Paging
+  summary: ConnectionSummary
+}
+
+type Reaction {
+  id: ID
+  name: String
+  type: String
+  pic: URL
+}
+
+type ReactionConnection {
+  data: [Reaction!]!
+  paging: Paging
+  summary: ConnectionSummary
+}
+
+# ---------------------------------------------------------------------------
+# Story
+# ---------------------------------------------------------------------------
+
+type Story implements Node {
+  id: ID!
+  from: Profile
+  to: Profile
+  type: String
+  application: Application
+  properties: JSON
+  message: String
+  picture: URL
+  link: URL
+  name: String
+  caption: String
+  description: String
+  created_time: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Status
+# ---------------------------------------------------------------------------
+
+type Status implements Node {
+  id: ID!
+  from: Profile
+  message: String
+  place: Place
+  updated_time: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Link
+# ---------------------------------------------------------------------------
+
+type Link implements Node {
+  id: ID!
+  caption: String
+  created_time: DateTime
+  description: String
+  from: Profile
+  icon: URL
+  link: URL
+  message: String
+  name: String
+  picture: URL
+  via: Profile
+  comments: CommentConnection
+  likes: LikesConnection
+}
+
+# ---------------------------------------------------------------------------
+# Photo
+# ---------------------------------------------------------------------------
+
+type Photo implements Node {
+  id: ID!
+  album: Album
+  alt_text: String
+  alt_text_custom: String
+  backdated_time: DateTime
+  backdated_time_granularity: String
+  can_delete: Boolean
+  can_tag: Boolean
+  created_time: DateTime
+  event: Event
+  from: Profile
+  height: Int
+  icon: URL
+  images: [PhotoImage]
+  link: URL
+  name: String
+  name_tags: JSON
+  page_story_id: String
+  picture: URL
+  place: Place
+  position: Int
+  source: URL
+  target: Profile
+  updated_time: DateTime
+  webp_images: [PhotoImage]
+  width: Int
+  comments: CommentConnection
+  likes: LikesConnection
+  reactions: ReactionConnection
+  tags: TagConnection
+}
+
+type PhotoConnection {
+  data: [Photo!]!
+  paging: Paging
+}
+
+type PhotoImage {
+  height: Int
+  source: URL
+  width: Int
+}
+
+type TagConnection {
+  data: [Tag!]!
+  paging: Paging
+}
+
+type Tag {
+  id: ID
+  name: String
+  created_time: DateTime
+  x: Float
+  y: Float
+}
+
+# ---------------------------------------------------------------------------
+# Video
+# ---------------------------------------------------------------------------
+
+type Video implements Node {
+  id: ID!
+  ad_breaks: [Int]
+  backdated_time: DateTime
+  backdated_time_granularity: String
+  content_category: String
+  content_tags: [String]
+  created_time: DateTime
+  custom_labels: [String]
+  description: String
+  embed_html: String
+  embeddable: Boolean
+  format: [VideoFormat]
+  from: Profile
+  icon: URL
+  is_crosspost_video: Boolean
+  is_crossposting_eligible: Boolean
+  is_instagram_eligible: Boolean
+  length: Float
+  live_status: String
+  permalink_url: URL
+  picture: URL
+  place: Place
+  published: Boolean
+  scheduled_publish_time: DateTime
+  source: URL
+  status: VideoStatus
+  title: String
+  universal_video_id: String
+  updated_time: DateTime
+  insights: VideoInsights
+  comments: CommentConnection
+  likes: LikesConnection
+  reactions: ReactionConnection
+  tags: UserConnection
+}
+
+type VideoConnection {
+  data: [Video!]!
+  paging: Paging
+}
+
+type VideoFormat {
+  embed_html: String
+  filter: String
+  height: Int
+  picture: URL
+  width: Int
+}
+
+type VideoStatus {
+  processing_progress: Int
+  video_status: String
+}
+
+# ---------------------------------------------------------------------------
+# VideoInsights
+# ---------------------------------------------------------------------------
+
+type VideoInsights {
+  data: [VideoInsightMetric!]!
+  paging: Paging
+}
+
+type VideoInsightMetric {
+  id: ID
+  name: String
+  period: String
+  values: [VideoInsightValue]
+  title: String
+  description: String
+}
+
+type VideoInsightValue {
+  value: JSON
+  end_time: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Album
+# ---------------------------------------------------------------------------
+
+type Album implements Node {
+  id: ID!
+  backdated_time: DateTime
+  backdated_time_granularity: String
+  can_upload: Boolean
+  count: Int
+  cover_photo: Photo
+  created_time: DateTime
+  description: String
+  event: Event
+  from: Profile
+  link: URL
+  location: String
+  name: String
+  place: Place
+  privacy: Privacy
+  type: String
+  updated_time: DateTime
+  photos: PhotoConnection
+  videos: VideoConnection
+  comments: CommentConnection
+  likes: LikesConnection
+}
+
+type AlbumConnection {
+  data: [Album!]!
+  paging: Paging
+}
+
+# ---------------------------------------------------------------------------
+# ReelsVideo
+# ---------------------------------------------------------------------------
+
+type ReelsVideo implements Node {
+  id: ID!
+  description: String
+  media_url: URL
+  media_product_type: String
+  permalink: URL
+  shortcode: String
+  thumbnail_url: URL
+  timestamp: DateTime
+  username: String
+  video_title: String
+  is_shared_to_feed: Boolean
+  like_count: Int
+  comments_count: Int
+  plays: Int
+  reach: Int
+  saved: Int
+  comments: CommentConnection
+}
+
+# ---------------------------------------------------------------------------
+# LiveVideo
+# ---------------------------------------------------------------------------
+
+type LiveVideo implements Node {
+  id: ID!
+  broadcast_start_time: DateTime
+  creation_time: DateTime
+  dash_ingest_url: URL
+  dash_preview_url: URL
+  description: String
+  embed_html: String
+  from: Profile
+  ingest_streams: [LiveVideoInputStream]
+  is_manual_mode: Boolean
+  live_encoders: JSON
+  live_views: Int
+  permalink_url: URL
+  planned_start_time: DateTime
+  seconds_left: Int
+  secure_stream_url: URL
+  status: String
+  stream_url: URL
+  targeting: JSON
+  title: String
+  total_views: Int
+  video: Video
+  comments: CommentConnection
+  reactions: ReactionConnection
+}
+
+type LiveVideoInputStream {
+  dash_ingest_url: URL
+  secure_stream_url: URL
+  stream_id: String
+  stream_url: URL
+  stream_type: String
+}
+
+# ---------------------------------------------------------------------------
+# AudioRoom
+# ---------------------------------------------------------------------------
+
+type AudioRoom implements Node {
+  id: ID!
+  title: String
+  creator: Profile
+  participants: UserConnection
+  created_time: DateTime
+  status: String
+  listener_count: Int
+  speaker_count: Int
+}
+
+# ---------------------------------------------------------------------------
+# Event
+# ---------------------------------------------------------------------------
+
+type Event implements Node {
+  id: ID!
+  attending_count: Int
+  can_guests_invite: Boolean
+  category: String
+  cover: CoverPhoto
+  declined_count: Int
+  description: String
+  discount_code_enabled: Boolean
+  end_time: DateTime
+  event_times: [Event]
+  guest_list_enabled: Boolean
+  interested_count: Int
+  is_canceled: Boolean
+  is_draft: Boolean
+  is_online: Boolean
+  is_page_owned: Boolean
+  maybe_count: Int
+  name: String
+  noreply_count: Int
+  online_event_format: String
+  online_event_third_party_url: URL
+  owner: Profile
+  parent_group: Group
+  place: Place
+  event_schedule: JSON
+  start_time: DateTime
+  ticket_uri: URL
+  ticket_uri_start_sales_time: DateTime
+  ticketing_privacy_uri: URL
+  ticketing_terms_uri: URL
+  timezone: String
+  type: String
+  updated_time: DateTime
+  attending: EventAttendeeConnection
+  declined: EventAttendeeConnection
+  interested: EventAttendeeConnection
+  maybe: EventAttendeeConnection
+  noreply: EventAttendeeConnection
+  feed: PostConnection
+  photos: PhotoConnection
+  videos: VideoConnection
+  admins: UserConnection
+}
+
+type EventConnection {
+  data: [Event!]!
+  paging: Paging
+}
+
+# ---------------------------------------------------------------------------
+# EventAttendee
+# ---------------------------------------------------------------------------
+
+type EventAttendee {
+  id: ID
+  name: String
+  rsvp_status: EventRsvpStatus
+  start_time: DateTime
+  pic: URL
+}
+
+type EventAttendeeConnection {
+  data: [EventAttendee!]!
+  paging: Paging
+  summary: ConnectionSummary
+}
+
+# ---------------------------------------------------------------------------
+# Milestone
+# ---------------------------------------------------------------------------
+
+type Milestone implements Node {
+  id: ID!
+  created_time: DateTime
+  description: String
+  from: Page
+  start_time: DateTime
+  title: String
+  updated_time: DateTime
+}
+
+type MilestoneConnection {
+  data: [Milestone!]!
+  paging: Paging
+}
+
+# ---------------------------------------------------------------------------
+# Offer
+# ---------------------------------------------------------------------------
+
+type Offer implements Node {
+  id: ID!
+  barcode: String
+  claim_limit: Int
+  coupon_type: String
+  created_time: DateTime
+  expiration_time: DateTime
+  from: Page
+  image_url: URL
+  location_type: String
+  max_save_count: Int
+  message: String
+  payment_link: URL
+  percent_off: Float
+  redemption_code: String
+  redemption_count: Int
+  redemption_link: URL
+  save_count: Int
+  terms: String
+  title: String
+}
+
+type OfferConnection {
+  data: [Offer!]!
+  paging: Paging
+}
+
+# ---------------------------------------------------------------------------
+# Fundraiser
+# ---------------------------------------------------------------------------
+
+type Fundraiser implements Node {
+  id: ID!
+  charity_name: String
+  cover_photo: URL
+  created_time: DateTime
+  description: String
+  donations_count: Int
+  donors_count: Int
+  end_time: DateTime
+  external_fundraiser_url: URL
+  external_id: String
+  fundraiser_title: String
+  goal_amount: Float
+  goal_amount_currency: String
+  lifetime_raised_amount: Float
+  lifetime_raised_amount_currency: String
+  owner_id: String
+  percent_funded: Float
+  status: String
+  uri: URL
+}
+
+# ---------------------------------------------------------------------------
+# Review & Rating
+# ---------------------------------------------------------------------------
+
+type Review implements Node {
+  id: ID!
+  created_time: DateTime
+  has_rating: Boolean
+  has_review: Boolean
+  message: String
+  open_graph_story: JSON
+  rating: Int
+  recommendation_type: String
+  review_text: String
+  reviewer: User
+}
+
+type Rating {
+  count: Int
+  overall_star_rating: Float
+  rating_count: Int
+  talking_about_count: Int
+  were_here_count: Int
+}
+
+type RatingConnection {
+  data: [Review!]!
+  paging: Paging
+}
+
+# ---------------------------------------------------------------------------
+# Advertising
+# ---------------------------------------------------------------------------
+
+type AdAccount implements Node {
+  id: ID!
+  account_id: String
+  account_status: Int
+  age: Float
+  agency_client_declaration: JSON
+  amount_spent: String
+  balance: String
+  business: JSON
+  business_city: String
+  business_country_code: String
+  business_name: String
+  business_state: String
+  business_street: String
+  business_street2: String
+  business_zip: String
+  can_create_brand_lift_study: Boolean
+  capabilities: [String]
+  created_time: DateTime
+  currency: String
+  disable_reason: Int
+  end_advertiser: String
+  end_advertiser_name: String
+  failed_delivery_checks: JSON
+  funding_source: String
+  funding_source_details: JSON
+  has_migrated_permissions: Boolean
+  id_copy: ID
+  io_number: Int
+  is_attribution_spec_system_default: Boolean
+  is_direct_deals_enabled: Boolean
+  is_in_middle_of_local_entity_migration: Boolean
+  is_notifications_enabled: Boolean
+  is_personal: Int
+  is_prepay_account: Boolean
+  is_tax_id_required: Boolean
+  line_numbers: [Int]
+  media_agency: String
+  min_campaign_group_spend_cap: String
+  min_daily_budget: Int
+  name: String
+  offsite_pixels_tos_accepted: Boolean
+  owner: String
+  partner: String
+  rf_spec: JSON
+  spend_cap: String
+  tax_id: String
+  tax_id_status: Int
+  tax_id_type: String
+  timezone_id: Int
+  timezone_name: String
+  timezone_offset_hours_utc: Float
+  tos_accepted: JSON
+  user_role: String
+  user_tos_accepted: JSON
+  campaigns: CampaignConnection
+  ad_sets: AdSetConnection
+  ads: AdConnection
+  ad_creatives: AdCreativeConnection
+  custom_audiences: CustomAudienceConnection
+  ad_images: AdImageConnection
+}
+
+type Campaign implements Node {
+  id: ID!
+  account_id: String
+  adlabels: [JSON]
+  bid_strategy: String
+  boosted_object_id: String
+  brand_lift_studies: [JSON]
+  budget_rebalance_flag: Boolean
+  budget_remaining: String
+  buying_type: String
+  can_create_brand_lift_study: Boolean
+  can_use_spend_cap: Boolean
+  configured_status: AdStatus
+  created_time: DateTime
+  daily_budget: String
+  effective_status: AdStatus
+  is_skadnetwork_attribution: Boolean
+  issues_info: [JSON]
+  last_budget_toggling_time: DateTime
+  lifetime_budget: String
+  name: String
+  objective: CampaignObjective
+  pacing_type: [String]
+  promoted_object: JSON
+  recommendations: [JSON]
+  source_campaign: Campaign
+  source_campaign_id: String
+  special_ad_categories: [String]
+  special_ad_category: String
+  spend_cap: String
+  start_time: DateTime
+  status: AdStatus
+  stop_time: DateTime
+  topline_id: String
+  updated_time: DateTime
+  ad_sets: AdSetConnection
+  ads: AdConnection
+}
+
+type CampaignConnection {
+  data: [Campaign!]!
+  paging: Paging
+}
+
+type AdSet implements Node {
+  id: ID!
+  account_id: String
+  adlabels: [JSON]
+  adset_schedule: JSON
+  asset_feed_id: String
+  attribution_spec: JSON
+  bid_adjustments: JSON
+  bid_amount: Int
+  bid_constraints: JSON
+  bid_info: JSON
+  bid_strategy: String
+  billing_event: String
+  budget_remaining: String
+  campaign: Campaign
+  campaign_id: String
+  campaign_spec: JSON
+  configured_status: AdStatus
+  created_time: DateTime
+  creative_sequence: [String]
+  daily_budget: String
+  daily_min_spend_target: String
+  daily_spend_cap: String
+  destination_type: String
+  effective_status: AdStatus
+  end_time: DateTime
+  frequency_control_specs: JSON
+  instagram_actor_id: String
+  is_dynamic_creative: Boolean
+  issues_info: [JSON]
+  learning_stage_info: JSON
+  lifetime_budget: String
+  lifetime_imps: Int
+  lifetime_min_spend_target: String
+  lifetime_spend_cap: String
+  name: String
+  optimization_goal: String
+  optimization_sub_event: String
+  pacing_type: [String]
+  promoted_object: JSON
+  recommendations: [JSON]
+  recurring_budget_semantics: Boolean
+  review_feedback: String
+  rf_prediction_id: String
+  source_adset: AdSet
+  source_adset_id: String
+  start_time: DateTime
+  status: AdStatus
+  targeting: JSON
+  time_based_ad_rotation_id_blocks: JSON
+  time_based_ad_rotation_intervals: JSON
+  updated_time: DateTime
+  use_new_app_click: Boolean
+  ads: AdConnection
+}
+
+type AdSetConnection {
+  data: [AdSet!]!
+  paging: Paging
+}
+
+type Ad implements Node {
+  id: ID!
+  account_id: String
+  ad_active_time: String
+  ad_review_feedback: JSON
+  ad_schedule_end_time: DateTime
+  ad_schedule_start_time: DateTime
+  adlabels: [JSON]
+  adset: AdSet
+  adset_id: String
+  bid_amount: Int
+  bid_info: JSON
+  bid_type: String
+  campaign: Campaign
+  campaign_id: String
+  configured_status: AdStatus
+  conversion_specs: JSON
+  created_time: DateTime
+  creative: AdCreative
+  effective_status: AdStatus
+  issues_info: [JSON]
+  last_updated_by_app_id: String
+  name: String
+  preview_shareable_link: URL
+  recommendations: [JSON]
+  source_ad: Ad
+  source_ad_id: String
+  status: AdStatus
+  tracking_specs: JSON
+  updated_time: DateTime
+}
+
+type AdConnection {
+  data: [Ad!]!
+  paging: Paging
+}
+
+type AdCreative implements Node {
+  id: ID!
+  account_id: String
+  actor_id: String
+  adlabels: [JSON]
+  applink_treatment: String
+  asset_feed_spec: JSON
+  authorization_category: String
+  auto_update: Boolean
+  body: String
+  branded_content_sponsor_page_id: String
+  call_to_action_type: String
+  effective_authorization_category: String
+  effective_instagram_media_id: String
+  effective_instagram_story_id: String
+  effective_object_story_id: String
+  enable_direct_install: Boolean
+  enable_launch_instant_app: Boolean
+  image_crops: JSON
+  image_hash: String
+  image_url: URL
+  instagram_actor_id: String
+  instagram_permalink_url: URL
+  instagram_story_id: String
+  link_og_id: String
+  link_url: URL
+  messenger_sponsored_message: String
+  name: String
+  object_id: String
+  object_store_url: URL
+  object_story_id: String
+  object_story_spec: JSON
+  object_type: String
+  object_url: URL
+  place_page_set_id: String
+  platform_customizations: JSON
+  playable_asset_id: String
+  portrait_customizations: JSON
+  product_set_id: String
+  recommender_settings: JSON
+  status: String
+  template_url: URL
+  template_url_spec: JSON
+  thumbnail_id: String
+  thumbnail_url: URL
+  title: String
+  url_tags: String
+  use_page_actor_override: Boolean
+  video_id: String
+}
+
+type AdCreativeConnection {
+  data: [AdCreative!]!
+  paging: Paging
+}
+
+type AdImage implements Node {
+  id: ID!
+  account_id: String
+  created_time: DateTime
+  creatives: [String]
+  hash: String
+  height: Int
+  is_associated_creatives_in_adgroups: Boolean
+  name: String
+  original_height: Int
+  original_width: Int
+  permalink_url: URL
+  status: String
+  updated_time: DateTime
+  url: URL
+  url_128: URL
+  width: Int
+}
+
+type AdImageConnection {
+  data: [AdImage!]!
+  paging: Paging
+}
+
+type AdVideo implements Node {
+  id: ID!
+  account_id: String
+  ad_breaks: [Int]
+  backdated_time: DateTime
+  backdated_time_granularity: String
+  content_category: String
+  content_tags: [String]
+  created_time: DateTime
+  custom_labels: [String]
+  description: String
+  embed_html: String
+  embeddable: Boolean
+  format: [VideoFormat]
+  from: Profile
+  icon: URL
+  is_crosspost_video: Boolean
+  length: Float
+  permalink_url: URL
+  picture: URL
+  place: Place
+  published: Boolean
+  scheduled_publish_time: DateTime
+  status: VideoStatus
+  title: String
+  updated_time: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Audience
+# ---------------------------------------------------------------------------
+
+type Audience implements Node {
+  id: ID!
+  account_id: String
+  approximate_count: Int
+  customer_file_source: String
+  data_source: JSON
+  data_sources: [JSON]
+  delivery_status: JSON
+  description: String
+  excluded_custom_audiences: [CustomAudience]
+  external_event_source: JSON
+  household_audience: Int
+  included_custom_audiences: [CustomAudience]
+  is_value_based: Boolean
+  lookalike_audience_ids: [String]
+  lookalike_spec: JSON
+  name: String
+  operation_status: JSON
+  opt_out_link: URL
+  permission_for_actions: JSON
+  pixel_id: String
+  regex_string: String
+  retention_days: Int
+  rule: String
+  rule_aggregation: String
+  rule_v2: String
+  seed_audience: Int
+  sharing_status: JSON
+  subtype: String
+  time_content_updated: DateTime
+  time_created: DateTime
+  time_updated: DateTime
+}
+
+type CustomAudience implements Node {
+  id: ID!
+  account_id: String
+  approximate_count: Int
+  customer_file_source: String
+  data_source: JSON
+  delivery_status: JSON
+  description: String
+  is_value_based: Boolean
+  lookalike_spec: JSON
+  name: String
+  operation_status: JSON
+  permission_for_actions: JSON
+  pixel_id: String
+  retention_days: Int
+  rule: String
+  subtype: String
+  time_content_updated: DateTime
+  time_created: DateTime
+  time_updated: DateTime
+}
+
+type CustomAudienceConnection {
+  data: [CustomAudience!]!
+  paging: Paging
+}
+
+# ---------------------------------------------------------------------------
+# PixelData
+# ---------------------------------------------------------------------------
+
+type PixelData implements Node {
+  id: ID!
+  automatic_matching_fields: [String]
+  can_proxy: Boolean
+  code: String
+  creation_time: DateTime
+  creator: Profile
+  data_use_setting: String
+  description: String
+  enable_automatic_matching: Boolean
+  first_party_cookie_status: String
+  is_created_by_business: Boolean
+  is_unavailable: Boolean
+  last_fired_time: DateTime
+  name: String
+  owner_ad_account: AdAccount
+  owner_business: JSON
+  usage: JSON
+}
+
+# ---------------------------------------------------------------------------
+# OfflineConversions
+# ---------------------------------------------------------------------------
+
+type OfflineConversions implements Node {
+  id: ID!
+  auto_assign_to_new_accounts_only: Boolean
+  business: JSON
+  creation_time: DateTime
+  data_origin: String
+  description: String
+  enable_auto_assign_to_accounts: Boolean
+  is_mta_use: Boolean
+  is_restricted_use: Boolean
+  is_unavailable: Boolean
+  last_upload_app: String
+  last_upload_app_changed_time: DateTime
+  match_rate_approx: Int
+  matched_entries: Int
+  name: String
+  usage: JSON
+  valid_entries: Int
+}
+
+# ---------------------------------------------------------------------------
+# LeadAd
+# ---------------------------------------------------------------------------
+
+type LeadAd implements Node {
+  id: ID!
+  ad_id: String
+  ad_name: String
+  adset_id: String
+  adset_name: String
+  campaign_id: String
+  campaign_name: String
+  created_time: DateTime
+  custom_disclaimer_responses: JSON
+  field_data: [LeadAdFieldData]
+  form_id: String
+  home_listing: JSON
+  id_copy: ID
+  is_organic: Boolean
+  partner_name: String
+  platform: String
+  post: Post
+  retailer_item_id: String
+  vehicle: JSON
+}
+
+type LeadAdFieldData {
+  name: String
+  values: [String]
+}
+
+# ---------------------------------------------------------------------------
+# Commerce
+# ---------------------------------------------------------------------------
+
+type Catalog implements Node {
+  id: ID!
+  business: JSON
+  catalog_store: JSON
+  commerce_merchant_settings: JSON
+  creator_user: AppUser
+  da_display_settings: JSON
+  default_image_url: URL
+  description: String
+  destination_catalog_settings: JSON
+  event_catalog_settings: JSON
+  flight_catalog_settings: JSON
+  hotel_catalog_settings: JSON
+  is_catalog_segment: Boolean
+  locale_config: JSON
+  name: String
+  owner_business: JSON
+  product_count: Int
+  vertical: String
+  products: CatalogProductConnection
+  product_sets: CatalogProductSetConnection
+}
+
+type CatalogProduct implements Node {
+  id: ID!
+  additional_image_cdn_urls: [JSON]
+  additional_image_urls: [URL]
+  additional_variant_attributes: JSON
+  age_group: String
+  applinks: JSON
+  availability: String
+  brand: String
+  capability_to_review_status: JSON
+  category: String
+  category_specific_fields: JSON
+  color: String
+  commerce_insights: JSON
+  condition: String
+  currency: String
+  custom_data: JSON
+  custom_label_0: String
+  custom_label_1: String
+  custom_label_2: String
+  custom_label_3: String
+  custom_label_4: String
+  description: String
+  expiration_date: String
+  fb_product_category: String
+  gender: String
+  gtin: String
+  image_cdn_urls: JSON
+  image_fetch_status: String
+  image_url: URL
+  images: [URL]
+  importer_address: JSON
+  importer_name: String
+  invalidation_errors: JSON
+  ios_url: URL
+  ipad_url: URL
+  iphone_url: URL
+  is_checkout_flow: Boolean
+  is_hidden: Boolean
+  is_product_attribute_token_set: Boolean
+  material: String
+  mobile_link: URL
+  name: String
+  ordering_index: Int
+  origin_country: String
+  parent_product_id: String
+  pattern: String
+  price: String
+  product_catalog: Catalog
+  product_feed: JSON
+  product_group: JSON
+  product_localizations: JSON
+  product_type: String
+  quantity_to_sell_on_facebook: Int
+  retailer_id: String
+  retailer_product_group_id: String
+  review_rejection_reasons: [String]
+  review_status: String
+  sale_price: String
+  sale_price_end_date: String
+  sale_price_start_date: String
+  shipping_weight_unit: String
+  shipping_weight_value: Float
+  short_description: String
+  size: String
+  start_date: String
+  url: URL
+  visibility: String
+  windows_phone_url: URL
+}
+
+type CatalogProductConnection {
+  data: [CatalogProduct!]!
+  paging: Paging
+}
+
+type CatalogProductSet implements Node {
+  id: ID!
+  auto_creation_url: URL
+  filter: JSON
+  latest_metadata: JSON
+  live_metadata: JSON
+  name: String
+  ordering_info: [Int]
+  product_catalog: Catalog
+  product_count: Int
+  retailer_id: String
+  products: CatalogProductConnection
+}
+
+type CatalogProductSetConnection {
+  data: [CatalogProductSet!]!
+  paging: Paging
+}
+
+type CommerceOrder implements Node {
+  id: ID!
+  buyer_details: CommerceOrderBuyer
+  channel: String
+  contains_age_restricted_items: Boolean
+  created: DateTime
+  estimated_payment_details: JSON
+  has_catalog_items: Boolean
+  is_group_buy: Boolean
+  is_test_order: Boolean
+  last_updated: DateTime
+  merchant_order_id: String
+  order_status: CommerceOrderStatus
+  selected_shipping_option: JSON
+  ship_by_date: String
+  shipping_address: JSON
+  tax_remit_state: String
+}
+
+type CommerceOrderBuyer {
+  name: String
+  email: String
+}
+
+type CommerceOrderStatus {
+  state: String
+  modified_time: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# WhatsApp
+# ---------------------------------------------------------------------------
+
+type WhatsAppAccount implements Node {
+  id: ID!
+  name: String
+  timezone_id: String
+  message_template_namespace: String
+  currency: String
+  account_review_status: String
+  business: JSON
+  phone_numbers: PhoneNumberConnection
+  message_templates: WABATemplateConnection
+}
+
+type WhatsAppMessage implements Node {
+  id: ID!
+  from: String
+  to: String
+  type: WhatsAppMessageType
+  timestamp: DateTime
+  text: WhatsAppTextBody
+  image: WhatsAppMediaObject
+  audio: WhatsAppMediaObject
+  video: WhatsAppMediaObject
+  document: WhatsAppMediaObject
+  sticker: WhatsAppMediaObject
+  location: WhatsAppLocation
+  contacts: [WhatsAppContact]
+  interactive: JSON
+  template: WhatsAppTemplateMessage
+  reaction: WhatsAppReaction
+  status: String
+  errors: [WhatsAppError]
+  context: WhatsAppMessageContext
+}
+
+type WhatsAppTextBody {
+  body: String!
+}
+
+type WhatsAppMediaObject {
+  id: String
+  link: URL
+  caption: String
+  filename: String
+  mime_type: String
+  sha256: String
+}
+
+type WhatsAppLocation {
+  latitude: Float!
+  longitude: Float!
+  name: String
+  address: String
+}
+
+type WhatsAppContact {
+  name: WhatsAppContactName
+  phones: [WhatsAppContactPhone]
+  emails: [WhatsAppContactEmail]
+  urls: [WhatsAppContactURL]
+}
+
+type WhatsAppContactName {
+  formatted_name: String!
+  first_name: String
+  last_name: String
+  middle_name: String
+  suffix: String
+  prefix: String
+}
+
+type WhatsAppContactPhone {
+  phone: String
+  type: String
+  wa_id: String
+}
+
+type WhatsAppContactEmail {
+  email: String
+  type: String
+}
+
+type WhatsAppContactURL {
+  url: URL
+  type: String
+}
+
+type WhatsAppTemplateMessage {
+  name: String!
+  language: WhatsAppTemplateLanguage!
+  components: [JSON]
+}
+
+type WhatsAppTemplateLanguage {
+  code: String!
+  policy: String
+}
+
+type WhatsAppReaction {
+  message_id: String!
+  emoji: String!
+}
+
+type WhatsAppError {
+  code: Int
+  title: String
+  message: String
+  error_data: JSON
+}
+
+type WhatsAppMessageContext {
+  message_id: String
+  from: String
+}
+
+type WABATemplate implements Node {
+  id: ID!
+  category: String
+  components: [JSON]
+  language: String
+  last_updated_time: DateTime
+  message_send_ttl_seconds: Int
+  name: String
+  previous_category: String
+  quality_score: JSON
+  rejected_reason: String
+  status: String
+}
+
+type WABATemplateConnection {
+  data: [WABATemplate!]!
+  paging: Paging
+}
+
+type PhoneNumber implements Node {
+  id: ID!
+  cc_text: String
+  code_verification_status: String
+  display_phone_number: String
+  name_status: String
+  new_name_status: String
+  quality_rating: String
+  status: String
+  verified_name: String
+}
+
+type PhoneNumberConnection {
+  data: [PhoneNumber!]!
+  paging: Paging
+}
+
+# ---------------------------------------------------------------------------
+# Instagram
+# ---------------------------------------------------------------------------
+
+type InstagramAccount implements Node {
+  id: ID!
+  biography: String
+  followers_count: Int
+  follows_count: Int
+  ig_id: Int
+  media_count: Int
+  name: String
+  profile_picture_url: URL
+  username: String
+  website: URL
+  media: IGMediaConnection
+  stories: IGMediaConnection
+  mentions: IGMentionConnection
+  tags: IGMediaConnection
+  insights: JSON
+  audience_country: JSON
+  audience_city: JSON
+  audience_gender_age: JSON
+  online_followers: JSON
+  business_discovery: InstagramAccount
+}
+
+type InstagramAccountConnection {
+  data: [InstagramAccount!]!
+  paging: Paging
+}
+
+type IGMedia implements Node {
+  id: ID!
+  caption: String
+  comments_count: Int
+  ig_id: String
+  is_comment_enabled: Boolean
+  is_shared_to_feed: Boolean
+  like_count: Int
+  media_product_type: String
+  media_type: MediaType
+  media_url: URL
+  owner: InstagramAccount
+  permalink: URL
+  shortcode: String
+  thumbnail_url: URL
+  timestamp: DateTime
+  username: String
+  video_title: String
+  children: IGMediaConnection
+  comments: IGCommentConnection
+  insights: JSON
+}
+
+type IGMediaConnection {
+  data: [IGMedia!]!
+  paging: Paging
+}
+
+type IGComment implements Node {
+  id: ID!
+  hidden: Boolean
+  like_count: Int
+  media: IGMedia
+  replies: IGCommentConnection
+  text: String
+  timestamp: DateTime
+  username: String
+}
+
+type IGCommentConnection {
+  data: [IGComment!]!
+  paging: Paging
+}
+
+type IGMention implements Node {
+  id: ID!
+  caption: String
+  media_type: MediaType
+  media_url: URL
+  permalink: URL
+  timestamp: DateTime
+}
+
+type IGMentionConnection {
+  data: [IGMention!]!
+  paging: Paging
+}
+
+type IGHashtag implements Node {
+  id: ID!
+  name: String
+  top_media: IGMediaConnection
+  recent_media: IGMediaConnection
+}
+
+# ---------------------------------------------------------------------------
+# Threads
+# ---------------------------------------------------------------------------
+
+type ThreadsUser implements Node {
+  id: ID!
+  name: String
+  username: String
+  threads_profile_picture_url: URL
+  threads_biography: String
+  followers_count: Int
+  is_eligible_for_geo_gating: Boolean
+  threads: ThreadsMediaConnection
+  replies: ThreadsReplyConnection
+  insights: JSON
+}
+
+type ThreadsMedia implements Node {
+  id: ID!
+  alt_text: String
+  children: ThreadsMediaConnection
+  is_quote_post: Boolean
+  legacy_instagram_media_id: String
+  linked_content_url: URL
+  media_product_type: String
+  media_type: MediaType
+  media_url: URL
+  owner: ThreadsUser
+  permalink: URL
+  reply_audience: String
+  shortcode: String
+  text: String
+  timestamp: DateTime
+  username: String
+  view_count: Int
+  like_count: Int
+  reply_count: Int
+  repost_count: Int
+  quote_count: Int
+  insights: JSON
+  replies: ThreadsReplyConnection
+}
+
+type ThreadsMediaConnection {
+  data: [ThreadsMedia!]!
+  paging: Paging
+}
+
+type ThreadsReply implements Node {
+  id: ID!
+  has_replies: Boolean
+  hide_status: String
+  is_hidden: Boolean
+  is_reply: Boolean
+  is_reply_owned_by_me: Boolean
+  media_product_type: String
+  media_type: MediaType
+  media_url: URL
+  owner: ThreadsUser
+  permalink: URL
+  replied_to: ThreadsMedia
+  reply_audience: String
+  root_post: ThreadsMedia
+  shortcode: String
+  text: String
+  timestamp: DateTime
+  username: String
+}
+
+type ThreadsReplyConnection {
+  data: [ThreadsReply!]!
+  paging: Paging
+}
+
+# ---------------------------------------------------------------------------
+# Messenger
+# ---------------------------------------------------------------------------
+
+type Messenger {
+  id: ID
+  page: Page
+  threads: MessengerThreadConnection
+}
+
+type MessengerThread implements Node {
+  id: ID!
+  can_reply: Boolean
+  former_participants: JSON
+  is_subscribed: Boolean
+  link: URL
+  message_count: Int
+  name: String
+  participants: JSON
+  scoped_thread_key: String
+  senders: JSON
+  snippet: String
+  tags: JSON
+  thread_key: String
+  unread_count: Int
+  updated_time: DateTime
+  wallpaper: URL
+  messages: MessengerMessageConnection
+}
+
+type MessengerThreadConnection {
+  data: [MessengerThread!]!
+  paging: Paging
+}
+
+type MessengerMessage implements Node {
+  id: ID!
+  attachments: MessengerAttachmentConnection
+  created_time: DateTime
+  from: Profile
+  message: String
+  sticker: URL
+  tags: JSON
+  to: JSON
+}
+
+type MessengerMessageConnection {
+  data: [MessengerMessage!]!
+  paging: Paging
+}
+
+type MessengerAttachment implements Node {
+  id: ID!
+  image_data: MessengerImageData
+  mime_type: String
+  name: String
+  size: Int
+  video_data: MessengerVideoData
+  file_url: URL
+}
+
+type MessengerAttachmentConnection {
+  data: [MessengerAttachment!]!
+  paging: Paging
+}
+
+type MessengerImageData {
+  height: Int
+  max_height: Int
+  max_width: Int
+  preview_url: URL
+  render_as_sticker: Boolean
+  rotation_in_degrees: Int
+  url: URL
+  width: Int
+}
+
+type MessengerVideoData {
+  height: Int
+  length: Int
+  rotation_in_degrees: Int
+  url: URL
+  video_type: Int
+  width: Int
+}
+
+# ---------------------------------------------------------------------------
+# Extended Reality
+# ---------------------------------------------------------------------------
+
+type MetaQuest implements Node {
+  id: ID!
+  name: String
+  description: String
+  developer: Application
+  age_rating: String
+  categories: [String]
+  comfort_rating: String
+  genre: [String]
+  is_app_only_experience: Boolean
+  is_first_party: Boolean
+  platform: String
+  release_date: String
+  supported_player_modes: [String]
+  website_url: URL
+  current_offer: JSON
+  supported_headsets: [String]
+}
+
+type MixedReality implements Node {
+  id: ID!
+  name: String
+  description: String
+  application: Application
+  passthrough_type: String
+  supported_devices: [String]
+  spatial_anchors: JSON
+  created_time: DateTime
+  updated_time: DateTime
+}
+
+type Horizon implements Node {
+  id: ID!
+  name: String
+  description: String
+  creator: Profile
+  world_type: String
+  max_visitors: Int
+  current_visitors: Int
+  is_featured: Boolean
+  rating: Float
+  categories: [String]
+  thumbnail_url: URL
+  created_time: DateTime
+  updated_time: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Community & Workplace
+# ---------------------------------------------------------------------------
+
+type CommunityAPI implements Node {
+  id: ID!
+  name: String
+  description: String
+  privacy: String
+  cover: CoverPhoto
+  icon: URL
+  member_count: Int
+  created_time: DateTime
+  updated_time: DateTime
+  members: UserConnection
+  admins: UserConnection
+  feed: PostConnection
+}
+
+type WorkplacePost implements Node {
+  id: ID!
+  message: String
+  story: String
+  from: Profile
+  to: JSON
+  created_time: DateTime
+  updated_time: DateTime
+  permalink_url: URL
+  attachments: JSON
+  place: Place
+  privacy: Privacy
+  status_type: String
+  type: String
+  comments: CommentConnection
+  likes: LikesConnection
+  reactions: ReactionConnection
+}
+
+# ---------------------------------------------------------------------------
+# Search
+# ---------------------------------------------------------------------------
+
+type SearchResult {
+  id: ID
+  name: String
+  type: String
+  picture: URL
+  link: URL
+}
+
+type SearchResultConnection {
+  data: [SearchResult!]!
+  paging: Paging
+}
