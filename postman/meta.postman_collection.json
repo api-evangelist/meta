@@ -1,0 +1,964 @@
+{
+  "info": {
+    "_postman_id": "84113b14-26be-4bf7-bca9-296e4b413355",
+    "name": "Meta Graph API - User",
+    "description": "Subset of the Meta (Facebook) Graph API focusing on User node operations including reading user profile fields, posting updates, and managing custom audiences. Requires user access tokens with appropriate permissions such as public_profile.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:10:52.000Z",
+    "updatedAt": "2026-06-05T15:10:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-84113b14-26be-4bf7-bca9-296e4b413355"
+  },
+  "item": [
+    {
+      "name": "me",
+      "item": [
+        {
+          "name": "Meta Get current user",
+          "id": "692661aa-0c82-44df-892b-f0e7f7e834df",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/me?fields=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "me"
+              ],
+              "query": [
+                {
+                  "description": "Comma-separated list of fields to return.",
+                  "key": "fields",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieves the User node for the user associated with the access token."
+          },
+          "response": [
+            {
+              "id": "c9856b93-0409-48a0-b66b-600435499bdd",
+              "name": "User profile",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/me?fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "me"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to return.",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"picture\": {}\n}",
+              "createdAt": "2026-06-05T15:10:53.000Z",
+              "updatedAt": "2026-06-05T15:10:53.000Z",
+              "uid": "35240-c9856b93-0409-48a0-b66b-600435499bdd"
+            },
+            {
+              "id": "6c3d0836-7f28-485f-b380-4629a47ba3e8",
+              "name": "Invalid access token",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/me?fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "me"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to return.",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:10:53.000Z",
+              "updatedAt": "2026-06-05T15:10:53.000Z",
+              "uid": "35240-6c3d0836-7f28-485f-b380-4629a47ba3e8"
+            }
+          ],
+          "createdAt": "2026-06-05T15:10:53.000Z",
+          "updatedAt": "2026-06-05T15:10:53.000Z",
+          "uid": "35240-692661aa-0c82-44df-892b-f0e7f7e834df"
+        }
+      ],
+      "id": "c932720d-d092-423f-bb71-1422de1567d5",
+      "createdAt": "2026-06-05T15:10:53.000Z",
+      "updatedAt": "2026-06-05T15:10:53.000Z",
+      "uid": "35240-c932720d-d092-423f-bb71-1422de1567d5"
+    },
+    {
+      "name": "{user-id}",
+      "item": [
+        {
+          "name": "feed",
+          "item": [
+            {
+              "name": "Meta Get user feed",
+              "id": "d84ee3b1-0340-4da7-91ca-0a3c70e57e5a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:user-id/feed",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":user-id",
+                    "feed"
+                  ],
+                  "variable": [
+                    {
+                      "id": "9e3f61a2-cda9-4171-9bca-2df7b2a964be",
+                      "key": "user-id",
+                      "value": "<string>",
+                      "description": "(Required) ID of the user."
+                    }
+                  ]
+                },
+                "description": "Retrieves the feed of posts published by or on the user's timeline."
+              },
+              "response": [
+                {
+                  "id": "ed9665d8-e692-47a9-bf07-1d9f565e085d",
+                  "name": "Feed list",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:user-id/feed",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":user-id",
+                        "feed"
+                      ],
+                      "variable": [
+                        {
+                          "key": "user-id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"<string>\",\n      \"after\": \"<string>\"\n    },\n    \"next\": \"<string>\",\n    \"previous\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:10:53.000Z",
+                  "updatedAt": "2026-06-05T15:10:53.000Z",
+                  "uid": "35240-ed9665d8-e692-47a9-bf07-1d9f565e085d"
+                }
+              ],
+              "createdAt": "2026-06-05T15:10:53.000Z",
+              "updatedAt": "2026-06-05T15:10:53.000Z",
+              "uid": "35240-d84ee3b1-0340-4da7-91ca-0a3c70e57e5a"
+            }
+          ],
+          "id": "bf9c2d6d-7ffe-4b6b-9906-4bbbd63825c4",
+          "createdAt": "2026-06-05T15:10:53.000Z",
+          "updatedAt": "2026-06-05T15:10:53.000Z",
+          "uid": "35240-bf9c2d6d-7ffe-4b6b-9906-4bbbd63825c4"
+        },
+        {
+          "name": "Meta Read user profile",
+          "id": "94457d57-19a5-4da2-905f-8313e533a955",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/:user-id?fields=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":user-id"
+              ],
+              "query": [
+                {
+                  "description": "Comma-separated list of fields to return.",
+                  "key": "fields",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "id": "c0725bff-ec0d-4679-aa57-4777c9d41499",
+                  "key": "user-id",
+                  "value": "<string>",
+                  "description": "(Required) ID of the user."
+                }
+              ]
+            },
+            "description": "Retrieves fields and edges for a User node."
+          },
+          "response": [
+            {
+              "id": "5cb3c5f4-b168-471f-96a3-e3abf9007176",
+              "name": "User profile",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:user-id?fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":user-id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to return.",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "user-id"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"picture\": {}\n}",
+              "createdAt": "2026-06-05T15:10:53.000Z",
+              "updatedAt": "2026-06-05T15:10:53.000Z",
+              "uid": "35240-5cb3c5f4-b168-471f-96a3-e3abf9007176"
+            },
+            {
+              "id": "581af5ad-de0d-44ba-9053-2c4a8d2d0c15",
+              "name": "User not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:user-id?fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":user-id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to return.",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "user-id"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:10:53.000Z",
+              "updatedAt": "2026-06-05T15:10:53.000Z",
+              "uid": "35240-581af5ad-de0d-44ba-9053-2c4a8d2d0c15"
+            }
+          ],
+          "createdAt": "2026-06-05T15:10:53.000Z",
+          "updatedAt": "2026-06-05T15:10:53.000Z",
+          "uid": "35240-94457d57-19a5-4da2-905f-8313e533a955"
+        },
+        {
+          "name": "Meta Update user profile",
+          "id": "27db4f8b-b61d-4d4e-9af5-9c5a6eb12db0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"labore_e\": -58786183.105424784,\n  \"non_22\": -87170541\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/:user-id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":user-id"
+              ],
+              "variable": [
+                {
+                  "id": "ef2f451c-a6bd-48bd-9e34-8880ed406918",
+                  "key": "user-id",
+                  "value": "<string>",
+                  "description": "(Required) ID of the user."
+                }
+              ]
+            },
+            "description": "Updates user information such as name, emoji color preference, or local news settings. Supports read-after-write."
+          },
+          "response": [
+            {
+              "id": "06dccf56-affd-4adc-9bb1-f898e38471bc",
+              "name": "Update successful",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"labore_e\": -58786183.105424784,\n  \"non_22\": -87170541\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:user-id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":user-id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "user-id"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"success\": \"<boolean>\"\n}",
+              "createdAt": "2026-06-05T15:10:53.000Z",
+              "updatedAt": "2026-06-05T15:10:53.000Z",
+              "uid": "35240-06dccf56-affd-4adc-9bb1-f898e38471bc"
+            }
+          ],
+          "createdAt": "2026-06-05T15:10:53.000Z",
+          "updatedAt": "2026-06-05T15:10:53.000Z",
+          "uid": "35240-27db4f8b-b61d-4d4e-9af5-9c5a6eb12db0"
+        },
+        {
+          "name": "Meta Delete test user",
+          "id": "c59a8b30-a115-4cb5-b4ed-44dbf566653d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/:user-id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":user-id"
+              ],
+              "variable": [
+                {
+                  "id": "1325922d-212d-4c3f-9866-bc47815cb5a8",
+                  "key": "user-id",
+                  "value": "<string>",
+                  "description": "(Required) ID of the user."
+                }
+              ]
+            },
+            "description": "Removes a test user account from the system."
+          },
+          "response": [
+            {
+              "id": "ea19f94e-0e14-47f2-b8d8-2ee14fd5ad23",
+              "name": "Deletion successful",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:user-id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":user-id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "user-id"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"success\": \"<boolean>\"\n}",
+              "createdAt": "2026-06-05T15:10:53.000Z",
+              "updatedAt": "2026-06-05T15:10:53.000Z",
+              "uid": "35240-ea19f94e-0e14-47f2-b8d8-2ee14fd5ad23"
+            }
+          ],
+          "createdAt": "2026-06-05T15:10:53.000Z",
+          "updatedAt": "2026-06-05T15:10:53.000Z",
+          "uid": "35240-c59a8b30-a115-4cb5-b4ed-44dbf566653d"
+        }
+      ],
+      "id": "a07e272e-3d7e-40eb-8c91-ac4a8a496165",
+      "createdAt": "2026-06-05T15:10:53.000Z",
+      "updatedAt": "2026-06-05T15:10:53.000Z",
+      "uid": "35240-a07e272e-3d7e-40eb-8c91-ac4a8a496165"
+    },
+    {
+      "name": "{custom-audience-id}",
+      "item": [
+        {
+          "name": "users",
+          "item": [
+            {
+              "name": "Meta Add users to custom audience",
+              "id": "f8c99272-70d7-428d-9ada-ba8313760b76",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payload\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:custom-audience-id/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":custom-audience-id",
+                    "users"
+                  ],
+                  "variable": [
+                    {
+                      "id": "36099d39-0770-4090-b6ac-e50fa0ee2f60",
+                      "key": "custom-audience-id",
+                      "value": "<string>",
+                      "description": "(Required) ID of the custom audience."
+                    }
+                  ]
+                },
+                "description": "Adds users to a custom audience using payload schemas such as EMAIL_SHA256 or PHONE_SHA256."
+              },
+              "response": [
+                {
+                  "id": "a8284175-ecf2-4f60-917b-c4abb13e79aa",
+                  "name": "Users added",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"payload\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:custom-audience-id/users",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":custom-audience-id",
+                        "users"
+                      ],
+                      "variable": [
+                        {
+                          "key": "custom-audience-id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"success\": \"<boolean>\"\n}",
+                  "createdAt": "2026-06-05T15:10:53.000Z",
+                  "updatedAt": "2026-06-05T15:10:53.000Z",
+                  "uid": "35240-a8284175-ecf2-4f60-917b-c4abb13e79aa"
+                }
+              ],
+              "createdAt": "2026-06-05T15:10:53.000Z",
+              "updatedAt": "2026-06-05T15:10:53.000Z",
+              "uid": "35240-f8c99272-70d7-428d-9ada-ba8313760b76"
+            },
+            {
+              "name": "Meta Remove users from custom audience",
+              "id": "b31da360-5471-48e1-965c-65b621a487b8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:custom-audience-id/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":custom-audience-id",
+                    "users"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d5912751-1ff4-49ec-8d02-81bc03788794",
+                      "key": "custom-audience-id",
+                      "value": "<string>",
+                      "description": "(Required) ID of the custom audience."
+                    }
+                  ]
+                },
+                "description": "Removes users from a custom audience using payload data."
+              },
+              "response": [
+                {
+                  "id": "ba094e4e-5dbd-4c92-be5d-a21d7572a34b",
+                  "name": "Users removed",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:custom-audience-id/users",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":custom-audience-id",
+                        "users"
+                      ],
+                      "variable": [
+                        {
+                          "key": "custom-audience-id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"success\": \"<boolean>\"\n}",
+                  "createdAt": "2026-06-05T15:10:53.000Z",
+                  "updatedAt": "2026-06-05T15:10:53.000Z",
+                  "uid": "35240-ba094e4e-5dbd-4c92-be5d-a21d7572a34b"
+                }
+              ],
+              "createdAt": "2026-06-05T15:10:53.000Z",
+              "updatedAt": "2026-06-05T15:10:53.000Z",
+              "uid": "35240-b31da360-5471-48e1-965c-65b621a487b8"
+            }
+          ],
+          "id": "7bcec9f5-a545-4497-961a-7ab56c4a3dc4",
+          "createdAt": "2026-06-05T15:10:53.000Z",
+          "updatedAt": "2026-06-05T15:10:53.000Z",
+          "uid": "35240-7bcec9f5-a545-4497-961a-7ab56c4a3dc4"
+        }
+      ],
+      "id": "03195de3-f685-424a-b2ae-4552a538eca9",
+      "createdAt": "2026-06-05T15:10:53.000Z",
+      "updatedAt": "2026-06-05T15:10:53.000Z",
+      "uid": "35240-03195de3-f685-424a-b2ae-4552a538eca9"
+    },
+    {
+      "name": "{page-id}",
+      "item": [
+        {
+          "name": "blocked",
+          "item": [
+            {
+              "name": "Meta Unblock user from page",
+              "id": "239d9725-1d62-4b72-bc4f-5fe814b37402",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:page-id/blocked",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":page-id",
+                    "blocked"
+                  ],
+                  "variable": [
+                    {
+                      "id": "0b0550f0-e560-423f-b631-cbfc782677fa",
+                      "key": "page-id",
+                      "value": "<string>",
+                      "description": "(Required) ID of the page."
+                    }
+                  ]
+                },
+                "description": "Dissociates a user from a page by unblocking them."
+              },
+              "response": [
+                {
+                  "id": "33395eac-dc24-43b5-8402-834a6d4bbcff",
+                  "name": "Unblock successful",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:page-id/blocked",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":page-id",
+                        "blocked"
+                      ],
+                      "variable": [
+                        {
+                          "key": "page-id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"success\": \"<boolean>\"\n}",
+                  "createdAt": "2026-06-05T15:10:53.000Z",
+                  "updatedAt": "2026-06-05T15:10:53.000Z",
+                  "uid": "35240-33395eac-dc24-43b5-8402-834a6d4bbcff"
+                }
+              ],
+              "createdAt": "2026-06-05T15:10:53.000Z",
+              "updatedAt": "2026-06-05T15:10:53.000Z",
+              "uid": "35240-239d9725-1d62-4b72-bc4f-5fe814b37402"
+            }
+          ],
+          "id": "adcb5fea-76ee-48bf-87ab-0615fc6fb370",
+          "createdAt": "2026-06-05T15:10:53.000Z",
+          "updatedAt": "2026-06-05T15:10:53.000Z",
+          "uid": "35240-adcb5fea-76ee-48bf-87ab-0615fc6fb370"
+        }
+      ],
+      "id": "16428333-1121-4a56-8ef8-b02a6e473cf0",
+      "createdAt": "2026-06-05T15:10:53.000Z",
+      "updatedAt": "2026-06-05T15:10:53.000Z",
+      "uid": "35240-16428333-1121-4a56-8ef8-b02a6e473cf0"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "public_profile",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://www.facebook.com/v22.0/dialog/oauth",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "implicit",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://graph.facebook.com/v22.0"
+    }
+  ]
+}

@@ -1,205 +1,339 @@
 # Meta (meta)
+
 Collection of Meta (Facebook) platform APIs for social networking, messaging, advertising, content publishing, AI, and developer tools across Facebook, Instagram, WhatsApp, Threads, and Messenger.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-search/social/main/_apis/meta/apis.md)
+**APIs.json:** [https://raw.githubusercontent.com/api-search/social/main/_apis/meta/apis.md](https://raw.githubusercontent.com/api-search/social/main/_apis/meta/apis.md)
 
-## Tags:
+## Tags
 
- - Advertising, Analytics, Artificial Intelligence, Messaging, Social, Social Media, Virtual Reality
+- Advertising
+- Analytics
+- Artificial Intelligence
+- Messaging
+- Social
+- Social Media
+- Virtual Reality
 
 ## Timestamps
 
-- **Created:** 2024-04-14T00:00:00.000Z 
-- **Modified:** 2026-04-28 
+- **Created:** 2024-04-14T00:00:00.000Z
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### Facebook Graph API - User
+
 Retrieve and manage Facebook user profiles, friends lists, and account data using the Graph API User node.
 
-**Human URL:** [https://developers.facebook.com/docs/graph-api/reference/user/](https://developers.facebook.com/docs/graph-api/reference/user/)
+- **Human URL:** [https://developers.facebook.com/docs/graph-api/reference/user/](https://developers.facebook.com/docs/graph-api/reference/user/)
 
-#### Tags:
+#### Tags
 
- - Facebook, Social, Users
+- Facebook
+- Social
+- Users
+
+#### Properties
+
+- [OpenAPI](openapi/meta-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/meta.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/meta.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Instagram Graph API - User
+
 Access Instagram user profiles, media, and account information for Business and Creator accounts via the Instagram Graph API.
 
-**Human URL:** [https://developers.facebook.com/docs/instagram-platform](https://developers.facebook.com/docs/instagram-platform)
+- **Human URL:** [https://developers.facebook.com/docs/instagram-platform](https://developers.facebook.com/docs/instagram-platform)
 
-#### Tags:
+#### Tags
 
- - Instagram, Social, Users
+- Instagram
+- Social
+- Users
+
+#### Properties
+
+- [Postman Collection](collections/meta.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/meta.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Facebook Graph API - Page
+
 Access and manage Facebook Page settings, content, posts, and metrics using the Graph API Page node.
 
-**Human URL:** [https://developers.facebook.com/docs/graph-api/reference/page/](https://developers.facebook.com/docs/graph-api/reference/page/)
+- **Human URL:** [https://developers.facebook.com/docs/graph-api/reference/page/](https://developers.facebook.com/docs/graph-api/reference/page/)
 
-#### Tags:
+#### Tags
 
- - Facebook, Pages, Social
+- Facebook
+- Pages
+- Social
+
+#### Properties
+
+- [Postman Collection](collections/meta.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/meta.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Facebook Graph API - Post
+
 Create, read, update, and delete posts on Facebook using the Graph API Post node.
 
-**Human URL:** [https://developers.facebook.com/docs/graph-api/reference/post/](https://developers.facebook.com/docs/graph-api/reference/post/)
+- **Human URL:** [https://developers.facebook.com/docs/graph-api/reference/post/](https://developers.facebook.com/docs/graph-api/reference/post/)
 
-#### Tags:
+#### Tags
 
- - Facebook, Posts, Social
+- Facebook
+- Posts
+- Social
+
+#### Properties
+
+- [Postman Collection](collections/meta.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/meta.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Facebook Graph API - Group
+
 Manage Facebook Groups including members, posts, and settings using the Graph API Group node.
 
-**Human URL:** [https://developers.facebook.com/docs/graph-api/reference/group/](https://developers.facebook.com/docs/graph-api/reference/group/)
+- **Human URL:** [https://developers.facebook.com/docs/graph-api/reference/group/](https://developers.facebook.com/docs/graph-api/reference/group/)
 
-#### Tags:
+#### Tags
 
- - Facebook, Groups, Social
+- Facebook
+- Groups
+- Social
+
+#### Properties
+
+- [Postman Collection](collections/meta.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/meta.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Facebook Graph API - Event
+
 Access and manage Facebook Events including details, attendees, and RSVPs using the Graph API Event node.
 
-**Human URL:** [https://developers.facebook.com/docs/graph-api/reference/event/](https://developers.facebook.com/docs/graph-api/reference/event/)
+- **Human URL:** [https://developers.facebook.com/docs/graph-api/reference/event/](https://developers.facebook.com/docs/graph-api/reference/event/)
 
-#### Tags:
+#### Tags
 
- - Events, Facebook, Social
+- Events
+- Facebook
+- Social
+
+#### Properties
+
+- [Postman Collection](collections/meta.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/meta.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Facebook Marketing API
+
 Create, manage, and optimize advertising campaigns across Facebook, Instagram, and Audience Network programmatically.
 
-**Human URL:** [https://developers.facebook.com/docs/marketing-api](https://developers.facebook.com/docs/marketing-api)
+- **Human URL:** [https://developers.facebook.com/docs/marketing-api](https://developers.facebook.com/docs/marketing-api)
 
-#### Tags:
+#### Tags
 
- - Advertising, Facebook, Marketing
+- Advertising
+- Facebook
+- Marketing
 
 #### Properties
 
 - [Reference](https://developers.facebook.com/docs/marketing-api/reference)
 - [Getting Started](https://developers.facebook.com/docs/marketing-api/get-started)
+- [Postman Collection](collections/meta.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/meta.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Meta Conversions API
+
 Send web, app, and offline conversion events directly from your server to Meta for improved ad measurement and optimization.
 
-**Human URL:** [https://developers.facebook.com/docs/marketing-api/conversions-api](https://developers.facebook.com/docs/marketing-api/conversions-api)
+- **Human URL:** [https://developers.facebook.com/docs/marketing-api/conversions-api](https://developers.facebook.com/docs/marketing-api/conversions-api)
 
-#### Tags:
+#### Tags
 
- - Advertising, Analytics, Conversions
+- Advertising
+- Analytics
+- Conversions
+
+#### Properties
+
+- [Postman Collection](collections/meta.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/meta.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Meta Ad Library API
+
 Search and retrieve publicly visible ads across Meta platforms for transparency and research purposes via the ads_archive Graph API endpoint.
 
-**Human URL:** [https://developers.facebook.com/docs/graph-api/reference/ads_archive/](https://developers.facebook.com/docs/graph-api/reference/ads_archive/)
+- **Human URL:** [https://developers.facebook.com/docs/graph-api/reference/ads_archive/](https://developers.facebook.com/docs/graph-api/reference/ads_archive/)
 
-#### Tags:
+#### Tags
 
- - Advertising, Research, Transparency
+- Advertising
+- Research
+- Transparency
+
+#### Properties
+
+- [Postman Collection](collections/meta.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/meta.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### WhatsApp Cloud API
+
 Send and receive messages, manage phone numbers, and build messaging experiences on WhatsApp using Meta's cloud-hosted API.
 
-**Human URL:** [https://developers.facebook.com/docs/whatsapp/cloud-api](https://developers.facebook.com/docs/whatsapp/cloud-api)
+- **Human URL:** [https://developers.facebook.com/docs/whatsapp/cloud-api](https://developers.facebook.com/docs/whatsapp/cloud-api)
 
-#### Tags:
+#### Tags
 
- - Cloud, Messaging, WhatsApp
+- Cloud
+- Messaging
+- WhatsApp
 
 #### Properties
 
 - [Reference](https://developers.facebook.com/docs/whatsapp/cloud-api/reference)
 - [Getting Started](https://developers.facebook.com/docs/whatsapp/cloud-api/get-started)
+- [Postman Collection](collections/meta.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/meta.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### WhatsApp Business Management API
+
 Manage WhatsApp Business accounts, phone numbers, message templates, and business profiles programmatically.
 
-**Human URL:** [https://developers.facebook.com/docs/whatsapp/business-management-api](https://developers.facebook.com/docs/whatsapp/business-management-api)
+- **Human URL:** [https://developers.facebook.com/docs/whatsapp/business-management-api](https://developers.facebook.com/docs/whatsapp/business-management-api)
 
-#### Tags:
+#### Tags
 
- - Business, Messaging, WhatsApp
+- Business
+- Messaging
+- WhatsApp
+
+#### Properties
+
+- [Postman Collection](collections/meta.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/meta.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Messenger Platform API
+
 Build messaging experiences on Facebook Messenger including chatbots, rich media messages, and customer service integrations.
 
-**Human URL:** [https://developers.facebook.com/docs/messenger-platform](https://developers.facebook.com/docs/messenger-platform)
+- **Human URL:** [https://developers.facebook.com/docs/messenger-platform](https://developers.facebook.com/docs/messenger-platform)
 
-#### Tags:
+#### Tags
 
- - Chatbots, Messaging, Social
+- Chatbots
+- Messaging
+- Social
 
 #### Properties
 
 - [Reference](https://developers.facebook.com/docs/messenger-platform/reference)
+- [Postman Collection](collections/meta.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/meta.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Threads API
+
 Create and manage content, retrieve profiles, and access insights on Meta's Threads social media platform.
 
-**Human URL:** [https://developers.facebook.com/docs/threads](https://developers.facebook.com/docs/threads)
+- **Human URL:** [https://developers.facebook.com/docs/threads](https://developers.facebook.com/docs/threads)
 
-#### Tags:
+#### Tags
 
- - Social, Social Media, Threads
+- Social
+- Social Media
+- Threads
+
+#### Properties
+
+- [Postman Collection](collections/meta.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/meta.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Instagram Graph API - Content Publishing
+
 Publish photos, videos, carousels, reels, and stories to Instagram Business and Creator accounts programmatically.
 
-**Human URL:** [https://developers.facebook.com/docs/instagram-platform/instagram-api-with-facebook-login/content-publishing](https://developers.facebook.com/docs/instagram-platform/instagram-api-with-facebook-login/content-publishing)
+- **Human URL:** [https://developers.facebook.com/docs/instagram-platform/instagram-api-with-facebook-login/content-publishing](https://developers.facebook.com/docs/instagram-platform/instagram-api-with-facebook-login/content-publishing)
 
-#### Tags:
+#### Tags
 
- - Media, Publishing, Social
+- Media
+- Publishing
+- Social
+
+#### Properties
+
+- [Postman Collection](collections/meta.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/meta.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Instagram Messaging API
+
 Send and receive messages on Instagram using the Messenger Platform, enabling customer service and automated messaging for Business accounts.
 
-**Human URL:** [https://developers.facebook.com/docs/messenger-platform/instagram](https://developers.facebook.com/docs/messenger-platform/instagram)
+- **Human URL:** [https://developers.facebook.com/docs/messenger-platform/instagram](https://developers.facebook.com/docs/messenger-platform/instagram)
 
-#### Tags:
+#### Tags
 
- - Instagram, Messaging, Social
+- Instagram
+- Messaging
+- Social
+
+#### Properties
+
+- [Postman Collection](collections/meta.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/meta.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Meta Content Library API
+
 Programmatic access to the full public content archive from Facebook, Instagram, and Threads for qualified academic and non-profit researchers.
 
-**Human URL:** [https://developers.facebook.com/docs/content-library-and-api](https://developers.facebook.com/docs/content-library-and-api)
+- **Human URL:** [https://developers.facebook.com/docs/content-library-and-api](https://developers.facebook.com/docs/content-library-and-api)
 
-#### Tags:
+#### Tags
 
- - Analytics, Content, Research
+- Analytics
+- Content
+- Research
+
+#### Properties
+
+- [Postman Collection](collections/meta.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/meta.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Meta Llama API
+
 Access Meta's Llama large language models including Llama 4 and Llama 3 family for building AI-powered applications via a hosted API.
 
-**Human URL:** [https://llama.developer.meta.com/docs/overview](https://llama.developer.meta.com/docs/overview)
+- **Human URL:** [https://llama.developer.meta.com/docs/overview](https://llama.developer.meta.com/docs/overview)
 
-#### Tags:
+#### Tags
 
- - Artificial Intelligence, Large Language Models, Machine Learning
+- Artificial Intelligence
+- Large Language Models
+- Machine Learning
 
 #### Properties
 
 - [Getting Started](https://llama.developer.meta.com/docs/quickstart)
 - [Reference](https://llama.developer.meta.com/docs/models)
-- [SDKs](https://llama.developer.meta.com/docs/sdks)
+- [S D Ks](https://llama.developer.meta.com/docs/sdks)
 - [Authentication](https://llama.developer.meta.com/docs/api-keys)
+- [Postman Collection](collections/meta.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/meta.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
+- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
+- [LinkedIn](https://www.linkedin.com/company/meta)
 - [Portal](https://developers.facebook.com/?no_redirect=1)
 - [Documentation](https://developers.facebook.com/docs/)
 - [Overview](https://developers.facebook.com/docs/graph-api/overview)
 - [Getting Started](https://developers.facebook.com/docs/graph-api/get-started)
 - [Authentication](https://developers.facebook.com/docs/facebook-login)
 - [Authentication](https://developers.facebook.com/docs/access-tokens)
-- [Change Log](https://developers.facebook.com/docs/graph-api/changelog)
+- [Changelog](https://developers.facebook.com/docs/graph-api/changelog)
 - [Reference](https://developers.facebook.com/docs/graph-api/reference)
 - [Blog](https://developers.facebook.com/blog/)
-- [Status](https://metastatus.com/)
+- [Status Page](https://metastatus.com/)
 - [Console](https://developers.facebook.com/apps/)
 - [Sign Up](https://developers.facebook.com/)
 - [Terms of Service](https://developers.facebook.com/terms/)
@@ -207,11 +341,11 @@ Access Meta's Llama large language models including Llama 4 and Llama 3 family f
 - [Support](https://developers.facebook.com/support/)
 - [Bugs](https://developers.facebook.com/support/bugs/)
 - [Forums](https://developers.facebook.com/community/)
-- [FAQ](https://developers.facebook.com/support/faq/)
+- [F A Q](https://developers.facebook.com/support/faq/)
 - [Explorer](https://developers.facebook.com/tools/explorer/)
 - [Tools](https://developers.facebook.com/tools/)
 - [Applications](https://developers.facebook.com/apps/)
-- [Incident Report](https://developers.facebook.com/incident/report/)
+- [Incident  Report](https://developers.facebook.com/incident/report/)
 - [Newsletter](https://developers.facebook.com/m/signup/)
 - [Videos](https://developers.facebook.com/videos/)
 - [Webhooks](https://developers.facebook.com/docs/graph-api/webhooks)
@@ -220,29 +354,33 @@ Access Meta's Llama large language models including Llama 4 and Llama 3 family f
 - [Versioning](https://developers.facebook.com/docs/graph-api/guides/versioning)
 - [Pagination](https://developers.facebook.com/docs/graph-api/results)
 - [GitHub Organization](https://github.com/facebook)
-- [Open Source](https://opensource.fb.com/)
+- [Open  Source](https://opensource.fb.com/)
 - [Stack Overflow](https://stackoverflow.com/questions/tagged/facebook-graph-api)
-- [SDKs - Python](https://github.com/facebook/facebook-python-business-sdk)
-- [SDKs - Node.js](https://github.com/facebook/facebook-nodejs-business-sdk)
-- [SDKs - PHP](https://github.com/facebook/facebook-php-business-sdk)
-- [SDKs - Java](https://github.com/facebook/facebook-java-business-sdk)
-- [SDKs - Ruby](https://github.com/facebook/facebook-ruby-business-sdk)
-- [SDKs - iOS](https://github.com/facebook/facebook-ios-sdk)
-- [SDKs - Android](https://github.com/facebook/facebook-android-sdk)
-- [JSONSchema - User](json-schema/user.json)
-- [JSONSchema - Page](json-schema/page.json)
-- [JSONSchema - Post](json-schema/post.json)
-- [JSONSchema - Ad Campaign](json-schema/ad-campaign.json)
-- [JSONSchema - Message](json-schema/message.json)
-- [JSONSchema - Media](json-schema/media.json)
-- [JSON-LD Context](json-ld/meta-context.jsonld)
+- [S D Ks](https://github.com/facebook/facebook-python-business-sdk)
+- [S D Ks](https://github.com/facebook/facebook-nodejs-business-sdk)
+- [S D Ks](https://github.com/facebook/facebook-php-business-sdk)
+- [S D Ks](https://github.com/facebook/facebook-java-business-sdk)
+- [S D Ks](https://github.com/facebook/facebook-ruby-business-sdk)
+- [S D Ks](https://github.com/facebook/facebook-ios-sdk)
+- [S D Ks](https://github.com/facebook/facebook-android-sdk)
+- [JSON Schema](json-schema/user.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/page.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/post.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/ad-campaign.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/message.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/media.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON-LD](json-ld/meta-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+- [Plans](undefined)
+- [Rate Limits](https://developers.facebook.com/docs/graph-api/overview/rate-limiting/)
+- [Versioning](https://developers.facebook.com/docs/graph-api/guides/versioning)
+- [Pagination](undefined)
+- [Pagination](undefined)
+- [Pagination](undefined)
+- [Features](undefined)
 
 ## Maintainers
 
-**FN:** Kin Lane
-
 **Email:** kin@apievangelist.com
-
-**FN:** Meta Platforms Inc.
-
+**URL:** http://apievangelist.com
 **Email:** developer-support@meta.com
+**URL:** https://about.meta.com
