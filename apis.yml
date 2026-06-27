@@ -219,55 +219,45 @@ apis:
 common:
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/meta/overview
-- type: ArazzoWorkflows
-  url: arazzo/
-  workflows:
-  - url: arazzo/meta-add-current-user-to-audience-workflow.yml
-    name: Meta Add Current User To Audience
-    summary: Resolve the authenticated user and add them to a custom audience.
-  - url: arazzo/meta-audit-current-user-workflow.yml
-    name: Meta Audit Current User
-    summary: Resolve the current user, read their full profile node, then pull their
-      feed.
-  - url: arazzo/meta-decommission-user-account-workflow.yml
-    name: Meta Decommission User Account
-    summary: Snapshot a user, remove them from a custom audience, then delete the
-      test user.
-  - url: arazzo/meta-get-current-user-feed-workflow.yml
-    name: Meta Get Current User Feed
-    summary: Resolve the current user from the access token and read their timeline
-      feed.
-  - url: arazzo/meta-onboard-user-to-audience-workflow.yml
-    name: Meta Onboard User To Audience
-    summary: Confirm a user exists, then add a hashed payload to a custom audience.
-  - url: arazzo/meta-provision-then-cleanup-test-user-workflow.yml
-    name: Meta Provision Then Cleanup Test User
-    summary: Configure a test user with an update, then delete the test user to clean
-      up.
-  - url: arazzo/meta-read-user-feed-and-identity-workflow.yml
-    name: Meta Read User Feed And Identity
-    summary: Read a target user's feed and resolve the caller's own identity for context.
-  - url: arazzo/meta-read-user-then-feed-workflow.yml
-    name: Meta Read User Then Feed
-    summary: Read a specific user's profile and then pull their timeline feed.
-  - url: arazzo/meta-refresh-audience-cohort-workflow.yml
-    name: Meta Refresh Audience Cohort
-    summary: Resolve the caller, add a new cohort to an audience, then remove stale
-      members.
-  - url: arazzo/meta-sync-custom-audience-membership-workflow.yml
-    name: Meta Sync Custom Audience Membership
-    summary: Add a fresh set of hashed users to a custom audience and remove a stale
-      set.
-  - url: arazzo/meta-unblock-and-add-to-audience-workflow.yml
-    name: Meta Unblock And Add To Audience
-    summary: Unblock a user from a page, then add them to a custom audience.
-  - url: arazzo/meta-update-current-user-profile-workflow.yml
-    name: Meta Update Current User Profile
-    summary: Resolve the current user, update their profile, then read it back to
-      confirm.
-  - url: arazzo/meta-verify-and-update-user-workflow.yml
-    name: Meta Verify And Update User
-    summary: Read a user, branch on whether it exists, and apply an update when found.
+- type: Arazzo
+  url: arazzo/meta-add-current-user-to-audience-workflow.yml
+  name: Meta Add Current User To Audience
+- type: Arazzo
+  url: arazzo/meta-audit-current-user-workflow.yml
+  name: Meta Audit Current User
+- type: Arazzo
+  url: arazzo/meta-decommission-user-account-workflow.yml
+  name: Meta Decommission User Account
+- type: Arazzo
+  url: arazzo/meta-get-current-user-feed-workflow.yml
+  name: Meta Get Current User Feed
+- type: Arazzo
+  url: arazzo/meta-onboard-user-to-audience-workflow.yml
+  name: Meta Onboard User To Audience
+- type: Arazzo
+  url: arazzo/meta-provision-then-cleanup-test-user-workflow.yml
+  name: Meta Provision Then Cleanup Test User
+- type: Arazzo
+  url: arazzo/meta-read-user-feed-and-identity-workflow.yml
+  name: Meta Read User Feed And Identity
+- type: Arazzo
+  url: arazzo/meta-read-user-then-feed-workflow.yml
+  name: Meta Read User Then Feed
+- type: Arazzo
+  url: arazzo/meta-refresh-audience-cohort-workflow.yml
+  name: Meta Refresh Audience Cohort
+- type: Arazzo
+  url: arazzo/meta-sync-custom-audience-membership-workflow.yml
+  name: Meta Sync Custom Audience Membership
+- type: Arazzo
+  url: arazzo/meta-unblock-and-add-to-audience-workflow.yml
+  name: Meta Unblock And Add To Audience
+- type: Arazzo
+  url: arazzo/meta-update-current-user-profile-workflow.yml
+  name: Meta Update Current User Profile
+- type: Arazzo
+  url: arazzo/meta-verify-and-update-user-workflow.yml
+  name: Meta Verify And Update User
 - type: LinkedIn
   url: https://www.linkedin.com/company/meta
 - url: https://developers.facebook.com/?no_redirect=1
@@ -304,7 +294,7 @@ common:
   type: Console
 - url: https://developers.facebook.com/
   name: Sign Up - Meta for Developers
-  type: SignUp
+  type: Signup
 - url: https://developers.facebook.com/terms/
   name: Platform Terms - Meta for Developers
   type: TermsOfService
