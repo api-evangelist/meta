@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/meta-openapi.yml
+schemes:
+- name: userAccessToken
+  source: openapi/meta-openapi.yml
+  flows:
+  - flow: implicit
+    authorizationUrl: https://www.facebook.com/v22.0/dialog/oauth
+scopes:
+- scope: public_profile
+  description: Access basic profile info
+  flows:
+  - implicit
+  sources:
+  - openapi/meta-openapi.yml

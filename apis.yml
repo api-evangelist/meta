@@ -217,6 +217,8 @@ apis:
   - url: https://llama.developer.meta.com/docs/api-keys
     type: Authentication
 common:
+- type: OAuthScopes
+  url: scopes/meta-scopes.yml
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/meta/overview
 - type: Arazzo
