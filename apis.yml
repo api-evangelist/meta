@@ -217,6 +217,12 @@ apis:
   - url: https://llama.developer.meta.com/docs/api-keys
     type: Authentication
 common:
+- type: VulnerabilityDisclosure
+  url: security/meta-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/meta-domain-security.yml
+- type: Authentication
+  url: authentication/meta-authentication.yml
 - type: OAuthScopes
   url: scopes/meta-scopes.yml
 - type: PostmanWorkspace

@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: llama.developer.meta.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Jul 19 23:59:59 2026 GMT
+  hsts: true
+  hsts_max_age: 15552000
+domains:
+- domain: meta.com
+  dnssec: false
+  caa:
+  - 0 issue "digicert.com; account=271b0beda0771d006aa3a6c11b05187d456d6c239b46cb5241196095b09c92af"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject

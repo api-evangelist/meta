@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/meta-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - implicit
+schemes:
+- name: userAccessToken
+  type: oauth2
+  flows:
+  - flow: implicit
+    authorizationUrl: https://www.facebook.com/v22.0/dialog/oauth
+    scopes: 1
+  sources:
+  - openapi/meta-openapi.yml
