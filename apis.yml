@@ -217,6 +217,8 @@ apis:
   - url: https://llama.developer.meta.com/docs/api-keys
     type: Authentication
 common:
+- type: AgenticAccess
+  url: agentic-access/meta-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/meta-vulnerability-disclosure.yml
 - type: DomainSecurity
