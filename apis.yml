@@ -15,7 +15,7 @@ tags:
 - Social Media
 - Virtual Reality
 created: '2024-04-14T00:00:00.000Z'
-modified: '2026-05-19'
+modified: '2026-06-20'
 maintainers:
 - name: Kin Lane
   email: kin@apievangelist.com
@@ -227,6 +227,36 @@ common:
   url: authentication/meta-authentication.yml
 - type: OAuthScopes
   url: scopes/meta-scopes.yml
+- type: Packages
+  url: packages/meta-packages.yml
+- type: WellKnown
+  url: well-known/meta-well-known.yml
+- type: SecurityTxt
+  url: well-known/meta-security.txt
+- type: MCPServer
+  url: mcp/meta-mcp.yml
+- type: LLMsTxt
+  url: llms/meta-llms.txt
+- type: Overlay
+  url: overlays/meta-openapi-overlay.yaml
+- type: Conformance
+  url: conformance/meta-conformance.yml
+- type: ErrorCatalog
+  url: errors/meta-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/meta-lifecycle.yml
+- type: Conventions
+  url: conventions/meta-conventions.yml
+- type: ChangeLog
+  url: changelog/meta-changelog.yml
+- type: CLI
+  url: cli/meta-cli.yml
+- type: Components
+  url: components/meta-components.yml
+- type: DataModel
+  url: data-model/meta-data-model.yml
+- type: Sandbox
+  url: sandbox/meta-sandbox.yml
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/meta/overview
 - type: Arazzo

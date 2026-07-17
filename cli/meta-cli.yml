@@ -1,0 +1,43 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-cli/ads-cli-overview
+  and https://developers.facebook.com/blog/post/2026/04/29/introducing-ads-cli/
+description: >-
+  The Meta Ads CLI ("Ads CLI") — Meta's official command-line interface over the
+  Marketing API, released April 2026 and positioned for developers and AI agents.
+  The CLI package itself (meta-ads on PyPI) is catalogued in
+  packages/meta-packages.yml; this artifact enumerates its command/resource
+  surface. Command shape: `meta ads <resource> <action>`.
+docs: https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-cli/ads-cli-overview
+blog: https://developers.facebook.com/blog/post/2026/04/29/introducing-ads-cli/
+install:
+  pip: pip install meta-ads
+  requires: Python 3.12+
+authentication:
+  env:
+    - ACCESS_TOKEN — Meta access token
+    - AD_ACCOUNT_ID — ad account id (e.g. act_123456)
+  config: Supports a .env file for configuration.
+command_shape: meta ads <resource> <action>
+standard_actions: [list, create, get, update, delete]
+resources:
+  - {name: campaigns, description: Ad campaigns.}
+  - {name: adsets, description: Ad sets.}
+  - {name: ads, description: Ads.}
+  - {name: creatives, description: Ad creatives.}
+  - {name: insights, description: Performance insights with date ranges, breakdowns, and custom metrics filtered by campaign, ad set, or ad.}
+  - {name: catalogs, description: Product catalogs.}
+  - {name: products, description: Product items and product sets.}
+  - {name: datasets, description: Datasets (Pixels) for conversion tracking.}
+  - {name: accounts, description: Ad accounts.}
+  - {name: pages, description: Facebook Business Pages.}
+flags:
+  - {flag: "--no-input", description: Non-interactive mode for automation.}
+  - {flag: "--force", description: Skip confirmation prompts.}
+  - {flag: "--output", description: "Output format: table | json | plain."}
+exit_codes: 0-5
+examples:
+  - meta ads campaign list
+  - meta ads insights get --date-preset last_7d
+  - meta ads campaign create --name "Sales Campaign" --objective OUTCOME_SALES --daily-budget 5000

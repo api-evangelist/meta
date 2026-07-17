@@ -1,0 +1,39 @@
+generated: '2026-06-20'
+method: derived
+source: >-
+  Derived from openapi/meta-openapi.yml (oauth2 securityScheme, error schema,
+  cursor/time/offset pagination in json-schema and apis.yml Pagination
+  properties) and Meta documentation claims (docs/facebook-login,
+  docs/graph-api/overview, docs/graph-api/results). Meta does NOT use RFC 9457
+  problem+json; errors are returned as {"error": {...}} objects.
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: openapi securityScheme userAccessToken type oauth2 (implicit flow); Facebook Login is OAuth 2.0.
+  - id: oidc
+    conforms: false
+    evidence: No /.well-known/openid-configuration on graph.facebook.com (400 OAuthException). Facebook Login predates and does not advertise OIDC discovery.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a proprietary {"error":{"message","type","code","fbtrace_id"}} envelope, not application/problem+json.
+  - id: rfc9116-security-txt
+    conforms: true
+    evidence: facebook.com/.well-known/security.txt present (well-known/meta-security.txt).
+  - id: pagination
+    conforms: true
+    evidence: Cursor-, time-, and offset-based pagination documented and modeled (apis.yml Pagination schemas; docs/graph-api/results).
+  - id: llmstxt
+    conforms: true
+    evidence: developers.facebook.com/llms.txt present (llms/meta-llms.txt).
+  - id: mcp
+    conforms: true
+    evidence: Two official MCP servers (Developer Tools MCP; Ads AI Connectors at mcp.facebook.com/ads) — mcp/meta-mcp.yml.
+  - id: webhooks
+    conforms: true
+    evidence: Graph API Webhooks (apis.yml Webhooks property, docs/graph-api/webhooks).
+  - id: fhir-r4
+    conforms: false
+  - id: scim2
+    conforms: false
+  - id: odata
+    conforms: false

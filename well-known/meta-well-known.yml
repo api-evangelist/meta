@@ -1,0 +1,51 @@
+generated: '2026-06-20'
+method: searched
+description: >-
+  Results of probing the /.well-known/ discovery surface for the base hosts in
+  apis.yml and the OpenAPI servers[] (graph.facebook.com, developers.facebook.com,
+  facebook.com, llama.developer.meta.com). Status is the HTTP code observed at
+  fetch time. graph.facebook.com answers every /.well-known/ path with an HTTP
+  400 Graph API OAuthException ("Unknown path components") rather than a real
+  discovery document. developers.facebook.com returns a 404 HTML SPA shell.
+  facebook.com serves a real RFC 9116 security.txt (saved verbatim).
+hosts:
+  - host: https://graph.facebook.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 400
+        note: Graph API OAuthException, not a discovery document.
+      - path: /.well-known/openid-configuration
+        status: 400
+        note: Graph API OAuthException, not a discovery document.
+      - path: /.well-known/oauth-authorization-server
+        status: 400
+        note: Graph API OAuthException, not a discovery document.
+  - host: https://developers.facebook.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /llms.txt
+        status: 200
+        type: text/plain
+        file: ../llms/meta-llms.txt
+        note: Official llms.txt (indexed under llms/).
+      - path: /llms-full.txt
+        status: 404
+  - host: https://www.facebook.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        type: text/plain
+        file: meta-security.txt
+  - host: https://llama.developer.meta.com
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /llms.txt
+        status: 404

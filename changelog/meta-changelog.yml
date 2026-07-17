@@ -1,0 +1,56 @@
+generated: '2026-06-20'
+method: searched
+source: https://developers.facebook.com/docs/graph-api/changelog/versions/
+description: >-
+  Structured capture of Meta's Graph API / Marketing API versioning. Meta cuts a
+  new numbered version (~every 3-4 months) shared across Graph API and Marketing
+  API; each version has ~2 years of support before it is deprecated then sunset.
+  Clients pin a version in the URL path (e.g. /v25.0/me). Breaking changes take
+  effect only for apps calling the new version; older pinned versions keep old
+  behavior until sunset. This artifact records the recent version window; the
+  live changelog is the source of truth.
+docs: https://developers.facebook.com/docs/graph-api/changelog
+versioning:
+  scheme: numbered version in URI path (shared Graph + Marketing API)
+  mechanism: version prefix in request path (e.g. /v25.0/me)
+  current: v25.0
+  detail: lifecycle/meta-lifecycle.yml
+entries:
+  - version: v25.0
+    date: '2026-02-18'
+    latest: true
+    scope: [graph-api, marketing-api]
+    blog: https://developers.facebook.com/blog/post/2026/02/18/introducing-graph-api-v25-and-marketing-api-v25/
+    highlights:
+      - Latest shared Graph API + Marketing API version.
+  - version: v24.0
+    date: '2025-10-08'
+    scope: [graph-api, marketing-api]
+    notes: Marketing API v24.0 expiration 2026-10-06.
+  - version: v23.0
+    date: '2025-05-29'
+    scope: [graph-api, marketing-api]
+    blog: https://developers.facebook.com/blog/post/2025/05/29/introducing-graph-api-v23-and-marketing-api-v23/
+    notes: Marketing API v23.0 expiration 2026-06-09.
+  - version: v22.0
+    date: '2025-01-21'
+    scope: [graph-api, marketing-api]
+    breaking:
+      - Page recommendations deprecated for v22.0+ (reads return error code 12).
+      - STANDARD_ENHANCEMENTS bundle opt-in/preview no longer supported.
+      - Segment Asset Customization no longer supported.
+      - promotions field deprecated, replaced by promotion_details.
+    notes: Marketing API v22.0 sunset 2026-02-19 (now expired).
+  - version: v21.0
+    date: '2024-10-02'
+    scope: [graph-api, marketing-api]
+  - version: v20.0
+    date: '2024-05-21'
+    scope: [graph-api, marketing-api]
+    notes: Graph API v20.0 expiration 2026-09-24.
+recent_developer_blog_changes:
+  - {date: '2026-06-15', title: Tokenless access to Meta oEmbed APIs}
+  - {date: '2026-05-14', title: Embedded Signup v4 (WhatsApp)}
+  - {date: '2026-04-29', title: Introducing Ads CLI}
+  - {date: '2026-03-25', title: Marketing API updates for ads on Threads}
+  - {date: '2026-01-08', title: Enhanced error messaging for Ads Insights async API}

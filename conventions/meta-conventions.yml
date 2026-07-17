@@ -1,0 +1,56 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://developers.facebook.com/docs/graph-api/overview,
+  https://developers.facebook.com/docs/graph-api/results (pagination),
+  https://developers.facebook.com/docs/graph-api/overview/rate-limiting/,
+  https://developers.facebook.com/docs/graph-api/guides/versioning, and
+  openapi/meta-openapi.yml. Cross-cutting request/response semantics that apply
+  across the Graph API surface.
+description: >-
+  How Meta's Graph API behaves across every operation: authentication style,
+  field selection, pagination, versioning, error envelope, and rate-limit
+  signaling. These are the developer-experience conventions OpenAPI does not
+  fully express.
+base_url: https://graph.facebook.com/v25.0
+api_style: REST-like Graph API over HTTPS; nodes and edges; JSON responses.
+authentication:
+  scheme: OAuth 2.0 access tokens (User, Page, App, Client access tokens) passed as access_token param or Bearer header.
+  docs: https://developers.facebook.com/docs/facebook-login
+  detail: authentication/meta-authentication.yml
+  scopes: scopes/meta-scopes.yml
+field_selection:
+  mechanism: "?fields= comma-separated field/edge list; nested field expansion via field{subfields} syntax."
+  docs: https://developers.facebook.com/docs/graph-api/overview
+  note: Reduces payloads; without ?fields the API returns a default subset.
+pagination:
+  styles:
+    - {style: cursor, params: [after, before, limit], response: paging.cursors, note: Preferred; opaque before/after cursors.}
+    - {style: time, params: [since, until, limit], response: paging.next/previous, note: Unix-timestamp windows.}
+    - {style: offset, params: [offset, limit], response: paging.next/previous, note: Numeric offsets; avoid on large/changing sets.}
+  response_envelope: '{ "data": [...], "paging": { "cursors": {...}, "next": url, "previous": url } }'
+  docs: https://developers.facebook.com/docs/graph-api/results
+  schemas: [apis.yml Cursor-based/Time-based/Offset-based Pagination]
+batching:
+  supported: true
+  note: Multiple operations can be sent in one HTTP request via the batch parameter.
+  docs: https://developers.facebook.com/docs/graph-api/batch-requests
+read_after_write:
+  supported: true
+  note: POST operations can return the mutated fields immediately (see openapi updateUser).
+versioning:
+  style: uri-path
+  detail: lifecycle/meta-lifecycle.yml
+error_envelope:
+  shape: '{ "error": { "message", "type", "code", "error_subcode", "fbtrace_id" } }'
+  detail: errors/meta-problem-types.yml
+rate_limiting:
+  model: Per-app (BUC / Business Use Case) and per-user limits; calls = 200 * daily active users per rolling hour (Platform).
+  headers: X-App-Usage, X-Ad-Account-Usage, X-Business-Use-Case-Usage (percentage-of-limit JSON).
+  docs: https://developers.facebook.com/docs/graph-api/overview/rate-limiting/
+  detail: rate-limits/meta-rate-limits.yml
+tracing:
+  field: fbtrace_id (returned on responses and errors; include when contacting support).
+webhooks:
+  supported: true
+  docs: https://developers.facebook.com/docs/graph-api/webhooks

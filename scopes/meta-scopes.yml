@@ -1,16 +1,65 @@
-generated: '2026-07-11'
-method: derived
+generated: '2026-06-20'
+method: searched
 source: openapi/meta-openapi.yml
+docs: https://developers.facebook.com/docs/permissions
+description: >-
+  Meta uses OAuth 2.0 "permissions" as its scope surface (Facebook Login /
+  Graph API). The baseline (public_profile) was derived from
+  openapi/meta-openapi.yml; the remaining entries are the canonical documented
+  permissions from the Meta Permissions Reference
+  (https://developers.facebook.com/docs/permissions). Most permissions require
+  App Review before use in Production. This is a representative subset across
+  the major products, not the full registry.
 schemes:
-- name: userAccessToken
-  source: openapi/meta-openapi.yml
-  flows:
-  - flow: implicit
-    authorizationUrl: https://www.facebook.com/v22.0/dialog/oauth
+  - name: userAccessToken
+    source: openapi/meta-openapi.yml
+    flows:
+      - flow: implicit
+        authorizationUrl: https://www.facebook.com/v25.0/dialog/oauth
 scopes:
-- scope: public_profile
-  description: Access basic profile info
-  flows:
-  - implicit
-  sources:
-  - openapi/meta-openapi.yml
+  - scope: public_profile
+    description: Access basic profile info (name, profile picture).
+    flows: [implicit]
+    sources: [openapi/meta-openapi.yml]
+  - scope: email
+    description: Access the person's primary email address.
+    product: facebook-login
+  - scope: pages_show_list
+    description: Read the list of Pages a person manages.
+    product: pages
+  - scope: pages_read_engagement
+    description: Read content, metadata, and engagement on Pages a person manages.
+    product: pages
+  - scope: pages_manage_posts
+    description: Create, edit, and delete Page posts.
+    product: pages
+  - scope: instagram_basic
+    description: Read an Instagram Business/Creator account profile and media.
+    product: instagram
+  - scope: instagram_content_publish
+    description: Publish media to an Instagram Business/Creator account.
+    product: instagram
+  - scope: instagram_manage_messages
+    description: Send and receive messages on Instagram.
+    product: instagram
+  - scope: ads_read
+    description: Read ad account campaigns, ad sets, ads, and insights.
+    product: marketing-api
+  - scope: ads_management
+    description: Create and manage ads and audiences.
+    product: marketing-api
+  - scope: business_management
+    description: Read and manage business assets (Business Manager).
+    product: business
+  - scope: whatsapp_business_messaging
+    description: Send and receive WhatsApp messages via the Cloud API.
+    product: whatsapp
+  - scope: whatsapp_business_management
+    description: Manage WhatsApp Business accounts, phone numbers, and templates.
+    product: whatsapp
+  - scope: threads_basic
+    description: Read a Threads profile and content.
+    product: threads
+  - scope: threads_content_publish
+    description: Publish content to Threads.
+    product: threads

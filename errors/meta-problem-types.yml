@@ -1,0 +1,50 @@
+generated: '2026-06-20'
+method: derived
+format: meta-graph-error-object
+source: >-
+  Derived from the shared Error schema (components.schemas.Error) referenced by
+  4xx responses in openapi/meta-openapi.yml, enriched from the Meta Graph API
+  error handling reference
+  (https://developers.facebook.com/docs/graph-api/guides/error-handling). Meta
+  does NOT use RFC 9457 application/problem+json; every error is a JSON object
+  under an "error" key.
+envelope:
+  media_type: application/json
+  shape: '{ "error": { "message": string, "type": string, "code": integer, "error_subcode": integer, "error_user_title": string, "error_user_msg": string, "fbtrace_id": string } }'
+  fields:
+    - {name: message, description: Human-readable description of the error.}
+    - {name: type, description: 'Error category, e.g. OAuthException, GraphMethodException.'}
+    - {name: code, description: Numeric error code identifying the error class.}
+    - {name: error_subcode, description: Additional numeric code narrowing the specific error.}
+    - {name: error_user_title, description: Title of a message safe to show the end user.}
+    - {name: error_user_msg, description: Body of a message safe to show the end user.}
+    - {name: fbtrace_id, description: Internal support identifier to include when contacting Meta.}
+problems:
+  - status: 400
+    title: Bad Request / OAuthException
+    meaning: Malformed request or unknown path components; also generic OAuth/permission failures.
+    source_operation: openapi/meta-openapi.yml#addUsersToCustomAudience
+  - status: 401
+    title: Invalid access token
+    type: OAuthException
+    meaning: The access token is missing, expired, or invalid.
+    source_operation: openapi/meta-openapi.yml#getMe
+    remediation: Re-authenticate the user and obtain a fresh access token; check token debug endpoint.
+  - status: 404
+    title: Not Found
+    meaning: The requested node/edge does not exist or is not visible to the token.
+    source_operation: openapi/meta-openapi.yml#getUser
+common_error_codes:
+  - {code: 1, meaning: Unknown/transient API error. Action - retry later.}
+  - {code: 2, meaning: Temporary service issue. Action - retry with backoff.}
+  - {code: 4, meaning: Application-level rate limit reached. Action - throttle and retry.}
+  - {code: 10, meaning: Permission denied (missing permission/feature). Action - request the required permission.}
+  - {code: 17, meaning: User-level rate limit reached. Action - reduce per-user call volume.}
+  - {code: 100, meaning: Invalid parameter. Action - fix the request parameters.}
+  - {code: 190, meaning: Access token expired/invalidated. Action - re-authenticate.}
+  - {code: 200, meaning: Permission error. Action - obtain the required permission/scope.}
+  - {code: 613, meaning: Custom-level rate limit (calls-per-hour) reached. Action - throttle.}
+notes: >-
+  Numeric code ranges group by product area; consult the live error reference
+  and use fbtrace_id when contacting support. Async product surfaces (e.g. Ads
+  Insights async) added richer error messaging in Jan 2026 (see changelog).

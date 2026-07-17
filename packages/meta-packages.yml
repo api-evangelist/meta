@@ -1,0 +1,73 @@
+generated: '2026-06-20'
+method: searched
+source: https://developers.facebook.com/docs/business-sdk
+description: >-
+  First-party Meta client libraries and tools. The Business SDKs are published
+  from the facebook/* GitHub org (linked as SourceCode in apis.yml) and were
+  confirmed against the public package registries (each registry URL below
+  returned HTTP 200 at fetch time). meta-ads is the official Meta Marketing API
+  CLI (PyPI owner "facebook", "Copyright (c) Meta Platforms, Inc."). Facebook
+  Login / mobile SDKs (iOS/Android) are also first-party.
+packages:
+  - language: python
+    registry: pypi
+    name: facebook_business
+    url: https://pypi.org/project/facebook_business/
+    source: https://github.com/facebook/facebook-python-business-sdk
+    install: pip install facebook_business
+    official: true
+  - language: javascript
+    registry: npm
+    name: facebook-nodejs-business-sdk
+    url: https://www.npmjs.com/package/facebook-nodejs-business-sdk
+    source: https://github.com/facebook/facebook-nodejs-business-sdk
+    install: npm install facebook-nodejs-business-sdk
+    official: true
+  - language: php
+    registry: packagist
+    name: facebook/php-business-sdk
+    url: https://packagist.org/packages/facebook/php-business-sdk
+    source: https://github.com/facebook/facebook-php-business-sdk
+    install: composer require facebook/php-business-sdk
+    official: true
+  - language: java
+    registry: maven
+    name: com.facebook.business.sdk:facebook-java-business-sdk
+    url: https://central.sonatype.com/artifact/com.facebook.business.sdk/facebook-java-business-sdk
+    source: https://github.com/facebook/facebook-java-business-sdk
+    install: 'Maven: com.facebook.business.sdk:facebook-java-business-sdk'
+    official: true
+  - language: ruby
+    registry: rubygems
+    name: facebookbusiness
+    url: https://rubygems.org/gems/facebookbusiness
+    source: https://github.com/facebook/facebook-ruby-business-sdk
+    install: gem install facebookbusiness
+    official: true
+  - language: swift
+    registry: cocoapods
+    name: FBSDKCoreKit
+    url: https://github.com/facebook/facebook-ios-sdk
+    source: https://github.com/facebook/facebook-ios-sdk
+    install: 'CocoaPods/SPM: FBSDKCoreKit, FBSDKLoginKit, FBSDKShareKit'
+    official: true
+    note: Facebook SDK for iOS (Login, Share, Graph requests).
+  - language: java
+    registry: maven
+    name: com.facebook.android:facebook-android-sdk
+    url: https://central.sonatype.com/artifact/com.facebook.android/facebook-android-sdk
+    source: https://github.com/facebook/facebook-android-sdk
+    install: "implementation 'com.facebook.android:facebook-android-sdk:latest.release'"
+    official: true
+    note: Facebook SDK for Android (Login, Share, Graph requests).
+  - language: python
+    registry: pypi
+    name: meta-ads
+    url: https://pypi.org/project/meta-ads/
+    source: https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-cli/ads-cli-overview
+    install: pip install meta-ads
+    official: true
+    note: >-
+      Official Meta Marketing API CLI (the Ads CLI). Requires Python 3.12+.
+      Command surface catalogued in cli/meta-cli.yml. PyPI package owner
+      "facebook"; carries the Meta Platforms copyright.

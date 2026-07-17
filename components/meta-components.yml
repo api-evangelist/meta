@@ -1,0 +1,40 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://developers.facebook.com/docs/javascript (Facebook SDK for JavaScript),
+  https://developers.facebook.com/docs/facebook-login/web (Login Button),
+  https://developers.facebook.com/docs/plugins (Social Plugins),
+  https://developers.facebook.com/docs/whatsapp/embedded-signup (Embedded Signup),
+  https://developers.facebook.com/docs/messenger-platform (chat plugins),
+  https://developers.facebook.com/blog/post/2026/06/15/tokenless-access-meta-oembed/ (oEmbed).
+description: >-
+  Meta's client-side / embeddable UI components — browser widgets and hosted
+  flows rendered via the Facebook SDK for JavaScript, distinct from the
+  server-side SDK client libraries in packages/meta-packages.yml.
+libraries:
+  - {name: Facebook SDK for JavaScript, loader: https://connect.facebook.net/en_US/sdk.js, purpose: Loads FB.* and mounts XFBML social plugins and the Login Button.}
+families:
+  authentication:
+    description: Login and onboarding flows.
+    components:
+      - {name: Login Button, xfbml: fb:login-button, description: Drop-in Facebook Login button that triggers the OAuth dialog.}
+      - {name: WhatsApp Embedded Signup, id: embedded-signup, version: v4, description: Hosted popup flow onboarding a business to WhatsApp Cloud API (phone number registration, WABA creation). See blog 2026-05-14.}
+  social_plugins:
+    description: XFBML/iframe widgets rendering Facebook social content.
+    components:
+      - {name: Like Button, xfbml: fb:like}
+      - {name: Share Button, xfbml: fb:share-button}
+      - {name: Comments, xfbml: fb:comments}
+      - {name: Page Plugin, xfbml: fb:page, description: Embed a Facebook Page feed/timeline.}
+      - {name: Post / Video / Quote Embeds, description: Embedded Facebook posts and videos.}
+  messaging:
+    description: Messenger web plugins.
+    components:
+      - {name: Customer Chat Plugin, description: Embedded Messenger chat widget for a Page.}
+      - {name: Send to Messenger / Message Us buttons, description: Buttons that open a Messenger thread with a Page.}
+  oembed:
+    description: oEmbed endpoints returning embeddable HTML for Facebook/Instagram content.
+    components:
+      - {name: Facebook oEmbed (Post/Video/Page), docs: https://developers.facebook.com/docs/plugins/oembed}
+      - {name: Instagram oEmbed, docs: https://developers.facebook.com/docs/instagram/oembed}
+    note: Tokenless access to Meta oEmbed APIs announced 2026-06-15 (see changelog).

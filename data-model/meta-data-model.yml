@@ -1,0 +1,37 @@
+generated: '2026-06-20'
+method: derived
+source: >-
+  Derived from openapi/meta-openapi.yml schemas and edges, the json-schema/*.json
+  node schemas in this repo (User, Page, Post, AdCampaign, Message, Media), and
+  the Graph API object model (https://developers.facebook.com/docs/graph-api).
+  The Graph API is a graph of nodes (objects) connected by edges (relationships);
+  ids are opaque numeric strings (no type prefixes).
+docs: https://developers.facebook.com/docs/graph-api/overview
+notation: >-
+  relationships use has_one / has_many / belongs_to with the edge/field name in
+  `via`; direction is from the node that owns the reference/edge.
+entities:
+  - {name: User, node: user, domain: social, description: A Facebook user (or test user); root of /me.}
+  - {name: Page, node: page, domain: social, description: A Facebook Page.}
+  - {name: Post, node: post, domain: social, description: A post/story on a feed.}
+  - {name: Group, node: group, domain: social, description: A Facebook Group.}
+  - {name: Event, node: event, domain: social, description: A Facebook Event.}
+  - {name: Photo/Video/Media, node: media, domain: content, description: Media objects (photos, videos, reels, stories, carousels).}
+  - {name: CustomAudience, node: custom_audience, domain: ads, description: An advertising custom audience of users.}
+  - {name: AdCampaign, node: campaign, domain: ads, description: A Marketing API ad campaign.}
+  - {name: Message, node: message, domain: messaging, description: A message across WhatsApp/Messenger/Instagram messaging.}
+relationships:
+  - {from: User, to: Post, kind: has_many, via: feed}
+  - {from: User, to: Media, kind: has_many, via: photos}
+  - {from: User, to: Event, kind: has_many, via: events}
+  - {from: User, to: Group, kind: has_many, via: groups}
+  - {from: User, to: CustomAudience, kind: has_many, via: users}
+  - {from: Page, to: Post, kind: has_many, via: feed}
+  - {from: Page, to: User, kind: has_many, via: blocked}
+  - {from: Post, to: User, kind: belongs_to, via: from}
+  - {from: CustomAudience, to: User, kind: has_many, via: users}
+  - {from: AdCampaign, to: Page, kind: belongs_to, via: promoted_object}
+pagination:
+  styles: [cursor, time, offset]
+  detail: conventions/meta-conventions.yml
+  note: 'Edges return a data/paging envelope (see json-schema pagination schemas in apis.yml).'

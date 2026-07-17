@@ -1,0 +1,40 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Meta Graph API - User
+  version: 1.0.0
+extends: openapi/meta-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: meta
+      x-apievangelist-artifacts:
+        authentication: authentication/meta-authentication.yml
+        scopes: scopes/meta-scopes.yml
+        conventions: conventions/meta-conventions.yml
+        errors: errors/meta-problem-types.yml
+        lifecycle: lifecycle/meta-lifecycle.yml
+        data-model: data-model/meta-data-model.yml
+        mcp: mcp/meta-mcp.yml
+      x-current-version: v25.0
+  - target: $.info
+    update:
+      x-error-envelope: >-
+        Meta returns errors as {"error": {"message","type","code",
+        "error_subcode","fbtrace_id"}} — not RFC 9457 problem+json. See
+        errors/meta-problem-types.yml.
+  - target: $.paths['/{user-id}/feed'].get
+    update:
+      x-pagination:
+        styles: [cursor, time, offset]
+        docs: https://developers.facebook.com/docs/graph-api/results
+        detail: conventions/meta-conventions.yml
+  - target: $.paths['/{custom-audience-id}/users'].post
+    update:
+      x-agentic-access:
+        action-class: acting
+        consequence: write
+        note: Adds users to an advertising custom audience; see agentic-access/meta-agentic-access.yml.
+  - target: $.components.securitySchemes.userAccessToken
+    update:
+      x-docs: https://developers.facebook.com/docs/facebook-login
+      x-token-debugger: https://developers.facebook.com/tools/debug/accesstoken/

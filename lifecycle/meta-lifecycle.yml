@@ -1,0 +1,46 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://developers.facebook.com/docs/graph-api/guides/versioning,
+  https://developers.facebook.com/docs/graph-api/changelog/versions/,
+  https://developers.facebook.com/docs/graph-api/changelog, https://metastatus.com/;
+  deprecated operations derived from openapi/meta-openapi.yml.
+versioning:
+  scheme: uri-path
+  mechanism: version prefix in the request path (e.g. /v25.0/me)
+  current: v25.0
+  docs: https://developers.facebook.com/docs/graph-api/guides/versioning
+  notes: >-
+    Graph API and Marketing API share aligned numbered versions released roughly
+    every 3-4 months. An unversioned call uses the app's default version. Each
+    version is supported ~2 years from release, then deprecated and sunset.
+deprecation:
+  policy_url: https://developers.facebook.com/docs/graph-api/guides/versioning
+  changelog: https://developers.facebook.com/docs/graph-api/changelog
+  sunset_header: false
+  notes: >-
+    Deprecation is version-based, not per-endpoint RFC 8594 Sunset headers. When
+    a version reaches its expiration date, calls to it are automatically upgraded
+    to the next available version, which can introduce breaking changes. Field
+    and feature deprecations are announced per version in the changelog (e.g.
+    Page recommendations removed in v22.0, returning error code 12).
+support_window:
+  duration: ~2 years per version
+  recent_expirations:
+    - {version: v20.0 (Graph), expires: '2026-09-24'}
+    - {version: v24.0 (Marketing), expires: '2026-10-06'}
+    - {version: v23.0 (Marketing), expires: '2026-06-09'}
+    - {version: v22.0 (Marketing), expires: '2026-02-19', status: expired}
+sla:
+  url: https://developers.facebook.com/terms/
+  public_uptime_target: null
+  notes: No numeric public uptime SLA; platform terms govern availability.
+status_page: https://metastatus.com/
+rate_limits: https://developers.facebook.com/docs/graph-api/overview/rate-limiting/
+deprecated_operations: []
+deprecated_products:
+  - name: Instagram Basic Display API
+    evidence: apis.yml Features list references it; superseded by Instagram Graph API with Facebook Login.
+  - name: Workplace by Meta API
+    status: sunset
+    evidence: apis.yml Features list — "Workplace by Meta API (sunset)".

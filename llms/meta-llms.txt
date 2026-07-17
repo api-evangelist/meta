@@ -1,0 +1,50 @@
+# llms.txt for developers.facebook.com
+# See https://llmstxt.org/ for specification
+
+> Facebook Developer Documentation
+
+This site contains developer documentation for Facebook platforms and APIs.
+
+## Documentation Sections
+
+- /docs/ - API and SDK documentation
+- /blog/ - Developer blog and announcements
+- /tools/ - Developer tools and utilities
+- /products/ - Product documentation
+
+## WhatsApp Cloud API Guides & Documentation
+
+- [All Guides & Docs llms.txt](https://developers.facebook.com/documentation/business-messaging/whatsapp/llms.txt): Full index of WhatsApp Cloud API guides and documentation
+- [API References llms.txt](https://developers.facebook.com/documentation/business-messaging/whatsapp/reference/llms.txt): Full index of WhatsApp Cloud API endpoint reference docs
+
+## Additional Resources
+
+- https://developers.meta.com - Meta Developer Platform
+- https://ai.meta.com - Meta AI
+- https://llama.meta.com - Llama models
+
+## Meta Marketing API
+
+Guidelines for AI agents and automated tools using the Meta Marketing API (Graph API) and Ads MCP Server.
+
+### Agent Self-Identification
+
+Include structured identification in your User-Agent HTTP header on all requests.
+
+Format: <AgentName>/<Version> (<ModelName>) <HTTPClient>
+
+Examples:
+  User-Agent: MyAdBot/1.3 (GPT-4o) python-requests/2.31.0
+  User-Agent: CampaignAgent/2.0 (Claude-Sonnet-4) axios/1.7.2
+  User-Agent: AdOptimizer/0.9 (Gemini-2.5-Flash) curl/8.4.0
+
+Fields:
+- AgentName (required): Your agent or product name. Be consistent across requests.
+- Version (required): Semantic version of your agent.
+- ModelName (recommended): LLM model powering the agent. Omit if unknown.
+- HTTPClient (existing): Keep your HTTP library's default UA string.
+
+Rules:
+- Append agent info to the existing User-Agent. Do not replace it.
+- Use the same agent name on every request. Do not randomize.
+- Do not impersonate other agents.

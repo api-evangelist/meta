@@ -1,17 +1,38 @@
-generated: '2026-07-11'
-method: derived
+generated: '2026-06-20'
+method: searched
 source: openapi/meta-openapi.yml
+docs:
+  - https://developers.facebook.com/docs/facebook-login
+  - https://developers.facebook.com/docs/facebook-login/guides/access-tokens
+description: >-
+  Meta authenticates with OAuth 2.0 access tokens (Facebook Login). The scheme
+  in openapi/meta-openapi.yml is oauth2 (implicit flow); the docs describe four
+  token types below. Tokens carry granted permissions (scopes/meta-scopes.yml)
+  and can be inspected with the Access Token Debugger.
 summary:
   types:
-  - oauth2
+    - oauth2
   oauth2_flows:
-  - implicit
+    - implicit
+    - authorizationCode
+token_types:
+  - {name: User access token, use: Act on behalf of a user; short- or long-lived.}
+  - {name: Page access token, use: Act on behalf of a Page the user manages; derived from a User token.}
+  - {name: App access token, use: Server-to-server app-level calls; app_id|app_secret.}
+  - {name: Client access token, use: Limited client-side app identification.}
 schemes:
-- name: userAccessToken
-  type: oauth2
-  flows:
-  - flow: implicit
-    authorizationUrl: https://www.facebook.com/v22.0/dialog/oauth
-    scopes: 1
-  sources:
-  - openapi/meta-openapi.yml
+  - name: userAccessToken
+    type: oauth2
+    flows:
+      - flow: implicit
+        authorizationUrl: https://www.facebook.com/v25.0/dialog/oauth
+        scopes: 1
+    sources:
+      - openapi/meta-openapi.yml
+tools:
+  - {name: Access Token Debugger, url: https://developers.facebook.com/tools/debug/accesstoken/}
+notes: >-
+  Passed as the access_token query parameter or an Authorization: Bearer header.
+  Long-lived user tokens (~60 days) are exchanged from short-lived tokens.
+  Server-side calls should include appsecret_proof. See scopes/meta-scopes.yml
+  for permissions.
