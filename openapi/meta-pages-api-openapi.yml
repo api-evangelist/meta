@@ -1,0 +1,55 @@
+openapi: 3.1.0
+info:
+  title: Meta Graph API - User Custom Audiences Pages API
+  description: Subset of the Meta (Facebook) Graph API focusing on User node operations including reading user profile fields, posting updates, and managing custom audiences. Requires user access tokens with appropriate permissions such as public_profile.
+  version: v22.0
+servers:
+- url: https://graph.facebook.com/v22.0
+  description: Meta Graph API
+security:
+- userAccessToken: []
+tags:
+- name: Pages
+  description: Page-related user operations
+paths:
+  /{page-id}/blocked:
+    parameters:
+    - name: page-id
+      in: path
+      required: true
+      description: ID of the page.
+      schema:
+        type: string
+    delete:
+      operationId: unblockPageUser
+      summary: Meta Unblock user from page
+      description: Dissociates a user from a page by unblocking them.
+      tags:
+      - Pages
+      responses:
+        '200':
+          description: Unblock successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+components:
+  schemas:
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+  securitySchemes:
+    userAccessToken:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://www.facebook.com/v22.0/dialog/oauth
+          scopes:
+            public_profile: Access basic profile info
+externalDocs:
+  description: Meta Graph API User Reference
+  url: https://developers.facebook.com/docs/graph-api/reference/user/
+x-generated-from: https://developers.facebook.com/docs/graph-api/reference/user/
+x-generated-by: claude-crawl-2026-05-08
