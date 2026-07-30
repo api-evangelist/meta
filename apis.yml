@@ -1,5 +1,18 @@
 aid: meta
 url: https://raw.githubusercontent.com/api-search/social/main/_apis/meta/apis.md
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.18'
 name: Meta
 description: Collection of Meta (Facebook) platform APIs for social networking, messaging,
@@ -24,24 +37,11 @@ maintainers:
   email: developer-support@meta.com
   url: https://about.meta.com
 apis:
-- aid: meta:facebook-graph-api-user
-  name: Facebook Graph API - User
-  description: Retrieve and manage Facebook user profiles, friends lists, and account
-    data using the Graph API User node.
-  humanURL: https://developers.facebook.com/docs/graph-api/reference/user/
-  tags:
-  - Facebook
-  - Social
-  - Users
-  properties:
-  - url: openapi/meta-openapi.yml
-    type: OpenAPI
-  - url: graphql/meta-graphql.md
-    type: GraphQL
 - aid: meta:instagram-graph-api-user
   name: Instagram Graph API - User
-  description: Access Instagram user profiles, media, and account information for
-    Business and Creator accounts via the Instagram Graph API.
+  description: >-
+    Access Instagram user profiles, media, and account information for Business and Creator accounts via
+    the Instagram Graph API.
   humanURL: https://developers.facebook.com/docs/instagram-platform
   tags:
   - Instagram
@@ -50,8 +50,8 @@ apis:
   properties: []
 - aid: meta:facebook-graph-api-page
   name: Facebook Graph API - Page
-  description: Access and manage Facebook Page settings, content, posts, and metrics
-    using the Graph API Page node.
+  description: >-
+    Access and manage Facebook Page settings, content, posts, and metrics using the Graph API Page node.
   humanURL: https://developers.facebook.com/docs/graph-api/reference/page/
   tags:
   - Facebook
@@ -60,8 +60,7 @@ apis:
   properties: []
 - aid: meta:facebook-graph-api-post
   name: Facebook Graph API - Post
-  description: Create, read, update, and delete posts on Facebook using the Graph
-    API Post node.
+  description: Create, read, update, and delete posts on Facebook using the Graph API Post node.
   humanURL: https://developers.facebook.com/docs/graph-api/reference/post/
   tags:
   - Facebook
@@ -70,8 +69,8 @@ apis:
   properties: []
 - aid: meta:facebook-graph-api-group
   name: Facebook Graph API - Group
-  description: Manage Facebook Groups including members, posts, and settings using
-    the Graph API Group node.
+  description: >-
+    Manage Facebook Groups including members, posts, and settings using the Graph API Group node.
   humanURL: https://developers.facebook.com/docs/graph-api/reference/group/
   tags:
   - Facebook
@@ -80,8 +79,9 @@ apis:
   properties: []
 - aid: meta:facebook-graph-api-event
   name: Facebook Graph API - Event
-  description: Access and manage Facebook Events including details, attendees, and
-    RSVPs using the Graph API Event node.
+  description: >-
+    Access and manage Facebook Events including details, attendees, and RSVPs using the Graph API Event
+    node.
   humanURL: https://developers.facebook.com/docs/graph-api/reference/event/
   tags:
   - Events
@@ -90,8 +90,9 @@ apis:
   properties: []
 - aid: meta:facebook-marketing-api
   name: Facebook Marketing API
-  description: Create, manage, and optimize advertising campaigns across Facebook,
-    Instagram, and Audience Network programmatically.
+  description: >-
+    Create, manage, and optimize advertising campaigns across Facebook, Instagram, and Audience Network
+    programmatically.
   humanURL: https://developers.facebook.com/docs/marketing-api
   tags:
   - Advertising
@@ -104,8 +105,9 @@ apis:
     type: GettingStarted
 - aid: meta:conversions-api
   name: Meta Conversions API
-  description: Send web, app, and offline conversion events directly from your server
-    to Meta for improved ad measurement and optimization.
+  description: >-
+    Send web, app, and offline conversion events directly from your server to Meta for improved ad measurement
+    and optimization.
   humanURL: https://developers.facebook.com/docs/marketing-api/conversions-api
   tags:
   - Advertising
@@ -114,8 +116,9 @@ apis:
   properties: []
 - aid: meta:ad-library-api
   name: Meta Ad Library API
-  description: Search and retrieve publicly visible ads across Meta platforms for
-    transparency and research purposes via the ads_archive Graph API endpoint.
+  description: >-
+    Search and retrieve publicly visible ads across Meta platforms for transparency and research purposes
+    via the ads_archive Graph API endpoint.
   humanURL: https://developers.facebook.com/docs/graph-api/reference/ads_archive/
   tags:
   - Advertising
@@ -124,8 +127,9 @@ apis:
   properties: []
 - aid: meta:whatsapp-cloud-api
   name: WhatsApp Cloud API
-  description: Send and receive messages, manage phone numbers, and build messaging
-    experiences on WhatsApp using Meta's cloud-hosted API.
+  description: >-
+    Send and receive messages, manage phone numbers, and build messaging experiences on WhatsApp using
+    Meta's cloud-hosted API.
   humanURL: https://developers.facebook.com/docs/whatsapp/cloud-api
   tags:
   - Cloud
@@ -138,8 +142,8 @@ apis:
     type: GettingStarted
 - aid: meta:whatsapp-business-management-api
   name: WhatsApp Business Management API
-  description: Manage WhatsApp Business accounts, phone numbers, message templates,
-    and business profiles programmatically.
+  description: >-
+    Manage WhatsApp Business accounts, phone numbers, message templates, and business profiles programmatically.
   humanURL: https://developers.facebook.com/docs/whatsapp/business-management-api
   tags:
   - Business
@@ -148,8 +152,9 @@ apis:
   properties: []
 - aid: meta:messenger-platform-api
   name: Messenger Platform API
-  description: Build messaging experiences on Facebook Messenger including chatbots,
-    rich media messages, and customer service integrations.
+  description: >-
+    Build messaging experiences on Facebook Messenger including chatbots, rich media messages, and customer
+    service integrations.
   humanURL: https://developers.facebook.com/docs/messenger-platform
   tags:
   - Chatbots
@@ -160,8 +165,8 @@ apis:
     type: Reference
 - aid: meta:threads-api
   name: Threads API
-  description: Create and manage content, retrieve profiles, and access insights on
-    Meta's Threads social media platform.
+  description: >-
+    Create and manage content, retrieve profiles, and access insights on Meta's Threads social media platform.
   humanURL: https://developers.facebook.com/docs/threads
   tags:
   - Social
@@ -170,9 +175,10 @@ apis:
   properties: []
 - aid: meta:instagram-graph-api-content-publishing
   name: Instagram Graph API - Content Publishing
-  description: Publish photos, videos, carousels, reels, and stories to Instagram
-    Business and Creator accounts programmatically.
-  humanURL: https://developers.facebook.com/docs/instagram-platform/instagram-api-with-facebook-login/content-publishing
+  description: >-
+    Publish photos, videos, carousels, reels, and stories to Instagram Business and Creator accounts programmatically.
+  humanURL: >-
+    https://developers.facebook.com/docs/instagram-platform/instagram-api-with-facebook-login/content-publishing
   tags:
   - Media
   - Publishing
@@ -180,8 +186,9 @@ apis:
   properties: []
 - aid: meta:instagram-messaging-api
   name: Instagram Messaging API
-  description: Send and receive messages on Instagram using the Messenger Platform,
-    enabling customer service and automated messaging for Business accounts.
+  description: >-
+    Send and receive messages on Instagram using the Messenger Platform, enabling customer service and
+    automated messaging for Business accounts.
   humanURL: https://developers.facebook.com/docs/messenger-platform/instagram
   tags:
   - Instagram
@@ -190,8 +197,9 @@ apis:
   properties: []
 - aid: meta:meta-content-library-api
   name: Meta Content Library API
-  description: Programmatic access to the full public content archive from Facebook,
-    Instagram, and Threads for qualified academic and non-profit researchers.
+  description: >-
+    Programmatic access to the full public content archive from Facebook, Instagram, and Threads for qualified
+    academic and non-profit researchers.
   humanURL: https://developers.facebook.com/docs/content-library-and-api
   tags:
   - Analytics
@@ -200,8 +208,9 @@ apis:
   properties: []
 - aid: meta:llama-api
   name: Meta Llama API
-  description: Access Meta's Llama large language models including Llama 4 and Llama
-    3 family for building AI-powered applications via a hosted API.
+  description: >-
+    Access Meta's Llama large language models including Llama 4 and Llama 3 family for building AI-powered
+    applications via a hosted API.
   humanURL: https://llama.developer.meta.com/docs/overview
   tags:
   - Artificial Intelligence
@@ -216,6 +225,39 @@ apis:
     type: SDKs
   - url: https://llama.developer.meta.com/docs/api-keys
     type: Authentication
+- aid: meta:meta-custom-audiences-api
+  name: Meta Custom Audiences API
+  description: Manage user membership in custom audiences
+  humanURL: https://developers.facebook.com/docs/graph-api/reference/user/
+  tags:
+  - Custom Audiences
+  properties:
+  - type: OpenAPI
+    url: openapi/meta-custom-audiences-api-openapi.yml
+  - type: GraphQL
+    url: graphql/meta-graphql.md
+- aid: meta:meta-pages-api
+  name: Meta Pages API
+  description: Page-related user operations
+  humanURL: https://developers.facebook.com/docs/graph-api/reference/user/
+  tags:
+  - Pages
+  properties:
+  - type: OpenAPI
+    url: openapi/meta-pages-api-openapi.yml
+  - type: GraphQL
+    url: graphql/meta-graphql.md
+- aid: meta:meta-users-api
+  name: Meta Users API
+  description: Operations on the User node
+  humanURL: https://developers.facebook.com/docs/graph-api/reference/user/
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/meta-users-api-openapi.yml
+  - type: GraphQL
+    url: graphql/meta-graphql.md
 common:
 - type: AgenticAccess
   url: agentic-access/meta-agentic-access.yml
