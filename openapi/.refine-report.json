@@ -1,0 +1,18 @@
+{
+  "provider": "meta",
+  "sources": [
+    "meta-custom-audiences-api-openapi.yml",
+    "meta-pages-api-openapi.yml",
+    "meta-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "meta-custom-audiences-api-openapi.yml",
+    "meta-pages-api-openapi.yml",
+    "meta-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
