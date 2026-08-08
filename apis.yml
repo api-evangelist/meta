@@ -365,6 +365,15 @@ common:
 - url: https://developers.facebook.com/docs/graph-api/reference
   name: Graph API Reference
   type: Reference
+- url: https://developers.facebook.com/llms.txt
+  name: Meta Developer llms.txt
+  type: LlmsText
+  description: Root llms.txt, served as text/plain. Links seven product sub-indexes that
+    together enumerate 1,607 markdown documentation pages, and carries a written agent
+    conduct policy for the Marketing API and Ads MCP Server (verified 2026-08-05).
+- url: llms/meta-llms-index.yml
+  name: llms.txt hierarchy and content negotiation
+  type: AgentGuidance
 - url: https://developers.facebook.com/blog/
   name: News for Developers | Facebook Developers
   type: Blog
