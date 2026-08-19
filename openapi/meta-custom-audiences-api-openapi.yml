@@ -1,8 +1,8 @@
 openapi: 3.1.0
 info:
-  title: Meta Graph API - User Custom Audiences API
-  description: Subset of the Meta (Facebook) Graph API focusing on User node operations including reading user profile fields, posting updates, and managing custom audiences. Requires user access tokens with appropriate permissions such as public_profile.
+  title: Meta Custom Audiences API
   version: v22.0
+  description: 'Operations tagged Custom Audiences across 2 of this provider''s published API definitions: meta-custom-audiences-api-openapi.yml, meta-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://graph.facebook.com/v22.0
   description: Meta Graph API
@@ -55,6 +55,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SuccessResponse'
+    servers:
+    - url: https://graph.facebook.com/v22.0
+      description: Meta Graph API
 components:
   schemas:
     SuccessResponse:
@@ -73,5 +76,8 @@ components:
 externalDocs:
   description: Meta Graph API User Reference
   url: https://developers.facebook.com/docs/graph-api/reference/user/
+x-refined-from:
+- meta-custom-audiences-api-openapi.yml
+- meta-openapi.yml
 x-generated-from: https://developers.facebook.com/docs/graph-api/reference/user/
 x-generated-by: claude-crawl-2026-05-08

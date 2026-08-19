@@ -1,0 +1,52 @@
+generated: '2026-08-05'
+method: probed
+source: https://developers.facebook.com/llms.txt
+description: Meta's llms.txt hierarchy. The root file is served as text/plain and links seven product
+  sub-indexes, which together enumerate the .md documentation set. Every URL below was fetched on 2026-08-05.
+agent_policy: 'The root llms.txt carries a written agent conduct policy for the Marketing API and Ads
+  MCP Server: agents must self-identify in the User-Agent as <AgentName>/<Version> (<ModelName>) <HTTPClient>,
+  append rather than replace, keep the name stable across requests, and not impersonate other agents.'
+content_negotiation: 'Same URL, two clients: a browser receives text/html with the markdown wrapped in
+  <html><body><pre>, while a self-identifying agent receives text/markdown or text/plain. Verified on
+  the sub-indexes and on documentation pages; the payload difference is the HTML wrapper alone (for example
+  ad-account.md: 62,679 bytes as a browser, 62,406 as an agent). A browser-shaped User-Agent WITHOUT Sec-Fetch-*
+  headers is rejected with HTTP 400, while a plain client and an agent identifying itself per Meta''s
+  own policy both receive 200.'
+markdown_documents: 1607
+documents_by_section:
+  ads-commerce: 1063
+  business-messaging: 368
+  development: 70
+  facebook-login: 52
+  threads: 48
+  development.md: 1
+  mcp.md: 1
+  ads-commerce.md: 1
+  threads.md: 1
+  facebook-login.md: 1
+  mcp: 1
+indexes:
+- url: https://developers.facebook.com/documentation/ads-commerce/llms.txt
+  bytes_as_browser: 110797
+  content_type_as_browser: text/html
+- url: https://developers.facebook.com/documentation/ads-commerce/marketing-api/reference/llms.txt
+  bytes_as_browser: 61803
+  content_type_as_browser: text/html
+- url: https://developers.facebook.com/documentation/business-messaging/whatsapp/llms.txt
+  bytes_as_browser: 47876
+  content_type_as_browser: text/html
+- url: https://developers.facebook.com/documentation/business-messaging/whatsapp/reference/llms.txt
+  bytes_as_browser: 15998
+  content_type_as_browser: text/html
+- url: https://developers.facebook.com/documentation/development/llms.txt
+  bytes_as_browser: 10729
+  content_type_as_browser: text/html
+- url: https://developers.facebook.com/documentation/facebook-login/llms.txt
+  bytes_as_browser: 7693
+  content_type_as_browser: text/html
+- url: https://developers.facebook.com/documentation/mcp/llms.txt
+  bytes_as_browser: 912
+  content_type_as_browser: text/html
+- url: https://developers.facebook.com/documentation/threads/llms.txt
+  bytes_as_browser: 9046
+  content_type_as_browser: text/html

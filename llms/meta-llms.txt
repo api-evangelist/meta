@@ -17,6 +17,27 @@ This site contains developer documentation for Facebook platforms and APIs.
 - [All Guides & Docs llms.txt](https://developers.facebook.com/documentation/business-messaging/whatsapp/llms.txt): Full index of WhatsApp Cloud API guides and documentation
 - [API References llms.txt](https://developers.facebook.com/documentation/business-messaging/whatsapp/reference/llms.txt): Full index of WhatsApp Cloud API endpoint reference docs
 
+## Ads and Commerce Guides & Documentation
+
+- [All Guides & Docs llms.txt](https://developers.facebook.com/documentation/ads-commerce/llms.txt): Full index of Ads and Commerce guides and documentation
+- [API References llms.txt](https://developers.facebook.com/documentation/ads-commerce/marketing-api/reference/llms.txt): Full index of Ads and Commerce (Marketing API) endpoint reference docs
+
+## Facebook Login Guides & Documentation
+
+- [All Guides & Docs llms.txt](https://developers.facebook.com/documentation/facebook-login/llms.txt): Full index of Facebook Login guides and documentation
+
+## App Development Guides & Documentation
+
+- [All Guides & Docs llms.txt](https://developers.facebook.com/documentation/development/llms.txt): Full index of App Development with Meta guides and documentation
+
+## Meta MCP Guides & Documentation
+
+- [All Guides & Docs llms.txt](https://developers.facebook.com/documentation/mcp/llms.txt): Full index of Meta MCP server guides and documentation
+
+## Threads API
+
+- [Threads API llms.txt](https://developers.facebook.com/documentation/threads/llms.txt): Full index of Threads API guides and documentation
+
 ## Additional Resources
 
 - https://developers.meta.com - Meta Developer Platform

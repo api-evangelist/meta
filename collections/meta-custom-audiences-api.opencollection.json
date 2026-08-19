@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Meta Custom Audiences API",
+    "version": "v22.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "implicit",
+      "authorizationUrl": "https://www.facebook.com/v22.0/dialog/oauth",
+      "credentials": {
+        "clientId": "{{clientId}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custom Audiences",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Meta Add users to custom audience",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://graph.facebook.com/v22.0/:custom-audience-id/users",
+            "params": [
+              {
+                "name": "custom-audience-id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the custom audience."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds users to a custom audience using payload schemas such as EMAIL_SHA256 or PHONE_SHA256."
+        },
+        {
+          "info": {
+            "name": "Meta Remove users from custom audience",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://graph.facebook.com/v22.0/:custom-audience-id/users",
+            "params": [
+              {
+                "name": "custom-audience-id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the custom audience."
+              }
+            ]
+          },
+          "docs": "Removes users from a custom audience using payload data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

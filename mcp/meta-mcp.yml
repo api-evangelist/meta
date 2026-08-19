@@ -1,53 +1,61 @@
 generated: '2026-06-20'
 method: searched
 status: published
-source: >-
-  https://developers.facebook.com/blog/post/2026/06/30/developer-tools-mcp/ and
-  https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/
-description: >-
-  Meta operates two official MCP servers. (1) Developer Tools MCP connects an AI
-  coding agent to Meta's developer platform to discover APIs, troubleshoot
-  errors, check app health, monitor compliance, and debug webhooks. (2) The Ads
-  AI Connectors expose an official hosted HTTP MCP server at
-  https://mcp.facebook.com/ads, wrapping the Meta Marketing API behind Meta
-  Business OAuth (also referenced as the "Ads MCP Server" in the official
-  developers.facebook.com/llms.txt). Tool categories captured from the official
-  announcements and docs; the Ads MCP tool count (~29) is from the docs.
+source: https://developers.facebook.com/blog/post/2026/06/30/developer-tools-mcp/ and https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/
+description: Meta operates two official MCP servers. (1) Developer Tools MCP connects an AI coding agent
+  to Meta's developer platform to discover APIs, troubleshoot errors, check app health, monitor compliance,
+  and debug webhooks. (2) The Ads AI Connectors expose an official hosted HTTP MCP server at https://mcp.facebook.com/ads,
+  wrapping the Meta Marketing API behind Meta Business OAuth (also referenced as the "Ads MCP Server"
+  in the official developers.facebook.com/llms.txt). Tool categories captured from the official announcements
+  and docs; the Ads MCP tool count (~29) is from the docs.
 servers:
-  - name: meta-developer-tools-mcp
-    label: Developer Tools MCP
-    transport: http
-    auth: oauth2
-    docs: https://developers.facebook.com/blog/post/2026/06/30/developer-tools-mcp/
-    clients: [Claude, Cursor, Codex, ChatGPT]
-    setup: >-
-      Install the Developer Tools MCP configuration in your agent, authenticate
-      with your Meta app credentials, then use list_tools to enumerate tools.
-    tool_categories:
-      - name: api_discovery
-        description: Endpoint information, required permissions, and code samples via conversation.
-      - name: error_troubleshooting
-        description: Resolve errors against live platform logic, changelog history, and known error patterns.
-      - name: app_health
-        description: App settings, platform details, API usage, and health status.
-      - name: compliance
-        description: Compliance status, required actions, and enforcement timelines.
-      - name: webhook_debugging
-        description: Webhook subscription status and event configuration.
-  - name: meta-ads-ai-connectors
-    label: Ads AI Connectors (Ads MCP Server)
-    transport: http
-    url: https://mcp.facebook.com/ads
-    auth: oauth2
-    auth_detail: Meta Business OAuth (Facebook Login); no API key.
-    docs: https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/
-    clients: [Claude, ChatGPT, Perplexity, Cursor]
-    tool_count: 29
-    tool_categories:
-      - reporting
-      - campaign-management
-      - catalog
-      - signal-diagnostics
-    note: >-
-      A local Python CLI (meta-ads, catalogued in cli/meta-cli.yml and
-      packages/meta-packages.yml) complements the hosted server.
+- name: meta-developer-tools-mcp
+  label: Developer Tools MCP
+  transport: http
+  auth: oauth2
+  docs: https://developers.facebook.com/blog/post/2026/06/30/developer-tools-mcp/
+  clients:
+  - Claude
+  - Cursor
+  - Codex
+  - ChatGPT
+  setup: Install the Developer Tools MCP configuration in your agent, authenticate with your Meta app
+    credentials, then use list_tools to enumerate tools.
+  tool_categories:
+  - name: api_discovery
+    description: Endpoint information, required permissions, and code samples via conversation.
+  - name: error_troubleshooting
+    description: Resolve errors against live platform logic, changelog history, and known error patterns.
+  - name: app_health
+    description: App settings, platform details, API usage, and health status.
+  - name: compliance
+    description: Compliance status, required actions, and enforcement timelines.
+  - name: webhook_debugging
+    description: Webhook subscription status and event configuration.
+- name: meta-ads-ai-connectors
+  label: Ads AI Connectors (Ads MCP Server)
+  transport: http
+  url: https://mcp.facebook.com/ads
+  auth: oauth2
+  auth_detail: Meta Business OAuth (Facebook Login); no API key.
+  docs: https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/
+  clients:
+  - Claude
+  - ChatGPT
+  - Perplexity
+  - Cursor
+  tool_count: 29
+  tool_categories:
+  - reporting
+  - campaign-management
+  - catalog
+  - signal-diagnostics
+  note: A local Python CLI (meta-ads, catalogued in cli/meta-cli.yml and packages/meta-packages.yml) complements
+    the hosted server.
+deployment:
+  mode: remote
+  endpoint: https://mcp.facebook.com/ads
+  verified: probed
+  probe: gated
+  checked: '2026-08-12'
+  source: catalog MCP census

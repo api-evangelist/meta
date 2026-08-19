@@ -2,6 +2,7 @@
   "provider": "meta",
   "sources": [
     "meta-custom-audiences-api-openapi.yml",
+    "meta-openapi.yml",
     "meta-pages-api-openapi.yml",
     "meta-users-api-openapi.yml"
   ],
@@ -10,9 +11,16 @@
     "meta-pages-api-openapi.yml",
     "meta-users-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "archived openapi/meta-openapi.yml"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "tag 'Custom Audiences' spans 2 source specs (meta-custom-audiences-api-openapi.yml, meta-openapi.yml): per-path servers applied",
+    "tag 'Pages' spans 2 source specs (meta-openapi.yml, meta-pages-api-openapi.yml): per-path servers applied",
+    "tag 'Users' spans 2 source specs (meta-openapi.yml, meta-users-api-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

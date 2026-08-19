@@ -1,0 +1,267 @@
+{
+  "item": [
+    {
+      "id": "c26ab1aa-d473-491d-a1b8-ba952db840c0",
+      "name": "Custom Audiences",
+      "description": {
+        "content": "Manage user membership in custom audiences",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b5017292-0f11-4587-811e-4586b4117bc4",
+          "name": "Meta Add users to custom audience",
+          "request": {
+            "name": "Meta Add users to custom audience",
+            "description": {
+              "content": "Adds users to a custom audience using payload schemas such as EMAIL_SHA256 or PHONE_SHA256.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":custom-audience-id",
+                "users"
+              ],
+              "host": [
+                "{{custom-audience-id-users-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "custom-audience-id",
+                  "description": "(Required) ID of the custom audience."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"payload\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a8e59b3b-bbd3-472b-8fba-37aaf641d90b",
+              "name": "Users added",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":custom-audience-id",
+                    "users"
+                  ],
+                  "host": [
+                    "{{custom-audience-id-users-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "custom-audience-id",
+                      "description": "(Required) ID of the custom audience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payload\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bc6e625c-63a8-42ef-a078-6af9d6668132",
+          "name": "Meta Remove users from custom audience",
+          "request": {
+            "name": "Meta Remove users from custom audience",
+            "description": {
+              "content": "Removes users from a custom audience using payload data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":custom-audience-id",
+                "users"
+              ],
+              "host": [
+                "{{custom-audience-id-users-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "custom-audience-id",
+                  "description": "(Required) ID of the custom audience."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "85726ce8-64e9-44f0-8593-8775cbc475bb",
+              "name": "Users removed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":custom-audience-id",
+                    "users"
+                  ],
+                  "host": [
+                    "{{custom-audience-id-users-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "custom-audience-id",
+                      "description": "(Required) ID of the custom audience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://graph.facebook.com/v22.0",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://graph.facebook.com/v22.0",
+      "key": "custom-audience-id-users-Url"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "public_profile"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://www.facebook.com/v22.0/dialog/oauth"
+      },
+      {
+        "key": "grant_type",
+        "value": "implicit"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7f01bcd6-24bc-4dda-a056-412a174022e2",
+    "name": "Meta Custom Audiences API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Operations tagged Custom Audiences across 2 of this provider's published API definitions: meta-custom-audiences-api-openapi.yml, meta-openapi.yml. Each path carries the servers of the definition it was published in.",
+      "type": "text/plain"
+    }
+  }
+}

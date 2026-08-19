@@ -1,0 +1,150 @@
+{
+  "item": [
+    {
+      "id": "3c70d3f6-77d3-4e63-9c98-9e6b7c69821a",
+      "name": "Pages",
+      "description": {
+        "content": "Page-related user operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5a225564-4d2f-46c3-9b30-cd088fe4f100",
+          "name": "Meta Unblock user from page",
+          "request": {
+            "name": "Meta Unblock user from page",
+            "description": {
+              "content": "Dissociates a user from a page by unblocking them.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":page-id",
+                "blocked"
+              ],
+              "host": [
+                "{{page-id-blocked-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "page-id",
+                  "description": "(Required) ID of the page."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "41441274-804b-4eb2-b63e-9d2928418b2b",
+              "name": "Unblock successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":page-id",
+                    "blocked"
+                  ],
+                  "host": [
+                    "{{page-id-blocked-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "page-id",
+                      "description": "(Required) ID of the page."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://graph.facebook.com/v22.0",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://graph.facebook.com/v22.0",
+      "key": "page-id-blocked-Url"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "public_profile"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://www.facebook.com/v22.0/dialog/oauth"
+      },
+      {
+        "key": "grant_type",
+        "value": "implicit"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ded78d17-2712-4db5-b151-1db0dc6f531c",
+    "name": "Meta Pages API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Operations tagged Pages across 2 of this provider's published API definitions: meta-openapi.yml, meta-pages-api-openapi.yml. Each path carries the servers of the definition it was published in.",
+      "type": "text/plain"
+    }
+  }
+}

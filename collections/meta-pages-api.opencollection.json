@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Meta Pages API",
+    "version": "v22.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "implicit",
+      "authorizationUrl": "https://www.facebook.com/v22.0/dialog/oauth",
+      "credentials": {
+        "clientId": "{{clientId}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Meta Unblock user from page",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://graph.facebook.com/v22.0/:page-id/blocked",
+            "params": [
+              {
+                "name": "page-id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the page."
+              }
+            ]
+          },
+          "docs": "Dissociates a user from a page by unblocking them."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,8 +1,8 @@
 openapi: 3.1.0
 info:
-  title: Meta Graph API - User Custom Audiences Users API
-  description: Subset of the Meta (Facebook) Graph API focusing on User node operations including reading user profile fields, posting updates, and managing custom audiences. Requires user access tokens with appropriate permissions such as public_profile.
+  title: Meta Users API
   version: v22.0
+  description: 'Operations tagged Users across 2 of this provider''s published API definitions: meta-openapi.yml, meta-users-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://graph.facebook.com/v22.0
   description: Meta Graph API
@@ -38,6 +38,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+    servers:
+    - url: https://graph.facebook.com/v22.0
+      description: Meta Graph API
   /{user-id}:
     parameters:
     - name: user-id
@@ -99,6 +102,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SuccessResponse'
+    servers:
+    - url: https://graph.facebook.com/v22.0
+      description: Meta Graph API
   /{user-id}/feed:
     parameters:
     - name: user-id
@@ -120,6 +126,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PagedList'
+    servers:
+    - url: https://graph.facebook.com/v22.0
+      description: Meta Graph API
 components:
   schemas:
     User:
@@ -137,23 +146,6 @@ components:
           type: string
         picture:
           type: object
-    SuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            type:
-              type: string
-            code:
-              type: integer
     PagedList:
       type: object
       properties:
@@ -175,6 +167,23 @@ components:
               type: string
             previous:
               type: string
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            type:
+              type: string
+            code:
+              type: integer
   securitySchemes:
     userAccessToken:
       type: oauth2
@@ -186,5 +195,8 @@ components:
 externalDocs:
   description: Meta Graph API User Reference
   url: https://developers.facebook.com/docs/graph-api/reference/user/
+x-refined-from:
+- meta-openapi.yml
+- meta-users-api-openapi.yml
 x-generated-from: https://developers.facebook.com/docs/graph-api/reference/user/
 x-generated-by: claude-crawl-2026-05-08
