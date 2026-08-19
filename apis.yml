@@ -13,7 +13,7 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
-specificationVersion: '0.18'
+specificationVersion: '0.23'
 name: Meta
 description: Collection of Meta (Facebook) platform APIs for social networking, messaging,
   advertising, content publishing, AI, and developer tools across Facebook, Instagram,
