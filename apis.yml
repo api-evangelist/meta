@@ -25,6 +25,14 @@ tags:
 - Artificial Intelligence
 - Messaging
 - Social
+- Social-Media
+- Virtual Reality
+tags_raw:
+- Advertising
+- Analytics
+- Artificial Intelligence
+- Messaging
+- Social
 - Social Media
 - Virtual Reality
 created: '2024-04-14T00:00:00.000Z'
@@ -44,6 +52,10 @@ apis:
     the Instagram Graph API.
   humanURL: https://developers.facebook.com/docs/instagram-platform
   tags:
+  - Instagram
+  - Social
+  - User
+  tags_raw:
   - Instagram
   - Social
   - Users
@@ -74,6 +86,10 @@ apis:
   humanURL: https://developers.facebook.com/docs/graph-api/reference/group/
   tags:
   - Facebook
+  - Group
+  - Social
+  tags_raw:
+  - Facebook
   - Groups
   - Social
   properties: []
@@ -84,6 +100,10 @@ apis:
     node.
   humanURL: https://developers.facebook.com/docs/graph-api/reference/event/
   tags:
+  - Event
+  - Facebook
+  - Social
+  tags_raw:
   - Events
   - Facebook
   - Social
@@ -170,6 +190,10 @@ apis:
   humanURL: https://developers.facebook.com/docs/threads
   tags:
   - Social
+  - Social-Media
+  - Threads
+  tags_raw:
+  - Social
   - Social Media
   - Threads
   properties: []
@@ -215,6 +239,10 @@ apis:
   tags:
   - Artificial Intelligence
   - Large Language Models
+  - Machine-Learning
+  tags_raw:
+  - Artificial Intelligence
+  - Large Language Models
   - Machine Learning
   properties:
   - url: https://llama.developer.meta.com/docs/quickstart
@@ -252,6 +280,8 @@ apis:
   description: Operations on the User node
   humanURL: https://developers.facebook.com/docs/graph-api/reference/user/
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
