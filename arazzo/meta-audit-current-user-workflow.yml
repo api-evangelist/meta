@@ -11,8 +11,8 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: metaGraphApi
-  url: ../openapi/meta-openapi.yml
+- name: usersApi
+  url: ../openapi/meta-users-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: audit-current-user

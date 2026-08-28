@@ -10,8 +10,11 @@ info:
     and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: metaGraphApi
-  url: ../openapi/meta-openapi.yml
+- name: customAudiencesApi
+  url: ../openapi/meta-custom-audiences-api-openapi.yml
+  type: openapi
+- name: pagesApi
+  url: ../openapi/meta-pages-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: unblock-and-add-to-audience

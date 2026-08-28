@@ -11,8 +11,11 @@ info:
     be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: metaGraphApi
-  url: ../openapi/meta-openapi.yml
+- name: customAudiencesApi
+  url: ../openapi/meta-custom-audiences-api-openapi.yml
+  type: openapi
+- name: usersApi
+  url: ../openapi/meta-users-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: refresh-audience-cohort
