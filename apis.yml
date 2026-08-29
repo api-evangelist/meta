@@ -301,6 +301,9 @@ apis:
   - type: GraphQL
     url: graphql/meta-graphql.md
 common:
+- type: CapabilityMap
+  url: capabilities/meta-capability-edges.yml
+  name: Meta Business Capability Map
 - type: AgenticAccess
   url: agentic-access/meta-agentic-access.yml
 - type: VulnerabilityDisclosure
