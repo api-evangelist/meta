@@ -1,16 +1,16 @@
 ---
 kin_checks:
   slug: meta
-  schema_version: 0.18.2
-  scored_at: '2026-09-04'
-  run_ts: 2026-09-04T062714
+  schema_version: 0.21.0
+  scored_at: '2026-09-12'
+  run_ts: 2026-09-12T080032
   note: Actionable checks only (missed + partial). earned/na are every other check
-    in rubric/scoring-0.18.2.yml; counts below let you verify that.
+    in rubric/scoring-0.21.0.yml; counts below let you verify that.
   counts:
-    total: 132
-    earned: 55
-    partial: 10
-    missed: 45
+    total: 136
+    earned: 54
+    partial: 11
+    missed: 49
     na: 22
   checks:
   - id: description_substantive
@@ -86,6 +86,14 @@ kin_checks:
     status: missed
   - id: reg_compliance_published
     status: missed
+  - id: upsert_outcome_discriminator
+    status: missed
+  - id: upsert_alternate_key
+    status: missed
+  - id: upsert_named
+    status: missed
+  - id: upsert_declared_conflict
+    status: missed
   - id: reversibility_documented
     status: missed
   - id: idempotency
@@ -122,6 +130,9 @@ kin_checks:
   - id: rate_limits_documented
     status: partial
     earned: 2.0
+  - id: postman_present
+    status: partial
+    earned: 0.5
   - id: plans_present
     status: partial
     earned: 2.0
