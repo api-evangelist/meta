@@ -39,8 +39,8 @@ tags:
 - Social
 - Social-Media
 - Virtual Reality
-- Meta
 tags_raw:
+- Meta
 - Advertising
 - Analytics
 - Artificial Intelligence
@@ -143,6 +143,10 @@ apis:
     and optimization.
   humanURL: https://developers.facebook.com/docs/marketing-api/conversions-api
   tags:
+  - Advertising
+  - Analytics
+  - Conversion
+  tags_raw:
   - Advertising
   - Analytics
   - Conversions
@@ -251,7 +255,7 @@ apis:
   humanURL: https://llama.developer.meta.com/docs/overview
   tags:
   - Artificial Intelligence
-  - Large Language Models
+  - LLM
   - Machine-Learning
   tags_raw:
   - Artificial Intelligence
