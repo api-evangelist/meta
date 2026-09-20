@@ -2,16 +2,16 @@
 kin_checks:
   slug: meta
   schema_version: 0.22.0
-  scored_at: '2026-09-18'
-  run_ts: 2026-09-18T231945
+  scored_at: '2026-09-19'
+  run_ts: 2026-09-19T193153
   note: Actionable checks (missed + partial) in `checks`, plus the ids that did not
     apply in `na`. Everything else in rubric/scoring-0.22.0.yml was earned; counts
     below let you verify that.
   counts:
     total: 136
-    earned: 54
+    earned: 57
     partial: 11
-    missed: 49
+    missed: 46
     na: 22
   checks:
   - id: description_substantive
@@ -111,12 +111,6 @@ kin_checks:
     status: missed
   - id: dry_run_mode
     status: missed
-  - id: delegated_identity
-    status: missed
-  - id: protected_resource_metadata
-    status: missed
-  - id: dynamic_client_registration
-    status: missed
   - id: agentic_commerce
     status: missed
   - id: rules_present
@@ -146,8 +140,8 @@ kin_checks:
     detail: 'authorship: derived'
   - id: auth_clarity
     status: partial
-    earned: 3.5
-    detail: 'grade: bearer'
+    earned: 9.0
+    detail: 'grade: served'
   - id: error_semantics
     status: partial
     earned: 4.0
