@@ -1,0 +1,1 @@
+{"resource":"https:\/\/mcp.facebook.com\/ads","authorization_servers":["https:\/\/www.facebook.com\/ads"],"scopes_supported":["ads_management","ads_read","catalog_management","business_management","pages_show_list","instagram_basic","ads_mcp_management"],"bearer_methods_supported":["header"]}

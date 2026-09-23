@@ -1,26 +1,24 @@
 {
   "provider": "meta",
   "sources": [
-    "meta-custom-audiences-api-openapi.yml",
-    "meta-openapi.yml",
-    "meta-pages-api-openapi.yml",
-    "meta-users-api-openapi.yml"
+    "_ae-authored/meta-openapi.yml"
   ],
   "outputs": [
     "meta-custom-audiences-api-openapi.yml",
     "meta-pages-api-openapi.yml",
     "meta-users-api-openapi.yml"
   ],
-  "archived": [
-    "archived openapi/meta-openapi.yml"
-  ],
+  "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
-    "tag 'Custom Audiences' spans 2 source specs (meta-custom-audiences-api-openapi.yml, meta-openapi.yml): per-path servers applied",
-    "tag 'Pages' spans 2 source specs (meta-openapi.yml, meta-pages-api-openapi.yml): per-path servers applied",
-    "tag 'Users' spans 2 source specs (meta-openapi.yml, meta-users-api-openapi.yml): per-path servers applied",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "meta-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "meta-custom-audiences-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meta-pages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meta-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

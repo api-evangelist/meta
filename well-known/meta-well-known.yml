@@ -1,51 +1,77 @@
-generated: '2026-06-20'
+generated: '2026-09-19'
 method: searched
-description: >-
-  Results of probing the /.well-known/ discovery surface for the base hosts in
-  apis.yml and the OpenAPI servers[] (graph.facebook.com, developers.facebook.com,
-  facebook.com, llama.developer.meta.com). Status is the HTTP code observed at
-  fetch time. graph.facebook.com answers every /.well-known/ path with an HTTP
-  400 Graph API OAuthException ("Unknown path components") rather than a real
-  discovery document. developers.facebook.com returns a 404 HTML SPA shell.
-  facebook.com serves a real RFC 9116 security.txt (saved verbatim).
+description: Results of probing the /.well-known/ discovery surface for the base hosts in apis.yml and
+  the OpenAPI servers[] (graph.facebook.com, developers.facebook.com, facebook.com, llama.developer.meta.com).
+  Status is the HTTP code observed at fetch time. graph.facebook.com answers every /.well-known/ path
+  with an HTTP 400 Graph API OAuthException ("Unknown path components") rather than a real discovery document.
+  developers.facebook.com returns a 404 HTML SPA shell. facebook.com serves a real RFC 9116 security.txt
+  (saved verbatim).
 hosts:
-  - host: https://graph.facebook.com
-    documents:
-      - path: /.well-known/security.txt
-        status: 400
-        note: Graph API OAuthException, not a discovery document.
-      - path: /.well-known/openid-configuration
-        status: 400
-        note: Graph API OAuthException, not a discovery document.
-      - path: /.well-known/oauth-authorization-server
-        status: 400
-        note: Graph API OAuthException, not a discovery document.
-  - host: https://developers.facebook.com
-    documents:
-      - path: /.well-known/security.txt
-        status: 404
-      - path: /.well-known/openid-configuration
-        status: 404
-      - path: /.well-known/api-catalog
-        status: 404
-      - path: /.well-known/ai-plugin.json
-        status: 404
-      - path: /llms.txt
-        status: 200
-        type: text/plain
-        file: ../llms/meta-llms.txt
-        note: Official llms.txt (indexed under llms/).
-      - path: /llms-full.txt
-        status: 404
+- host: https://graph.facebook.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 400
+    note: Graph API OAuthException, not a discovery document.
+  - path: /.well-known/openid-configuration
+    status: 400
+    note: Graph API OAuthException, not a discovery document.
+  - path: /.well-known/oauth-authorization-server
+    status: 400
+    note: Graph API OAuthException, not a discovery document.
+- host: https://developers.facebook.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 200
+    type: text/plain
+    file: ../llms/meta-llms.txt
+    note: Official llms.txt (indexed under llms/).
+  - path: /llms-full.txt
+    status: 404
+- host: https://www.facebook.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    type: text/plain
+    file: meta-security.txt
+  - path: /.well-known/oauth-authorization-server/ads
+    status: 200
+    file: meta-www-oauth-authorization-server.json
+    bytes: 665
+  path_echo_control: passed
+- host: https://llama.developer.meta.com
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: https://mcp.facebook.com
+  documents:
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: meta-mcp-oauth-protected-resource.json
+    bytes: 293
+  path_echo_control: passed
+x-mcp-probe:
+  probed: '2026-09-19'
+  issue: roadmap#321, roadmap#337
+  documents:
+  - host: https://mcp.facebook.com
+    path: /.well-known/oauth-protected-resource
+    file: meta-mcp-oauth-protected-resource.json
   - host: https://www.facebook.com
-    documents:
-      - path: /.well-known/security.txt
-        status: 200
-        type: text/plain
-        file: meta-security.txt
-  - host: https://llama.developer.meta.com
-    documents:
-      - path: /.well-known/openid-configuration
-        status: 404
-      - path: /llms.txt
-        status: 404
+    path: /.well-known/oauth-authorization-server/ads
+    file: meta-www-oauth-authorization-server.json
+  validated_on: resource (RFC 9728) / issuer (RFC 8414, OIDC)
+  negative_control: one per host; a 2xx JSON object at an impossible path discards the host
+note: 'MCP-host OAuth discovery added 2026-09-19 (roadmap#321/#337): the harvest visits a provider''s
+  primary hosts, and RFC 9728 protected-resource metadata lives on the MCP host, so these documents existed
+  and were invisible to the scorer. Fetched live and validated on `resource`/`issuer`; one negative control
+  per host.'
