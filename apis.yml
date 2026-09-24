@@ -38,7 +38,7 @@ tags:
 - Artificial Intelligence
 - Messaging
 - Social
-- Social-Media
+- Social Media
 - Virtual Reality
 tags_raw:
 - Meta
@@ -49,6 +49,7 @@ tags_raw:
 - Social
 - Social Media
 - Virtual Reality
+- Social-Media
 created: '2024-04-14T00:00:00.000Z'
 modified: '2026-06-20'
 maintainers:
@@ -208,12 +209,13 @@ apis:
   humanURL: https://developers.facebook.com/docs/threads
   tags:
   - Social
-  - Social-Media
+  - Social Media
   - Threads
   tags_raw:
   - Social
   - Social Media
   - Threads
+  - Social-Media
   properties: []
 - aid: meta:instagram-graph-api-content-publishing
   name: Instagram Graph API - Content Publishing
@@ -257,11 +259,12 @@ apis:
   tags:
   - Artificial Intelligence
   - LLM
-  - Machine-Learning
+  - Machine Learning
   tags_raw:
   - Artificial Intelligence
   - Large Language Models
   - Machine Learning
+  - Machine-Learning
   properties:
   - url: https://llama.developer.meta.com/docs/quickstart
     type: GettingStarted
@@ -280,8 +283,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/meta-custom-audiences-api-openapi.yml
-  - type: GraphQL
-    url: graphql/meta-graphql.md
 - aid: meta:meta-pages-api
   name: Meta Pages API
   description: Page-related user operations
@@ -291,8 +292,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/meta-pages-api-openapi.yml
-  - type: GraphQL
-    url: graphql/meta-graphql.md
 - aid: meta:meta-users-api
   name: Meta Users API
   description: Operations on the User node
@@ -304,8 +303,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/meta-users-api-openapi.yml
-  - type: GraphQL
-    url: graphql/meta-graphql.md
 common:
 - type: CapabilityMap
   url: capabilities/meta-capability-edges.yml
