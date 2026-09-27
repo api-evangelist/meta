@@ -143,11 +143,6 @@ components:
               type: string
             previous:
               type: string
-    SuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
     Error:
       type: object
       properties:
@@ -160,6 +155,11 @@ components:
               type: string
             code:
               type: integer
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
     User:
       type: object
       properties:
