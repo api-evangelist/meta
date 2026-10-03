@@ -143,18 +143,6 @@ components:
               type: string
             previous:
               type: string
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            type:
-              type: string
-            code:
-              type: integer
     SuccessResponse:
       type: object
       properties:
@@ -175,6 +163,18 @@ components:
           type: string
         picture:
           type: object
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            type:
+              type: string
+            code:
+              type: integer
   securitySchemes:
     userAccessToken:
       type: oauth2
