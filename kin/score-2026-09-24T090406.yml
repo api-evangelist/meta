@@ -1,31 +1,30 @@
-# Kin Score artifact — meta — 2026-08-25T154045
+# Kin Score artifact — meta — 2026-09-24T090406
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: meta
-  schema_version: 0.14.0
-  scored_at: '2026-08-25'
-  run_ts: 2026-08-25T154045
-  composite: 60.9
+  schema_version: 0.22.0
+  scored_at: '2026-09-24'
+  run_ts: 2026-09-24T090406
+  composite: 56.0
   band: strong
   facets:
-    discoverability: 74.1
-    contract_quality: 55.4
-    governance: 26.5
+    discoverability: 63.0
+    contract_quality: 51.7
+    contract_governance: 14.4
     operational_transparency: 60.5
-    developer_ergonomics: 92.9
-    commercial_clarity: 50.0
-    contract_governance: 26.5
+    developer_ergonomics: 89.3
     access_clarity: 50.0
   agent_readiness:
-    score: 37.8
+    score: 51.8
     band: agent-ready
+    band_gated_from: agent-native
     dimensions:
       spec_presence: true
       agentic_access: derived
       reversibility_documented: false
       mcp_server: verified
-      auth_clarity: bearer
+      auth_clarity: served
       idempotency: false
       error_semantics: documented
       openapi_examples: false
@@ -33,27 +32,19 @@ kin_score:
       event_surface_described: true
       agent_skills: false
       well_known_catalog: false
-      consent_identity: true
+      consent_identity: false
       agent_card: false
       dry_run_mode: false
-      delegated_identity: false
-      protected_resource_metadata: false
-      dynamic_client_registration: false
+      delegated_identity: served
+      protected_resource_metadata: verified
+      dynamic_client_registration: true
       agentic_commerce: false
-  needs_work:
-    owner: catalog
-    reasons:
-    - owner: catalog
-      reason: no_resolvable_host
-    detected: '2026-08-18'
-    note: Recorded so this provider's gaps can be attributed. Does not affect the
-      composite.
   provenance:
     mcp: first-party
     agentic_access: derived
     conformance: derived
     contracts:
-      total: 3
+      total: 4
       derived: 0
       coverage: 0.0
       callable: 100.0
