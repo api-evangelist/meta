@@ -122,6 +122,23 @@ paths:
                 $ref: '#/components/schemas/PagedList'
 components:
   schemas:
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            type:
+              type: string
+            code:
+              type: integer
     PagedList:
       type: object
       properties:
@@ -143,11 +160,6 @@ components:
               type: string
             previous:
               type: string
-    SuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
     User:
       type: object
       properties:
@@ -163,18 +175,6 @@ components:
           type: string
         picture:
           type: object
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            type:
-              type: string
-            code:
-              type: integer
   securitySchemes:
     userAccessToken:
       type: oauth2
