@@ -304,6 +304,8 @@ apis:
   - type: OpenAPI
     url: openapi/meta-users-api-openapi.yml
 common:
+- type: FinOps
+  url: finops/meta-finops.yml
 - type: CapabilityMap
   url: capabilities/meta-capability-edges.yml
   name: Meta Business Capability Map
