@@ -59,3 +59,25 @@ deployment:
   probe: gated
   checked: '2026-08-12'
   source: catalog MCP census
+rfc9728:
+  endpoint: https://mcp.facebook.com/ads
+  metadata_url: https://mcp.facebook.com/.well-known/oauth-protected-resource/ads
+  discovered_via: WWW-Authenticate resource_metadata on an anonymous POST initialize
+  fetched: '2026-09-25'
+  http_status: 200
+  content_type: application/json
+  document:
+    resource: https://mcp.facebook.com/ads
+    authorization_servers:
+    - https://www.facebook.com/ads
+    scopes_supported:
+    - ads_management
+    - ads_read
+    - catalog_management
+    - business_management
+    - pages_show_list
+    - pages_manage_ads
+    - instagram_basic
+    - ads_mcp_management
+    bearer_methods_supported:
+    - header

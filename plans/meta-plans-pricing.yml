@@ -83,3 +83,39 @@ plans:
       - name: 12-month free trial allowances
       - name: Always-free quotas
       - name: New account credits
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - negotiated
+  - subscription
+  units:
+  - negotiated
+  - object
+  - period
+  plans:
+  - name: Platform Pricing Overview
+    access: enterprise
+    model: negotiated
+    model_how: derived
+    units:
+    - negotiated
+    periods:
+    - per-use
+  - name: Committed Use / Reserved
+    access: enterprise
+    model: subscription
+    model_how: derived
+    units:
+    - period
+    periods:
+    - year
+  - name: Free Tier / Trial
+    access: freemium
+    model: free
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
