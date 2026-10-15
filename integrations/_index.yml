@@ -15,3 +15,36 @@
   relationship: connector-coverage
   status: not-a-workflow
   arazzo: null
+- slug: meta-lf-ai-data-landscape
+  label: LF AI & Data (Landscape)
+  partner: lf-ai-data
+  partner_name: LF AI & Data (Landscape)
+  category: AI & data landscape
+  type: register
+  channel: standard-directory
+  evidence: https://github.com/lfai/landscape/blob/95d361b8abfdd04a8c76bf38a012778d13621b5e/landscape.yml
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: LF AI & Data Landscape (github.com/lfai/landscape landscape.yml @95d361b8ab)
+    spec_file: null
+    standard: LF AI & Data
+    role: lfai-project-host
+    registered_name: Meta (hosting)
+    registered_names:
+    - Meta (hosting)
+    website: https://m.facebook.com
+    matched_domain: facebook.com
+    matched_by: domain+name-among-holders
+    member_tier: null
+    hosting_company: true
+    lfai_projects: []
+    landscape_categories:
+    - Hosting Companies / Hosting Companies
+    landscape_entries: 1
+    signal_note: 'participation only: a landscape listing is standard-participant evidence, not depth. Entries,
+      categories, tier and projects are CONTEXT, never read (breadth is not credit)'
+    detected_by: sweep-mlops.py
+    detected: '2026-10-15'
+  status: not-a-workflow
+  arazzo: null
