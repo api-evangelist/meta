@@ -22,11 +22,11 @@
   category: AI & data landscape
   type: register
   channel: standard-directory
-  evidence: https://github.com/lfai/landscape/blob/95d361b8abfdd04a8c76bf38a012778d13621b5e/landscape.yml
+  evidence: https://github.com/lfai/landscape/blob/3893e0631e1d12921a9b0ac25ffc78a2ac26239d/landscape.yml
   source: edge
   relationship: standard-participant
   contract_reference:
-    register: LF AI & Data Landscape (github.com/lfai/landscape landscape.yml @95d361b8ab)
+    register: LF AI & Data Landscape (github.com/lfai/landscape landscape.yml @3893e0631e)
     spec_file: null
     standard: LF AI & Data
     role: lfai-project-host
@@ -45,6 +45,116 @@
     signal_note: 'participation only: a landscape listing is standard-participant evidence, not depth. Entries,
       categories, tier and projects are CONTEXT, never read (breadth is not credit)'
     detected_by: sweep-mlops.py
-    detected: '2026-10-15'
+    detected: '2026-10-19'
+  status: not-a-workflow
+  arazzo: null
+- slug: meta-khronos-group-conformant-products
+  label: Khronos Group conformant products
+  partner_name: Khronos Group conformant products
+  category: graphics API conformance
+  type: register
+  channel: standard-directory
+  evidence: https://www.khronos.org/conformance/adopters/conformant-products/openxr#submission_47
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: Khronos Group conformant products + API adopters (khronos.org/conformance/adopters)
+    standard: Khronos conformance
+    spec_file: null
+    role: khronos-conformant-adopter
+    registered_name: Meta
+    register_id: https://www.khronos.org/conformance/adopters/conformant-products/openxr#submission_47
+    matched_domain: facebook.com
+    matched_by: domain+name-among-holders
+    certified_products:
+    - product: OpenXR
+      lapsed: false
+      newest_submission: '2026-01-18'
+      versions:
+      - OpenXR_1_0
+      - OpenXR_1_0_and_1_1
+      submissions_listed: 9
+    products_sample:
+    - Meta Quest 3
+    - Meta Quest Pro
+    - Meta XR Simulator
+    - Oculus PC runtime
+    - Oculus Quest
+    - Oculus Quest 2
+    - Quest 2
+    - Quest 3
+    - Quest 3S
+    signal_note: certified_products = one entry per Khronos API the company is a conformant adopter of (the API
+      Adopters page), never per submission or product; dates, versions and submission counts are context. Khronos
+      marks no conformance as superseded or lapsed, so lapsed is false
+    detected_by: sweep-xr-graphics.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
+- slug: meta-khronos-group-conformant-products-openxr
+  label: Khronos Group conformant products (OpenXR)
+  partner_name: Khronos Group conformant products (OpenXR)
+  category: graphics API conformance
+  type: register
+  channel: standard-directory
+  evidence: https://www.khronos.org/conformance/adopters/conformant-products/openxr#submission_47
+  source: edge
+  relationship: compatible
+  contract_reference:
+    register: Khronos Group conformant products + API adopters (khronos.org/conformance/adopters)
+    spec_file: null
+    standard: OpenXR
+    role: openxr-conformance
+    registered_name: Meta
+    matched_domain: facebook.com
+    newest_submission: '2026-01-18'
+    detected_by: sweep-xr-graphics.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
+- slug: meta-khronos-group-members
+  label: Khronos Group (members)
+  partner_name: Khronos Group (members)
+  category: graphics standards body membership
+  type: register
+  channel: standard-directory
+  evidence: https://www.khronos.org/members/list
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: Khronos Group members list (khronos.org/members/list)
+    standard: Khronos Group
+    spec_file: null
+    role: khronos-member
+    registered_name: Meta
+    register_id: https://www.khronos.org/members/list
+    matched_domain: facebook.com
+    matched_by: domain+name-among-holders
+    signal_note: 'participation only: membership level is partner_tier, never counted'
+    detected_by: sweep-xr-graphics.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
+- slug: meta-alliance-for-openusd-aousd
+  label: Alliance for OpenUSD (AOUSD)
+  partner_name: Alliance for OpenUSD (AOUSD)
+  category: OpenUSD standards body
+  type: register
+  channel: standard-directory
+  evidence: https://aousd.org/members/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: Alliance for OpenUSD members (aousd.org/members; landscape.aousd.org/data/full.json)
+    standard: OpenUSD
+    spec_file: null
+    role: aousd-member
+    registered_name: Meta Platforms, Inc.
+    register_id: aousd-members--general--meta-platforms-inc
+    matched_domain: meta.com
+    matched_by: domain+verified
+    signal_note: 'participation only: steering / general is partner_tier, never counted'
+    detected_by: sweep-xr-graphics.py
+    detected: '2026-10-20'
   status: not-a-workflow
   arazzo: null
