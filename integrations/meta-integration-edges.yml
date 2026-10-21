@@ -172,6 +172,25 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-xr-graphics.py
   first_seen: '2026-10-20'
+- partner_name: Google Play Developer (Google Play SDK Index)
+  partner: google-play
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: Google Play SDK Index
+  evidence: https://play.google.com/sdks/details/com-facebook-android-facebook-messenger
+  mirror_of: google-play/integrations/google-play-integration-edges.yml
+  apps:
+  - Facebook Android SDK - Messenger
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: mobile SDK (social)
+  publisher_verified:
+  - Registered in Google Play SDK Console
 method: searched
 checked:
 - https://github.com/kubeflow/website
@@ -183,4 +202,5 @@ checked:
 - https://www.khronos.org/conformance/adopters/conformant-products
 - https://www.khronos.org/conformance/adopters/file-format-adopters
 - https://www.khronos.org/members/list
+- google-play/integrations/google-play-integration-edges.yml
 source: https://hightouch.com/docs/destinations/facebook
